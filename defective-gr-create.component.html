@@ -1,0 +1,320 @@
+<form #goodsCreateForm="ngForm" (keydown.enter)="$event.preventDefault()">
+    <div class="row">
+        <div class="col-md-12 header-title-layout">
+            <h1 class="page-title col-md-3 float-left">Defective Goods Receipt</h1>
+            <div class="col-md-9 padding-null" style="display:inline-block">
+                <p-button label="Save" styleClass="prime-button-primary" (onClick)="save()" [disabled]="valid()"></p-button>
+            </div>
+        </div>
+        <div class="col-md-9 padding-null card-padding-right top-card">
+            <div class="opening-balance-debit-component">
+                <div class="header-layout">
+                    <div class="card">
+                        <div class="row">
+                            <div class="input_group col-lg-4 form-padding-right">
+                                <label>Company</label>
+                                <input type="text" pInputText class="input-text w-100" name="companycode" disabled [(ngModel)]="mmDefectiveGR.CompanyCode" />
+                            </div>
+                            <div class="input_group col-lg-4 form-padding-lt-rt">
+                                <label>Finacial</label>
+                                <input type="text" pInputText class="input-text w-100" name="fyear" disabled [(ngModel)]="mmDefectiveGR.FiscalYearCode" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div [hidden]="isHeaderHide">
+                        <div class="card card-margin-top">
+                            <div class="row">
+                                <div class="input_group col-lg-2 form-padding-right">
+                                    <label>Delivery Challan Number / Date
+                    <span class="color-red">*</span></label>
+                                    <input type="text" pInputText class="input-text w-100" name="challan" [(ngModel)]="mmDefectiveGR.DelChallanNo" #delchallan="ngModel" required>
+                                    <small class="required-field" *ngIf="submit && !delchallan.isValid  && delchallan?.errors?.required">DelChallan No Is
+                    Required</small>
+                                </div>
+                                <div class="input_group mb-4 align-self-end col-lg-2 form-padding-right">
+                                    <p-calendar [showIcon]="true" [ngModelOptions]="{ standalone: true }" class="ui-calendar pt-2" dateFormat="dd/mm/yy" [(ngModel)]="mmDefectiveGR.DelChallanDate"></p-calendar>
+                                </div>
+                                <div class="input_group col-lg-4 form-padding-lt-rt">
+                                    <label>Lorry Receipt / RR Number</label>
+                                    <input type="text" pInputText class="input-text w-100" name="lrno" [(ngModel)]="mmDefectiveGR.LRNo" />
+                                </div>
+                                <div class="input_group col-lg-4  form-padding-left">
+                                    <label>Document Date</label>
+                                    <p-calendar [showIcon]="true" class="ui-calendar" dateFormat="dd/mm/yy" [ngModelOptions]="{ standalone: true }" [(ngModel)]="mmDefectiveGR.DocDate"></p-calendar>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input_group col-lg-4  form-padding-right">
+                                    <label>Post Date</label>
+                                    <p-calendar [showIcon]="true" class="ui-calendar" dateFormat="dd/mm/yy" [ngModelOptions]="{ standalone: true }" [(ngModel)]="mmDefectiveGR.PostingDate"></p-calendar>
+                                </div>
+                                <div class="input_group col-lg-4 form-padding-lt-rt">
+                                    <label>Bill No./Date</label>
+                                    <ems-input-picklist [pickListInput]="defectiveGoodsPickList?.billNo"></ems-input-picklist>
+                                </div>
+                                <div class="input_group mb-4 align-self-end col-lg-4 form-padding-left">
+                                    <p-calendar [showIcon]="true" class="ui-calendar pt-2" dateFormat="dd/mm/yy" [ngModelOptions]="{ standalone: true }" [(ngModel)]="mmDefectiveGR.BillDate"></p-calendar>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-margin-top">
+                            <div class="row">
+                                <div class="input_group col-lg-4 form-padding-right">
+                                    <label>Customer No.<span class="color-red">*</span></label>
+                                    <ems-input-picklist #customerNo [pickListInput]="defectiveGoodsPickList?.customer_no" [(selectedCode)]="mmDefectiveGR.Vendor" (pickListEmit)="SelectedCustomerno($event)">
+                                    </ems-input-picklist>
+                                    <small class="required-field" *ngIf="submit && !customerNo.isValid">Customer No Is Required</small>
+                                </div>
+                                <div class="input_group col-lg-4 form-padding-lt-rt">
+                                    <label>Plant</label>
+                                    <input type="text" pInputText class="input-text w-100" name="plant" [(ngModel)]="mmDefectiveGR.Plant" disabled />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="ml-auto padding-top">
+                                    <p-button styleClass="prime-button-primary" label="Next" title="To Material List" (onClick)="next()" [disabled]="!(mmDefectiveGR.DelChallanNo && customerNo.isValid)"></p-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-margin-top" [hidden]="isTransHide">
+                        <div class="row">
+                            <div class="input_group col-lg-4 form-padding-left">
+                                <label>Vendor</label>
+                                <input type="text" pInputText class="input-text w-100" disabled name="customer" [(ngModel)]="mmDefectiveGR.Customer" />
+                            </div>
+                            <div class="input_group col-lg-4 form-padding-left">
+                                <label>Plant</label>
+                                <input type="text" pInputText class="input-text w-100" disabled name="plant" [(ngModel)]="mmDefectiveGR.Plant" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card card-margin-top">
+                                <div class="row" style="overflow:auto;">
+                                    <p-table [value]="mmDefectiveGR.GRN_MM_MAT_TRANS_T" [scrollable]="true" scrollHeight="300px">
+                                        <ng-template pTemplate="header" let-rowData let-i="rowIndex">
+                                            <tr>
+                                                <th style="width: 100px" *ngIf="mmDefectiveGR.GRN_MM_MAT_TRANS_T.length > 1 && !isReadOnly">
+                                                    Action
+                                                </th>
+                                                <th style="width: 100px">Select</th>
+                                                <th style="width: 220px">Material Code</th>
+                                                <th style="width: 200px">Material Description</th>
+                                                <th style="width: 150px" title="Material Receipt Note Quantity">MRN Quantity</th>
+                                                <th style="width: 150px" title="Unit Of Measurement">UOM</th>
+                                                <th style="width: 150px">Base Quantity</th>
+                                                <th style="width: 150px">Base Uom</th>
+                                                <th style="width: 180px">Complaint Type Code</th>
+                                                <th style="width: 130px">Price</th>
+                                                <th style="width: 130px">Weight Indicator</th>
+                                                <th style="width: 150px">Weight Quantity</th>
+                                                <th style="width: 150px">Serial Indicator</th>
+                                                <th style="width: 150px">Serial No. Quantity</th>
+                                                <th style="width: 150px">Serial No.Uom</th>
+                                                <th style="width: 150px">Plant</th>
+                                                <th style="width: 150px">Storage Location</th>
+                                                <th style="width: 150px">Batch Indicator</th>
+                                                <th style="width: 150px">Batch No.</th>
+                                                <th style="width: 150px">Stock Type</th>
+                                                <th style="width: 220px">Expiry Date</th>
+                                                <th style="width: 150px">Transfer Pricing</th>
+                                                <th style="width: 130px">SERIALNO_RESET</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                                            <tr (click)="selectSerialRowData(rowData, i)">
+                                                <td style="width:100px" *ngIf="mmDefectiveGR.GRN_MM_MAT_TRANS_T.length > 1 && !isReadOnly">
+                                                    <a class="ems-bin" title="Delete" (click)="AcceptDelete(i)"></a>
+                                                </td>
+                                                <td style="width: 100px">
+                                                    <p-checkbox [ngModelOptions]="{ standalone: true }" [(ngModel)]="rowData.SELECT" binary="true" [disabled]="isReadOnly"></p-checkbox>
+                                                </td>
+                                                <td style="width: 220px">
+                                                    <input [ngModelOptions]="{ standalone: true }" type="text" pInputText class="input-text " [readonly]="isReadOnly" [(ngModel)]="rowData.MAT_CODE" readonly />
+                                                    <ems-material-search (selectedTableData)="selectedTableRefData($event, rowData, i)" [disabled]="isReadOnly" title="Select Material Code"></ems-material-search>
+                                                </td>
+                                                <td style="width: 200px">
+                                                    <input type="text" [ngModelOptions]="{ standalone: true }" [(ngModel)]="rowData.DESCRIPTION" [readonly]="isReadOnly" pInputText class="input-text w-100" />
+                                                </td>
+                                                <td style="width: 150px">
+                                                    <input type="text" [ngModelOptions]="{ standalone: true }" [(ngModel)]="rowData.ENTRY_QTY" pInputText class="input-text w-100" [readonly]="isReadOnly" (change)="ChangeQty(rowData, i)" />
+                                                </td>
+                                                <td style="width: 150px">
+                                                    <input type="text" [ngModelOptions]="{ standalone: true }" [(ngModel)]="rowData.PO_UOM" [readonly]="isReadOnly" pInputText class="input-text w-100" />
+                                                </td>
+                                                <td style="width: 150px">
+                                                    {{ rowData.QTY }}
+                                                </td>
+                                                <td style="width: 150px">
+                                                    <input type="text" [ngModelOptions]="{ standalone: true }" [(ngModel)]="rowData.BASE_UOM" [readonly]="isReadOnly" pInputText class="input-text w-100" />
+                                                </td>
+                                                <td style="width: 180px">
+                                                </td>
+                                                <td style="width: 130px">
+                                                    <input type="text" [ngModelOptions]="{ standalone: true }" [(ngModel)]="rowData.BASIC_PRICE" [readonly]="isReadOnly" pInputText class="input-text w-100" />
+                                                </td>
+                                                <td style="width: 130px">
+                                                    <p-checkbox [ngModelOptions]="{ standalone: true }" [(ngModel)]="rowData.TP_PRICE"></p-checkbox>
+                                                </td>
+                                                <td style="width: 150px">
+                                                    <input type="text" [ngModelOptions]="{ standalone: true }" [(ngModel)]="rowData.QTY" [readonly]="isReadOnly" pInputText class="input-text w-100" />
+                                                </td>
+                                                <td style="width: 150px">
+                                                    <p-checkbox [ngModelOptions]="{ standalone: true }" [(ngModel)]="rowData.SERIAL_IND" binary="true"></p-checkbox>
+                                                </td>
+                                                <td style="width: 150px">
+                                                    <input type="text" [ngModelOptions]="{ standalone: true }" [(ngModel)]="rowData.SERIAL_QTY" pInputText class="input-text w-100" [readonly]="isReadOnly" />
+                                                </td>
+                                                <td style="width: 150px">
+                                                    <input type="text" [ngModelOptions]="{ standalone: true }" [(ngModel)]="rowData.SERIAL_UOM" [readonly]="isReadOnly" pInputText class="input-text w-100" />
+                                                </td>
+                                                <td style="width: 150px">
+                                                    <input type="text" [ngModelOptions]="{ standalone: true }" [(ngModel)]="rowData.PLANT_CODE" [readonly]="isReadOnly" pInputText class="input-text w-100" />
+                                                </td>
+                                                <td style="width: 150px">
+                                                    <input type="text" [ngModelOptions]="{ standalone: true }" [(ngModel)]="rowData.STORAGE_CODE" [readonly]="isReadOnly" pInputText class="input-text w-100" />
+                                                </td>
+                                                <td style="width: 150px">
+                                                    <p-checkbox [ngModelOptions]="{ standalone: true }" [(ngModel)]="rowData.BATCH_MGM_IND" binary="true" [disabled]="isReadOnly"></p-checkbox>
+                                                </td>
+                                                <td style="width: 150px">
+                                                    <input type="text" [ngModelOptions]="{ standalone: true }" [(ngModel)]="rowData.BATCHNO_TYPE" [readonly]="isReadOnly" pInputText class="input-text w-100" />
+                                                </td>
+                                                <td style="width: 150px">
+                                                    <input type="text" [ngModelOptions]="{ standalone: true }" [(ngModel)]="rowData.STKTYPE_CODE" [readonly]="isReadOnly" pInputText class="input-text w-100" />
+                                                </td>
+                                                <td style="width: 220px">
+                                                    {{rowData.EXPIRY_DATE | date:'dd-MM-y'}}
+                                                </td>
+                                                <td style="width: 150px">
+                                                    <input type="text" [ngModelOptions]="{ standalone: true }" [(ngModel)]="rowData.TP_PRICE" pInputText class="input-text w-100" [readonly]="isReadOnly" />
+                                                </td>
+                                                <td style="width: 130px">
+                                                    <p-checkbox [ngModelOptions]="{ standalone: true }" [(ngModel)]="rowData.SRNO_RESET" binary="true" [disabled]="isReadOnly">
+                                                    </p-checkbox>
+                                                </td>
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                                <div class="add-new-table-row" *ngIf="!isReadOnly">
+                                    <a class="ems-plus-icon" (click)="AddMaterialList()"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="row padding-top">
+                                <div class="col-lg-4">
+                                    <p-button label="Serial Mgn" title="Serial Management" styleClass="prime-button-primary" (onClick)="Popupdata()" [disabled]="isReadOnly">
+                                    </p-button>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p-button label="Process" styleClass="prime-button-primary" (onClick)="process()" [disabled]="isReadOnly">
+                                    </p-button>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p-button label="Back" (onClick)="backData()" [disabled]="isReadOnly" styleClass="prime-button-primary">
+                                    </p-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div *ngIf="serialMGN === true">
+                        <ems-serial-mgn (selectedBack)="selectedBack($event)" [serialMgn]="serialMgn" [serialMGN]="serialMGN" [DOC_ITEM_NO]="DOC_ITEM_NO" [goodsReceiptTransaction]="mmDefectiveGR"></ems-serial-mgn>
+                    </div>
+                    <div class="card card-margin-top" [hidden]="isSerialMgnHide">
+                        <div class="ml-auto padding-top">
+                            <p-button styleClass="prime-button-primary" label="Back" (click)="backTo()"></p-button>
+                        </div>
+                        <p-table [value]="matSrnoTForm" [scrollable]="true">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width:150px">Select</th>
+                                    <th style="width:250px">Serial No.</th>
+                                    <th style="width:250px">Material Code</th>
+                                    <th style="width:250px">Mfg Serial No.</th>
+                                    <th style="width:250px" title="Manufacture Date">Mfg Date</th>
+                                    <th style="width:250px">Vendor Batch No.</th>
+                                    <th style="width:250px">Expiry Date</th>
+                                    <th style="width:250px">Base Quantity</th>
+                                    <th style="width:250px">Weight Quantity</th>
+                                    <th style="width:250px">Remark</th>
+                                    <th style="width:250px">Stock Type</th>
+                                    <th style="width:250px">Warranty Factory(Days)</th>
+                                    <th style="width:250px">Warranty Dealer(Days)</th>
+                                    <th style="width:250px">Warranty Customer(Days)</th>
+                                    <th style="width:250px">Damage Indicator</th>
+                                    <th style="width:250px">Shortage Indicator</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+                                <tr>
+                                    <td style="width: 150px">
+                                        <p-checkbox binary="true" name="transchecksecnd{{ i }}" [(ngModel)]="rowData.SELECT" (onChange)="serialMgnSelect($event, rowData)"></p-checkbox>
+                                    </td>
+                                    <td style="width:250px">
+                                        {{ rowData.SRNO }}
+                                    </td>
+                                    <td style="width:250px">
+                                        {{ rowData.MAT_CODE }}
+                                    </td>
+                                    <td style="width:250px">
+                                        {{ rowData.MFG_SRNO }}
+                                    </td>
+                                    <td style="width: 250px">
+                                        {{rowData.MFG_DATE | date:'dd/MM/y'}}
+                                    </td>
+                                    <td style="width:250px">
+                                        {{ rowData.VENDOR_BATCH_NO }}
+                                    </td>
+                                    <td style="width:250px">
+                                        {{rowData.EXPIRY_DATE | date:'dd/MM/y'}}
+                                    </td>
+                                    <td style="width:250px">
+                                        {{ rowData.BASEQTY }}
+                                    </td>
+                                    <td style="width:250px">
+                                        {{ rowData.WEIGHT }}
+                                    </td>
+                                    <td style="width:250px">
+                                        {{ rowData.REMARKS }}
+                                    </td>
+                                    <td style="width:250px">
+                                        {{ rowData.BASEQTY }}
+                                    </td>
+                                    <td style="width:250px">
+                                        {{ rowData.WARRANTY_FACTORY }}
+                                    </td>
+                                    <td style="width:250px">
+                                        {{ rowData.WARRANTY_DEALER }}
+                                    </td>
+                                    <td style="width:250px">
+                                        {{ rowData.WARRANTY_CUSTOMER }}
+                                    </td>
+                                    <td style="width: 250px">
+                                        <p-checkbox binary="true" name="damageind{{ i }}" [(ngModel)]="rowData.DAMAGE_IND" (onChange)="selectDamageInd($event, i)"></p-checkbox>
+                                    </td>
+                                    <td style="width: 250px">
+                                        <p-checkbox binary="true" name="shortageind{{ i }}" [(ngModel)]="rowData.SHORTAGE_IND" (onChange)="selectShortageInd($event, i)"></p-checkbox>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 padding-null top-card">
+            <div class="card sticky-charts">
+                <p-chart type="pie" [data]="pieChartData"></p-chart>
+            </div>
+        </div>
+    </div>
+</form>
+
+<ems-toast-messages [toastType]="toastType" [Message]="message" (statusEmit)="selectedStatus($event)">
+</ems-toast-messages>
