@@ -1,0 +1,121 @@
+.main-dashboard-container {
+    font-size: 13px;
+    min-height: 100%;
+    .dashboard-child {
+        padding: 0 10px;
+        margin-bottom: 40px;
+    }
+    .graph-items-top {
+        background-color: #FFFFFF;
+        height: 100%;
+        border-radius: 5px;
+        border: 0.1rem solid #DCE1E7;
+        -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    }
+    .new-section {
+        margin-top: 1.5rem;
+        clear: both;
+    }
+    .graph-items-bottom {
+        background-color: #FFFFFF;
+        height: 100%;
+        border-radius: 5px;
+        border: 0.1rem solid #DCE1E7;
+        height: 100%;
+        -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    }
+}
+.fa-2x{
+  font-size: 1.8rem;
+}
+.one i {
+    border-radius: 50%; 
+    background-color: #0b3f9e; 
+    border-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #fff;
+    height: 50px;
+    width: 50px;
+    border-radius: 0px 30px 30px 30px;
+    transition: .5s;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25px;  
+   
+}
+.one i:hover {
+    background-color: #0b3f9e;
+    transition: .5s;
+    border-radius: 0px;    
+} 
+
+.two i {
+    border-radius: 50%; 
+    background-color: #027771; 
+    border-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #fff;
+    height: 50px;
+    width: 50px;
+    border-radius: 0px 30px 30px 30px;
+    transition: .5s;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25px;
+}
+.two i:hover {
+    background-color: #027771;
+    transition: .5s;
+    border-radius: 0px;
+}
+
+.three i {
+    border-radius: 50%; 
+    background-color: #ba2c1c; 
+    border-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #fff;
+    height: 50px;
+    width: 50px;
+    border-radius: 0px 30px 30px 30px;
+    transition: .5s;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25px;
+}
+.three i:hover {
+    background-color: #ba2c1c;
+    transition: .5s;
+    border-radius: 0px;
+}
+.four i {
+    border-radius: 50%; 
+    background-color: #81109d; 
+    border-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #fff;
+    height: 50px;
+    width: 50px;
+    border-radius: 0px 30px 30px 30px;
+    transition: .5s;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25px;
+}
+.four i:hover {
+    background-color: #81109d;
+    transition: .5s;
+    border-radius: 0px;
+}
