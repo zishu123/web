@@ -1,0 +1,378 @@
+p-table {
+  .edit-column {
+
+    //width: 5%;
+    :nth-child(even) {
+      background-color: $table-even-row-bg-color;
+    }
+
+    :nth-child(odd) {
+      background-color: $table-odd-row-bg-color;
+    }
+  }
+
+  .check-box-width {
+    width: 10px;
+  }
+
+  .ui-table,
+  .ui-table-responsive {
+    // border: $default-table-border;
+    padding: 0;
+
+    //margin-bottom: 15px;
+    .ui-table-wrapper,
+    .ui-table-scrollable-wrapper {
+      .ui-table-scrollable-view {
+        width: 100%;
+        // box-shadow: 0 0 6px 1px rgba(0,0,0,0.2);
+        border: 1px solid #ccc;
+
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+
+        .ui-table-scrollable-header-box,
+        .ui-widget-header {
+          background-color: $color-white; // #FFF;//Header-bg-color
+        }
+
+        .ui-table-scrollable-body {
+          min-height: 20vh;
+          max-height: calc(100vh - 238px);
+        }
+
+        .ui-widget-header,
+        .ui-state-highlight {
+          background-color: $color-white;
+          // -webkit-box-shadow: inset 0px 0px 25px 0px rgba(204, 204, 204, 0.55);
+          // -moz-box-shadow: inset 0px 0px 25px 0px rgba(204, 204, 204, 0.55);
+          // box-shadow: inset 0px 0px 25px 0px rgba(204, 204, 204, 0.55);
+          // border: none;
+        }
+
+        .ui-table-scrollable-header {
+          border: none;
+          border-top-left-radius: 3px;
+          border-top-right-radius: 3px;
+
+          // border-top: 0.1rem solid $data_border;
+          //border-bottom: 0.1rem solid $data_border;
+          .ui-table-scrollable-header-table {
+            width: 100%;
+          }
+        }
+
+        .ui-table-scrollable-body-table {
+          width: 100%;
+
+          .edit-column {
+            .icon {
+              font-size: 1.3rem;
+              line-height: 2.8rem;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      thead {
+        &.ui-table-thead {
+          // background-color: #FFF;//Header-bg-color
+          border-bottom: $default-table-border;
+
+          tr {
+            //border-bottom: 0.2rem solid $data_border;
+            background-color: $Selected-theme-color;
+
+            th {
+              line-height: 2.8rem;
+              font-family: $table-header-text;
+              color: $table-header-font-color;
+              font-size: $default-headers-font-size;
+              //shareef start
+              background-color: $Selected-theme-color;
+              //end
+              font-weight: bold;
+              white-space: nowrap;
+              border-right: 1px solid rgba(0,0,0,0.1);
+              padding: 5px 0 5px 1.5rem;
+
+              p-sorticon {
+                a {
+                  color: $theme-text-color;
+                }
+              }
+
+              &.check-box {
+                .ui-chkbox {
+                  .ui-chkbox-box {
+                    &.ui-state-active {
+                      color: $form_textSelected;
+                      background-color: $form_backgroundSelected;
+                      border: 1px solid $form_borderSelected;
+                    }
+                  }
+                }
+              }
+            }
+            th:last-child{
+              border-right: 0;
+            }
+          }
+        }
+      }
+
+      tbody {
+        &.ui-table-tbody {
+          tr:nth-child(even) {
+            background-color: $table-even-row-bg-color;
+            // border-bottom: $default-table-border;
+            // td {
+            //   padding: 0 0 0 2rem;
+            //   line-height: 2.8rem;
+            //   color: $table-column-font-color;
+            //   font-family: $table-column-text;
+            //   font-size: $table-column-font-size;
+            //   &.check-box{
+            //     .ui-chkbox{
+            //       .ui-chkbox-box{
+            //         &.ui-state-active{
+            //           color: $form_textSelected;
+            //           background-color: $form_backgroundSelected;
+            //           border: 1px solid $form_borderSelected;
+            //         }
+            //       }
+            //     }
+            //   }
+            //   &.ui-state-highlight{
+            //     background-color: transparent;
+            //   }
+            // }
+          }
+
+          tr:nth-child(odd) {
+            background-color: $Selected-theme-color;
+            // border-bottom: $default-table-border;
+
+          }
+
+          tr td {
+            // padding: 0 0 0 1.5rem;
+            line-height: 2.8rem;
+            color: $table-column-font-color;
+            font-family: $table-column-text;
+            font-size: $table-column-font-size;
+            background-color: rgba(256,256,256,0.9);
+            border-right: 1px solid rgba(0,0,0,0.1);
+            padding: 5px 0 5px 1.5rem;
+            &.check-box {
+              .ui-chkbox {
+                .ui-chkbox-box {
+                  &.ui-state-active {
+                    color: $form_textSelected;
+                    background-color: $form_backgroundSelected;
+                    border: 1px solid $form_borderSelected;
+                  }
+                }
+              }
+            }
+
+            &.ui-state-highlight {
+              // background-color: transparent;
+            }
+          }
+          tr td:last-child{
+            border-right: 0;
+          }
+
+        }
+      }
+
+      &.check-box {
+        &.ui-state-highlight {
+          background: transparent;
+        }
+
+        .ui-chkbox {
+          .ui-chkbox-box {
+            &.ui-state-active {
+              color: $form_textSelected;
+              background-color: $form_backgroundSelected;
+              border: 1px solid $form_borderSelected;
+            }
+          }
+        }
+      }
+    }
+
+    .ui-paginator-bottom {
+      &.ui-paginator {
+        padding: 1rem;
+        border: 0;
+
+        // border-top: $default-table-border;
+        // border-bottom: $default-table-border;
+        .ui-paginator-first,
+        .ui-paginator-prev,
+        .ui-paginator-next,
+        .ui-paginator-last {
+          color: $selected-text-color;
+          min-width: 2rem;
+          font-size: 1.5rem;
+        }
+
+        .ui-paginator-pages {
+          width: auto;
+          line-height: 1.8rem;
+
+          .ui-paginator-page {
+            padding: 0;
+          }
+
+          .ui-state-active {
+            background-color: $button_primary_bg_color;
+            color: #FFF;
+          }
+        }
+      }
+    }
+  }
+
+  &.right_container {
+    overflow: hidden !important;
+  }
+
+  p-tableheadercheckbox,
+  p-tablecheckbox {
+    .ui-chkbox .ui-chkbox-box {
+      height: $check-box-height-width;
+      width: $check-box-height-width;
+      &.ui-state-active {
+        border: $default-border;
+        background-color: $form_backgroundSelected;
+        font-size: $check-box-font-size;
+      }
+    }
+  }
+.ui-radiobutton {
+  .ui-radiobutton-box {
+    .ui-radiobutton-icon {
+      position: relative;
+      top: 6px;
+      overflow: hidden;
+      font-size: 1rem;
+    }
+  }
+}
+  // .ui-state-active, .ui-state-highlight {
+  //   background: transparent;
+  // }
+}
+
+// Styles for Pick list Table
+// p-Table {
+//   .ui-table {
+//     border: $default-table-border;
+//     .ui-table-wrapper {
+//       thead {
+//         &.ui-table-thead {
+//           tr {
+//             border-bottom: 0.2rem solid $data_border;
+//             //border-top: 0.1rem solid $data_border;
+//             th {
+//               font-family: $text-bold-font;
+//               color: $table-header-font-color;
+//               font-size: $default-headers-font-size;
+//               border: none;
+//               line-height: 2.8rem;
+
+//               .ui-column-title {
+//                 cursor: default;
+//               }
+//               &:not(.ui-state-active) {
+//                 &:hover {
+//                   background: $default_background;
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//       .ui-table-tbody {
+//         border: none;
+//         tr {
+//           border: none;
+//           border-bottom: $default-table-border;
+//           &:nth-child(even) {
+//             background-color: $table-even-row-bg-color;
+//             color: $primary-text-color;
+//           }
+//           &:nth-child(odd) {
+//             background-color: $table-odd-row-bg-color;
+//             color: $primary-text-color;
+//           }
+//           td {
+//             font-family: $text-normal-font;
+//             color: #535456;
+//             font-size: $text-size-small;
+//             border: none;
+//             line-height: 2.8rem;
+//           }
+//         }
+//       }
+//     }
+//     .ui-paginator-bottom {
+//       &.ui-paginator {
+//         padding: 1rem;
+//         border:0;
+//        // border-top: $default-table-border;
+//        // border-bottom: $default-table-border;
+//         .ui-paginator-first,
+//         .ui-paginator-prev,
+//         .ui-paginator-next,
+//         .ui-paginator-last {
+//           color: $selected-text-color;
+//           min-width: 2rem;
+//           font-size: 1.5rem;
+//         }
+//         .ui-paginator-pages {
+//           width: auto;
+//           line-height: 1.8rem;
+//           .ui-paginator-page {
+//             padding: 0;
+//           }
+//           .ui-state-active{
+//             background-color: $button_primary_bg_color;
+//             color: #FFF;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }\
+// media Queries
+@media screen and (max-width: 640px) {
+  p-table {
+      .ui-table-responsive {
+          .ui-table-tbody>tr>td {
+              // border: 3px solid green !important;
+              text-align: left;
+              display: table-cell;
+
+              width: 1px !important;
+              box-sizing: border-box;
+               float: none;
+              // clear: none;
+          }
+      }
+  }
+}
+
+@media screen and (max-width: 40em) {
+  .ui-table-responsive {
+      .ui-table-thead>tr>th {
+          display: table-cell !important;
+          text-align :center ;
+      }
+  }
+}
