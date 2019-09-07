@@ -1,0 +1,147 @@
+@import './styles/base/variables';
+@import './styles/base/mixins';
+.prime-button-primary {
+    &.ui-button {
+        color: $button_primary_textcolor;
+        padding: 0;
+        background: $button_primary_bg_color;
+        border: 1px solid $button_primary_textcolor;
+        height: $button-height;
+        min-width: $button-height;
+        line-height: 0px;
+        border-radius: $button-border-radius;
+        -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
+        white-space: nowrap;
+        // cursor: default;
+        .ui-button-text {
+            padding: $button-padding;
+            line-height: 0;
+            font-family: $text-semi-font;
+            font-size: $text-size-small;
+            //text-transform: uppercase;
+        }
+        .icon {
+            font-size: $text-size-small;
+        }
+        &:focus {
+            background: $button_primary_bg_color;
+        }
+        &:enabled {
+            &:hover {
+                background-color: $button_primary_hover;
+                //  opacity: 0.7;
+                border: 1px solid $button_primary_borderColor;
+            } // &:active,
+            // &:focus {
+            //   background-color: $button_primary_pressed;
+            //   border: 1px solid $button_primary_pressed;
+            //   box-shadow: none;
+            // }
+        }
+        &:disabled,
+        &.disabled {
+            background-color: $button_primary_disabled;
+            border: 1px solid $button_primary_borderDisabled;
+            color: $button_primary_disabledText;
+            pointer-events: none;
+            opacity: 1;
+        }
+    }
+    &.ui-button-text-icon-left,
+    &.ui-button-text-icon-right {
+        .ui-button-text {
+            padding: $button-icon-padding;
+        }
+    }
+}
+
+.prime-button-secondary {
+    &.ui-button {
+        color: $button_secondary_textcolor;
+        padding: 0;
+        background-color: $button_secondary_bg_color;
+        border: 1px solid $button_secondary_border;
+        height: $button-height;
+        line-height: 0rem;
+        border-radius: $button-border-radius;
+        cursor: default;
+        white-space: nowrap;
+        .ui-button-text {
+            padding: $button-padding;
+            line-height: 0;
+            font-family: $text-semi-font;
+            font-size: $text-size-small;
+        }
+        .fa {
+            font-size: small;
+        }
+        &:enabled {
+            &:hover {
+                background-color: $button_secondary_Pressed;
+                border: 1px solid $button_secondary_hover;
+            } // &:active,
+            // &:focus {
+            //   background-color: $button_secondary_Pressed;
+            //   border: 1px solid $button_secondary_Pressed;
+            //   box-shadow: none;
+            // }
+        }
+        &:disabled,
+        &.disabled {
+            background-color: $button_secondary_disabled;
+            color: $button_secondary_disabledText;
+            border: 1px solid $button_secondary_borderDisabled;
+            pointer-events: none;
+            opacity: 1;
+        }
+    }
+    &.ui-button-text-icon-left,
+    &.ui-button-text-icon-right {
+        .ui-button-text {
+            padding: $button-icon-padding;
+        }
+    }
+}
+
+.prime-button-info {
+    &.ui-button {
+        color: #333333;
+        background: #f4f4f4 !important;
+        border: 1px solid #f4f4f4;
+        padding: 0;
+        height: $button-height;
+        min-width: $button-height;
+        line-height: 0px;
+        white-space: nowrap;
+        cursor: default;
+        .ui-button-text {
+            padding: $button-padding;
+            line-height: 0;
+            font-family: $text-semi-font;
+            font-size: $text-size-small;
+            //text-transform: uppercase;
+        }
+        .icon {
+            font-size: $text-size-small;
+        }
+        &:enabled {
+            &:hover {
+                background: #c8c8c8 !important;
+                color: #333333;
+                border-color: #c8c8c8;
+            }
+        }
+    }
+    &.ui-button-text-icon-left,
+    &.ui-button-text-icon-right {
+        .ui-button-text {
+            padding: $button-icon-padding;
+        }
+    }
+}
+
+.prime-button-raised {
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.15);
+}

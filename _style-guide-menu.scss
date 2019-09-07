@@ -1,0 +1,67 @@
+@import './styles/base/variables';
+@import './styles/base/mixins';
+
+p-menu {
+  .ui-menu {
+    width: 25rem;
+    padding: 0;
+    margin: 0;
+    .ui-submenu-header {
+      padding: 0.5rem 1.5rem;
+      margin: 0;
+      font-size: 1.3rem;
+      cursor: default;
+      text-align: left;
+      outline: none;
+      display: block;
+      line-height: normal;
+      text-decoration: none;
+      background-color: #343435;
+      color: #C1C1C1;
+      font-family: $text-semi-font;
+      font-weight: 600;
+    }
+    .ui-menuitem {
+      margin: 0;
+    }
+    .ui-corner-all {
+      border-radius: 0;
+    }
+    .ui-menuitem-link {
+      padding: 0 1.5rem;
+      background-color: #535456;
+      font-family: $text-semi-font;
+      text-decoration: none;
+      text-indent: 1rem;
+      font-weight: 600;
+      color: #C1C1C1;
+      line-height: 3rem;
+      font-size: 1.3rem;
+      cursor: pointer;
+      text-align: left;
+      outline: none;
+      &:hover {
+        color: #FFF;
+      }
+    }
+    .ui-state-active,
+    .ui-state-highlight {
+      color: #FFF;
+      background-color: #00a1de;
+      ::after {
+        content: '\f00c';
+        font-family: $font-awesome;
+        color: #FFF;
+        float: right;
+      }
+    }
+    .ui-widget-header {
+      border: 0;
+      background-color: #343435;
+    }
+    &.ui-widget-content {
+      border: 0;
+      background-color: #343435;
+    }
+  }
+}

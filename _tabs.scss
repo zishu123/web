@@ -1,0 +1,208 @@
+@import './styles/base/variables';
+@import './styles/base/mixins';
+p-tabview {
+  .ui-tabview {
+    // Start Top Orientation
+    &.ui-tabview-top {
+      .ui-tabview-nav {
+        margin-left: 1.5rem;
+        border-bottom: none;
+        top: 0.1rem;
+        border-radius: 0;
+        li {
+          font-family: $default-headers-font;
+          font-size: $text-size-xxsmall;
+          display: block;
+          border-radius: 0;
+          margin-right: 0;
+          &:not(.ui-state-active):not(.ui-state-disabled):hover {
+            border-bottom: 0.1rem solid $data_border;
+          }
+          &.ui-state-default {
+            border: 0.1rem solid $data_border;
+            padding: 0;
+            position: relative;
+            background-color: $data_background;
+            a {
+              // background-color: $data_background;
+              color: $primary-text-color;
+              padding: 0 1.8rem;
+              line-height: 2.6rem;
+              text-align: center;
+              border-left: 0.1rem solid $data_border;
+              font-size: $text-size-xxsmall;
+              &:focus {
+                background-color: $default_background;
+              }
+            }
+            &.ui-tabview-selected {
+              //border: 0.1rem solid $data_border;
+              border-bottom: 0.1rem solid $default_background;              
+              background-color: $default_background;
+              a {
+                color: $selected-text-color;
+                background: $default_background;
+                // border-left: 0.1rem solid $data_border;
+                // border-top: 0.1rem solid $data_border;
+                font-size: $text-size-xxsmall;
+                // cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+      .ui-tabview-panel {
+        margin-top: 1.5rem;
+        .sub-title {
+          font-size: 1.6rem;
+          width: 100%;
+          float: left;
+          color: #6b6b6b;
+          margin-bottom: 1rem;
+          font-weight: 500;
+          border-bottom: 0.1rem solid #cbcacf;
+        }
+      }
+      .ui-tabview-panels {
+        border-top: 0.1rem solid $data_border;
+      }
+    } // End Of Top Orientation
+    // Start Left Orientation
+    &.ui-tabview-left {
+      border: 0.1rem solid $data_border;
+      .ui-tabview-panels {
+        padding: 1.5rem;
+      }
+      .ui-tabview-nav {
+        margin-left: 0;
+        border-radius: 0;
+        float: left;
+        width: 25%;
+        height: 20rem;
+        border: 0;
+        li {
+          font-family: $default-headers-font;
+          font-size: $text-size-xsmall;
+          display: block;
+          border-radius: 0;
+          margin-right: 0;
+          &:not(.ui-state-active):not(.ui-state-disabled):hover {
+            border-bottom: 0.1rem solid $data_border;
+          }
+          &.ui-state-default {
+            border: none;
+            border-bottom: 0.1rem solid $data_border;
+            padding: 0;
+            position: relative;
+            background-color: $data_background;
+            a {
+              color: $primary-text-color;
+              padding: 0 1.8rem;
+              line-height: 3.5rem;
+              text-align: center;
+              &:focus {
+                background-color: $default_background;
+              }
+            }
+            &.ui-tabview-selected {
+              border: none;
+              border-bottom: 0.1rem solid $data_border;
+              background-color: $default_background;
+              a {
+                color: $selected-text-color;
+                background: $default_background;
+              }
+            }
+            &:not(.ui-state-active):not(.ui-state-disabled):hover {
+              background-color: $data_background;
+            }
+          }
+        }
+      }
+      .ui-tabview-panels {
+        border: none;
+        border-left: 0.1rem solid $data_border;
+      }
+    } // End Of Left Orientation
+  }
+}
+
+.tabcustom-width {
+  @include tab-width(12rem, false);
+}
+
+p-tabmenu {
+  .ui-tabmenu {
+    background-color: transparent;
+    border-bottom: 0.1rem solid $data_border;
+    height: 2.6rem;
+    border-radius: 0; //margin-left:3rem;
+    //margin-right:3rem;        
+    //border: 0rem solid $data_border; 
+    ul {
+      &.ui-tabmenu-nav {
+        float: right;
+        border: none;
+        padding: 0;
+        border-radius: 0; //background-color: transparent;
+        li {
+          &.ui-tabmenuitem {
+            background-color: $data_background;
+            display: inherit;
+            font-family: $default-headers-font;
+            border: 0.1rem solid $data_border;
+            height: 2.6rem;
+            &:not(.ui-state-active) {
+              &:hover {
+                background-color: $data_background;
+              }
+            }
+            a {
+              &.ui-menuitem-link {
+                color: $selected-text-color;
+                padding: 0 2.5rem;
+                line-height: 2.4rem;
+                font-size: $text-size-xsmall;
+                text-align: center;
+                border-radius: 0;
+                text-overflow: ellipsis;
+                overflow: hidden;
+              }
+              &:focus {
+                outline: none;
+                background-color: $default_background;
+              }
+            }
+            &.ui-state-active {
+              color: $primary-text-color;
+              background-color: $default_background;
+              border-bottom: 0.1rem solid $data_null;
+              .ui-menuitem-link {
+                color: $primary-text-color;
+                background-color: $default_background;
+                .ui-menuitem-icon {
+                  color: $primary-text-color;
+                  background-color: $default_background;
+                }
+              }
+            }
+            &.ui-state-disabled {
+              background-color: $disabled-bg-color;
+              color: $disabled-text-color;
+              opacity: 1;
+              pointer-events: none;
+              .ui-menuitem-link {
+                pointer-events: none;
+                color: $disabled-text-color;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.tabmenu-width {
+  @include tab-menu-width(15rem, false);
+}

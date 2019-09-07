@@ -1,0 +1,74 @@
+p-checkbox {
+  .ui-chkbox {
+    // vertical-align: top;
+    margin: 0;
+    padding: 0 0.5rem 0 0;
+    .ui-chkbox-box {
+      border: $default-border;
+      border-radius: 0.3rem;
+      //box-sizing: content-box;
+      width: $check-box-height-width;
+      height: $check-box-height-width;      
+      &:not(.ui-state-disabled) {
+        &:hover,
+        &.ui-state-focus {
+          border: $default-border-hover;
+          box-shadow: none;
+        }
+        &.ui-state-active {
+          background: $form_backgroundSelected;
+          border: 0.1rem solid $form_borderSelected;
+          &:hover,
+          &.ui-state-focus {
+            border: 0.1rem solid $form_borderSelected;
+            box-shadow: none;
+          }
+          .fa-check {
+            color: $form_textSelected;
+          }
+          ::before{
+            content: "\e909";                       
+          }
+        }
+      }
+      &.ui-state-disabled {
+        opacity: 0.5;
+        background-color: #999;
+        .pi{
+          color: #000;
+        }
+         
+        &.ui-state-active {
+          background: $form_borderdisabled;
+          // background: #999;
+          border: 0.1rem solid $form_disabledBackground;
+          font-size: $check-box-font-size;
+          opacity: 1;         
+        }
+      }
+      .pi {
+        line-height: $check-box-line-height;
+      }
+    }
+    &.left-align {
+      padding: 0 0 0 1rem;
+      +.ui-chkbox-label {
+        float: left;
+      }
+    }
+  }
+  label {
+    &.ui-chkbox-label {
+      font-family: $text-normal-font;
+      font-size: $text-size-small;
+      color: $primary-text-color;
+      font-weight: normal;
+      line-height: 1.7rem;
+      height: 1.7rem;
+      vertical-align: top;
+      margin: 0;
+    }
+  }
+}
+
+

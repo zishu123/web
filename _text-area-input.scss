@@ -1,0 +1,41 @@
+@import './styles/base/variables';
+@import './styles/base/mixins';
+
+textarea {
+    @include textarea-width-height(auto, auto);
+
+    &.input-text-area {
+        &.ui-corner-all {
+            &.ui-inputtext {
+                font-family: $text-semi-font;
+                font-size: $text-size-small;
+                color: $form_text;
+                padding: 1.5rem;
+                background: $form_background;
+                border: 0.1rem solid $form_border;
+                border-radius: 0;
+                resize: none;
+                line-height: 2rem;
+
+                &:focus {
+                    background: $form_background;
+                    border: 0.1rem solid $form_borderSelected;
+                    color: $form_text;
+                }
+
+                &:disabled {
+                    background-color: $form_disabledBackground;
+                    color: $form_disabledText;
+                }
+
+                &::-webkit-input-placeholder {
+                    color: $form_placeholderText;
+                }
+
+                &:-ms-input-placeholder {
+                    color: $form_placeholderText;
+                }
+            }
+        }
+    }
+}

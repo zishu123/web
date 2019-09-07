@@ -1,0 +1,73 @@
+.ui-dialog {
+  &.ui-widget-content {
+    box-shadow: 0rem 0.5rem 0.2rem rgba(0, 0, 0, .4);
+  }
+  .ui-dialog-titlebar-icon span {
+    line-height: 2.4rem;
+    font-size: $text-size-medium;
+  }
+  .ui-dialog-titlebar {
+    &.ui-widget-header {
+      padding: 1.5rem;
+      border-bottom: 0.1rem solid #BFC0C1;
+    }
+    p-header {
+      h3 {
+        font-family: $text-semi-font;
+        font-size: $text-size-medium;
+        line-height: 2.4rem;
+        text-transform: capitalize;
+        margin: 0;
+        float: left;
+        color: #535456;
+      }
+    }
+    .fa-close {
+      font-size: $text-size-medium;
+      line-height: 2.4rem;
+      cursor: default;
+      float: right;
+      color: #535456;
+    }
+  }
+  .ui-dialog-content {
+    &.ui-widget-content {
+      padding: 1.5rem;
+      max-height: 56rem;
+      .p-body {
+        font-family: $text-normal-font;
+        .top-padding {
+          padding: 1.5rem 0 0 0;
+        }
+        .right-padding {
+          padding: 0 0.75rem 0 0;
+        }
+        .left-padding {
+          padding: 0 0 0 0.75rem;
+        }
+        .lt-rt-padding {
+          padding: 0 0.75rem;
+        }
+        .control-label {
+          width: 100%;
+        }
+        input {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .ui-dialog-footer {
+    text-align: center;
+    padding: 0;
+    border: none;
+    p-footer {
+      display: block;
+      border-top: 0.1rem solid #BFC0C1;
+      padding: 1rem;
+      .button-style {
+        @extend .prime-button-primary;
+      }
+    }
+  }
+}

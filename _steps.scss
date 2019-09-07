@@ -1,0 +1,51 @@
+p-steps {
+  .ui-steps {
+    position: relative;    
+    .ui-steps-item {
+      width: 25%;
+      .ui-menuitem-link {
+        display: inline-block;
+        text-align: center;
+        background-color: transparent;
+        overflow: hidden;
+        .ui-steps-number {
+          display: inline-block;          
+          border-radius: 50%;
+          font-family: $text-normal-font;
+          color: $primary-text-color;
+          padding: 1rem;
+          position: relative;
+          width: 3.5rem;
+          height:3.5rem;
+          margin-top: 0;
+          font-size: 1rem;
+          margin-bottom: 1rem;          
+          top: 1.2rem;
+          border:$default-border; 
+        }
+        .ui-steps-title {
+          font-family: $text-bold-font;
+          color: $primary-text-color;
+        }
+      }     
+      &.ui-state-highlight {
+        .ui-steps-number {
+          background-color: $form_backgroundSelected;
+          color: $secondary-text-color;
+          border-color: $form_backgroundSelected;
+          font-family: $text-bold-font;
+        }
+        .ui-steps-title{
+          font-family: $text-bold-font;
+          color: $default-theme-selected-font-color;
+        }
+      }
+    } 
+    .ui-steps-item:not(.ui-state-highlight) .ui-steps-number:hover{
+      background-color: $default-hover-color;
+    }
+  }
+  .ui-steps::before{
+    border: $steps-border;
+  }
+}

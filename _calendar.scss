@@ -1,0 +1,202 @@
+p-calendar {
+    .ui-inputtext {
+        font-family: $text-semi-font;
+        font-size: $text-size-small;
+        height: $input-height;
+        border-radius: $input-border-radius;
+        padding: $input-padding;
+        background-color: $form_background;
+        border: 0.1rem solid $form_border;
+        color: $form_text;
+    }
+    .ui-button {
+        background-color: $default-seconday-bg-color;
+        width: $button-icon-width;
+        border-radius: $button-border-radius;
+        padding: 0;
+        &.ui-calendar-button {
+            position: absolute;
+            height: $button-icon-width;
+            border: none;
+            border-radius: 0 $button-border-radius $button-border-radius 0;
+            .fa {
+                line-height: $button-icon-width;
+                width: $button-icon-width;
+                color: $button_primary_textcolor;
+                margin: 0;
+                top: 0;
+                left: 0;
+            }
+        }
+        &:enabled {
+            &:hover {
+                background-color: $button_primary_hover;
+            }
+            &:focus {
+                background-color: $button_primary_pressed;
+            }
+        }
+    }
+    .ui-datepicker {
+        font-size: $calendar-font-size;
+        font-family: $text-normal-font;
+        width: $calendar-datepicker-width;
+        table {
+            padding: 0.5rem;
+            // display: block;
+            margin: 0;
+        }
+        .ui-datepicker-header {
+            font-family: $text-bold-font;
+            font-size: $calendar-font-size;
+            color: $primary-text-color;
+            padding: 0.5rem 0 0;
+            background-color: transparent;
+            border: none;
+            .ui-datepicker-prev,
+            .ui-datepicker-next {
+                top: 1.3rem;
+            }
+        }
+        th {
+            font-size: $calendar-font-size;
+            font-weight: normal;
+            font-family: $text-bold-font;
+            color: $primary-text-color;
+            padding: 0.7rem 0.4rem;
+        }
+        table.ui-datepicker-calendar td {
+            width: $calendar-day-width;
+            padding: 0;
+            a {
+                font-size: $calendar-font-size;
+                // width: $calendar-day-width;
+                height: $calendar-day-height;
+                padding: $calendar-day-padding;
+                border-radius: $calendar-borderradius;
+            }
+            &:not(.ui-state-disabled) a {
+                //font-size:  $calendar-font-size;
+                color: $default-text;
+                &:hover {
+                    background-color: $calendar-hover-background;
+                }
+                &.ui-state-active {
+                    // color: var(--changebackgroundcolor);
+                    background-color: var(--changebackgroundcolor);
+                    color: $calendar-selecteddate-color;
+                }
+                &.ui-state-highlight {
+                    background-color: $calendar-todaydate;
+                    color: $calendar-selecteddate-color;
+                    &:hover {
+                        background-color: $calendar-todaydate-hover;
+                    }
+                }
+                &.ui-state-disabled {
+                    color: $calendar-disabled-date-color;
+                    opacity: 1;
+                    &:hover {
+                        background-color: $calendar-null;
+                    }
+                    &.ui-state-highlight {
+                        background-color: $calender-today-disabled;
+                        &:hover {
+                            background-color: $calender-today-disabled;
+                        }
+                    }
+                }
+            }
+            &.ui-state-disabled {
+                cursor: pointer !important;
+                opacity: 1;
+                a {
+                    //font-size:  $calendar-font-size;
+                    color: $calendar-disabled-date-color;
+                    opacity: 1;
+                    cursor: pointer !important;
+                    &:hover {
+                        background-color: $calendar-hover-background;
+                    }
+                    &.ui-state-disabled {
+                        cursor: default !important;
+                        color: $calendar-disabled-date-color;
+                        opacity: 1;
+                        &:hover {
+                            background-color: $calendar-null;
+                        }
+                    }
+                    &:not(.ui-state-disabled).ui-state-active {
+                        background-color: $calendar-selecteddate;
+                        color: $calendar-selecteddate-color;
+                        &.ui-state-highlight {
+                            background-color: $calendar-todaydate;
+                            &:hover {
+                                background-color: $calendar-todaydate;
+                            }
+                        }
+                        &:hover {
+                            background-color: $calendar-selecteddate;
+                            color: $calendar-selecteddate-color;
+                        }
+                    }
+                    &.ui-state-highlight {
+                        background-color: $calender-today-disabled;
+                        &:hover {
+                            background-color: $calender-today-disabled;
+                        }
+                    }
+                }
+            }
+        }
+        p-footer {
+            cursor: default;
+        }
+        .ui-datepicker-buttonbar {
+            padding: 0;
+            >div {
+                margin: 0;
+                >div {
+                    width: 100%;
+                }
+            }
+        }
+        .today-btn,
+        .today-button-style {
+            font-family: $text-bold-font;
+            font-size: $text-size-small;
+            margin: 0.5rem;
+            padding: 0;
+            width: calc(100% - 1rem);
+            border-radius: 0.5rem;
+            display: block;
+            height: $button-height;
+            line-height: $button-height;
+            background-color: $calendar-todaydate;
+            color: $calendar-selecteddate-color;
+            cursor: pointer;
+            .ui-button-text {
+                padding: 0;
+            }
+            &:focus,
+            &:enabled:hover,
+            &:active,
+            &:hover {
+                background-color: $calendar-todaydate-hover;
+                outline: none;
+                box-shadow: none;
+            }
+            &.disabled {
+                pointer-events: none;
+                color: $button_secondary_disabledText;
+                cursor: default;
+                &:hover {
+                    pointer-events: none;
+                    color: $button_secondary_disabledText;
+                    cursor: default;
+                }
+            }
+        }
+    }
+    @include calendar-width(20rem);
+}

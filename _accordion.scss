@@ -1,0 +1,34 @@
+@import './styles/base/variables';
+@import './styles/base/mixins';
+p-accordion {
+  .ui-accordion {
+    padding: 0;
+    margin-bottom: 15px;
+    .ui-accordion-header.ui-state-active a {
+         color: $primary-text-color;
+    }
+    & .ui-accordion-header {
+      a {
+        font-family: $text-semi-font;
+        font-weight: normal;
+        font-size: $text-size-small;
+        height: $input-height;
+        background-color: $data_background;
+        border: $default-table-border;
+        color: $primary-text-color;
+        padding: 0 1.8rem;
+        line-height: $input-line-height;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+      :not(.ui-state-active):not(.ui-state-disabled):hover {
+        background-color: $default-hover-color;
+      }
+    }
+    & .ui-accordion-content {
+      border: $default-table-border;
+      border-top: 0
+    }
+  }
+}

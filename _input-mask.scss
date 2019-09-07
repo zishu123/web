@@ -1,0 +1,7 @@
+@import './styles/base/variables';
+@import './styles/base/mixins';
+p-inputmask{
+    .ui-inputtext{
+        width: 100%;
+    }
+}

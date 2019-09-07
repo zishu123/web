@@ -1,0 +1,60 @@
+p-listbox {
+    .ui-listbox {
+        width: 100%;
+        font-family: $text-normal-font;
+        font-size: $text-size-small;
+        color: $primary-text-color;
+        font-weight: normal;
+        .ui-listbox-header {
+            .ui-listbox-filter-container {
+                width: calc(100% - 2em);
+                input {
+                    padding: 1.5rem;
+                }
+            }
+        }
+        .ui-listbox-list {
+            .ui-listbox-item.ui-state-highlight {
+                color: $color-white;
+                background: $form_backgroundSelected;
+                // 10-10-18 hari start
+                // border: 0.1rem solid $form_backgroundSelected;
+                //end
+                // hari start
+                .ui-chkbox {
+                   border:1px solid $color-white;
+                }
+                // end
+                &:not(.ui-state-disabled) {
+                    .ui-listbox-item:hover {
+                        background-color: $data_background;
+                        border: none;
+                    }
+                }
+            }
+        }
+        .ui-chkbox .ui-chkbox-box {
+            width: 20px;
+            height: 20px;
+            font-size: 1.6rem;
+            &.ui-state-active {
+                color: $color-white;
+                background: $form_backgroundSelected;
+                // 10-10-18 hari start
+                border: 0.1rem solid $form_backgroundSelected;
+                // end
+            }
+        }
+    }
+    .ui-widget-header {
+        .ui-listbox-filter-container {
+            .ui-listbox-filter-icon {
+                top: 50%;
+                left: auto;
+                margin-top: -.5em;
+                right: .5em;
+                color: #007ad9;
+            }
+        }
+    }
+}

@@ -1,0 +1,48 @@
+      p-radiobutton {
+        .ui-radiobutton {
+                vertical-align: top;
+                margin: 0;
+                .ui-radiobutton-box {
+                        border: $default-border;
+                        background-color: #ffffff;
+                        width: 2rem;
+                        height: 2rem;
+                        &:not(.ui-state-disabled) {
+                                &:hover,
+                                &.ui-state-focus {
+                                  border: $default-border-hover;
+                                  box-shadow: none;
+                                }
+                                &.ui-state-active {
+                                  background: $form_backgroundSelected;
+                                  border: 0.1rem solid $form_backgroundSelected;
+                                  &:hover,
+                                  &.ui-state-focus {
+                                    border: 0.1rem solid $form_backgroundSelected;
+                                    box-shadow: none;
+                                  }
+                                  .fa-check {
+                                    color: $form_textSelected;
+                                  }
+                                }
+                              }
+                        & .ui-radiobutton-icon {
+                                font-size: 1.5rem;
+                                left: 50%;
+                                top: 50%;
+                        }
+                }
+        }
+        label {
+                &.ui-radiobutton-label {
+                  font-family: $text-normal-font;
+                  font-size: $text-size-small;
+                  color: $primary-text-color;
+                  font-weight: normal;
+                  line-height: 1.7rem;
+                  height: 1.7rem;
+                  vertical-align: top;
+                  margin: 0.2rem 0.7rem 0 .5em;
+                }
+              }
+}

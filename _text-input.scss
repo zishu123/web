@@ -1,0 +1,76 @@
+@import './styles/base/variables';
+@import './styles/base/mixins';
+.ui-inputtext {
+  &.ui-corner-all {
+    &.ui-state-default {
+      font-family: $text-semi-font;
+      font-weight: normal;
+      font-size: $text-size-xxsmall;
+      color: $form_text;
+      height: 2.8rem; //vertical-align: middle;
+      line-height: $input-line-height;
+      background: $form_background;
+      border: 0.1rem solid $form_border;
+      overflow: visible;
+      padding: $input-padding;
+      border-radius: 3px;
+      &.ng-valid {
+        border: 0.1rem solid $form_border;
+      }
+      // &:focus {
+      //   color: $form_text;
+      //   border: 0.1rem solid $form_borderSelected;
+      //   box-shadow: 0 0 2px rgba(81, 203, 238, 1);
+      //   padding: $input-padding;        
+      //   border: 1px solid rgba(81, 203, 238, 1);
+      // }
+      &:disabled,
+      &.disabled {
+        opacity: 1;
+        color: $form_disabledText;
+        background: $form_disabledBackground;
+      }
+      &::-webkit-input-placeholder {
+        color: $form_placeholderText;
+      }
+      &:-ms-input-placeholder {
+        color: $form_placeholderText;
+      }
+      &.data-empty {
+        color: $form_disabledText;
+      }
+    }
+  }
+}
+
+.full-input {
+  width: 100%;
+  .input-text {
+    @include item-width(100%);
+  }
+  .numeric-text {
+    @include item-width(100%);
+  }
+}
+
+.ui-float-label {
+  .ui-inputtext.ui-corner-all.ui-state-default {
+    border: 0;
+    border-bottom: 1px solid #00a1de;
+    background-color: #FFF;  
+    &:focus {
+      // box-shadow: 0 0 2px rgba(81, 203, 238, 1);
+      // padding: $input-padding;        
+      // border: 1px solid rgba(81, 203, 238, 1);
+     
+      border-bottom: 1px solid #000;
+    } 
+    
+    
+  }
+}
+
+.card{
+  padding: 1rem  1.5rem;
+  // border-radius: 0.5rem;
+}

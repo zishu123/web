@@ -1,0 +1,270 @@
+p-dropdown {
+    .ui-dropdown {
+        border: $default-border;
+        background-color: $data_background;
+        width: 100%;
+        .ui-dropdown-label {
+            text-align: left;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: default;
+            background: $data_background;
+            border-radius: $dropdown-border-radius;
+            font-family: $text-semi-font;
+            font-size: $dropdown-font-size;
+            line-height: $dropdown-font-size;
+            color: $default-text;
+            outline: none;
+            height: $dropdown-height;
+            padding: $dropdown-padding;
+            text-overflow: ellipsis;
+        }
+        .ui-dropdown-trigger {
+            background: $data_background;
+            padding: 0;
+            right: $dropdown-icon-right;
+            width: $dropdown-icon-width;
+            cursor: default;
+            color: $default-text;
+            .fa {
+                color: $default-ctrl-txt-selected-color;
+                width: $dropdown-icon-width;
+                font-size: $dropdown-font-size;
+                padding-top: $dropdown-icon-top;
+                margin: 0;
+            }
+        }
+        &:not(.ui-state-disabled) {
+            &:hover {
+                background-color: $default-ctrl-hover-color;
+                border: $default-border;
+                &.ui-state-focus {
+                    border: 0.1rem solid $form_borderSelected;
+                }
+                .ui-dropdown-label {
+                    background-color: $default-ctrl-hover-color;
+                }
+                .ui-dropdown-trigger {
+                    background-color: $default-ctrl-hover-color;
+                }
+            }
+        }
+        &.ui-dropdown-open {
+            background: $default-ctrl-Pressed-color;
+            border: 0.1rem solid $form_borderSelected;
+            &:hover {
+                background-color: $default-ctrl-Pressed-color;
+                .ui-dropdown-label {
+                    background: $default-ctrl-Pressed-color;
+                    color: var(--changebackgroundcolor);
+                }
+                .ui-dropdown-trigger {
+                    background: $default-ctrl-Pressed-color;
+                    color: var(--changebackgroundcolor);
+                }
+            }
+            .ui-dropdown-label {
+                background: $default-ctrl-Pressed-color;
+                color: $default-text;
+            }
+            .ui-dropdown-trigger {
+                background: $default-ctrl-Pressed-color;
+                color: $default-text;
+                .fa {
+                    color: $default-ctrl-txt-selected-color;
+                }
+            }
+        }
+        &.ui-state-focus {
+            background: $default-ctrl-hover-color;
+            border: 0.1rem solid $form_borderSelected;
+            &:hover {
+                background-color: $default-ctrl-hover-color;
+                .ui-dropdown-label {
+                    background: $default-ctrl-hover-color;
+                    color: $default-text;
+                }
+                .ui-dropdown-trigger {
+                    background: $default-ctrl-hover-color;
+                    color: $default-text;
+                }
+            }
+            .ui-dropdown-label {
+                background: $default-ctrl-hover-color;
+                color: $default-text;
+            }
+            .ui-dropdown-trigger {
+                background: $default-ctrl-hover-color;
+                color: $default-text;
+                .fa {
+                    color: $default-ctrl-txt-selected-color;
+                }
+            }
+        }
+        &.ui-state-disabled {
+            opacity: 1;
+            .ui-dropdown-label {
+                color: $default-disable-text-color;
+            }
+            .ui-dropdown-trigger {
+                color: $default-disable-text-color;
+                .fa {
+                    color: $default-disable-text-color;
+                }
+            }
+        }
+    }
+    &.ng-dirty.ng-invalid {
+        &>.ui-dropdown:not(.ui-state-focus) {
+            border-bottom: $default-border;
+        }
+        &>.ui-dropdown.ui-state-focus {
+            border-bottom: 0.1rem solid $form_borderSelected;
+        }
+    }
+}
+
+.ui-dropdown-panel {
+    &.static-width-style,
+    &.default-width-style {
+        background: $default-ctrl-Pressed-color;
+        margin: 0;
+        .ui-dropdown-filter-container {
+            padding: 0.8rem 1.5rem;
+        }
+        .ui-dropdown-items-wrapper {
+            position: relative;
+        }
+    }
+    &.static-width-style {
+        width: 40rem;
+        .ui-dropdown-items {
+            li {
+                &.ui-dropdown-item {
+                    .dropdown-item {
+                        >div {
+                            display: block;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    background: $default-ctrl-Pressed-color;
+    border: $default-border;
+    .ui-dropdown-items {
+        background-color: $default-ctrl-Pressed-color;
+        font-family: $text-semi-font;
+        font-size: $dropdown-font-size;
+        color: $form_text;
+        li {
+            &.ui-dropdown-item {
+                height: $dropdown-item-height;
+                line-height: $dropdown-item-height;
+                padding: $dropdown-item-padding;
+                position: relative;
+                font-family: $text-semi-font;
+                white-space: nowrap;
+                font-size: $dropdown-font-size;
+                &:hover {
+                    &:not(.ui-state-highlight) {
+                        background-color: var(--changebackgroundcolor);
+                        color: $default-ctrl-txt-color;
+                    }
+                }
+                &.ui-state-highlight {
+                    background-color: $default-ctrl-Pressed-color;
+                    color: $form_text;
+                    padding: $dropdown-highlight-item-padding;
+                    &:after {
+                        content: "\F00C";
+                        position: absolute;
+                        right: 1.5rem;
+                        top: 0;
+                        font-family: $font-awesome;
+                        color: var(--changebackgroundcolor);
+                    }
+                    &:hover {
+                        background-color: var(--changebackgroundcolor);
+                        color: $default-ctrl-txt-color;
+                        &:after {
+                            color: $default-ctrl-txt-color;
+                        }
+                    }
+                }
+                &:first-child {
+                    .add-new-singleselect {
+                        color: $default-ctrl-txt-selected-color;
+                        display: block;
+                        margin: 0 -1.5rem;
+                        .add-new-item {
+                            padding: $dropdown-item-padding;
+                            display: block;
+                        }
+                        &:not(.ui-state-highlight) {
+                            &:hover {
+                                background-color: $default-ctrl-Pressed-color;
+                                color: $default-ctrl-txt-selected-color;
+                            }
+                        }
+                        &.ui-state-highlight {
+                            color: $default-ctrl-txt-selected-color;
+                            &:after {
+                                content: none;
+                            }
+                            &:hover {
+                                background-color: $default-ctrl-Pressed-color;
+                                color: $default-ctrl-txt-selected-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .ui-dropdown-filter-container {
+        width: 100%;
+        .ui-dropdown-filter {
+            padding: 0 3rem 0 1.5rem;
+            &.ui-inputtext {
+                font-family: $text-semi-font;
+                font-weight: normal;
+                font-size: $text-size-small;
+                color: $form_text;
+                height: $input-height;
+                background: $form_background;
+                border: 0.1rem solid $form_border;
+                border-radius: 0;
+            }
+        }
+        .fa {
+            top: 1.5rem;
+            right: 3rem;
+        }
+        .ui-dropdown-filter-icon {
+            position: absolute;
+            line-height: 2rem;
+            right: 2rem;
+        }
+    }
+}
+
+// Clear Button postion and color
+p-dropdown+.dropdown-clearicon {
+    color: $default-ctrl-txt-selected-color;
+    position: absolute;
+    top: 0.8rem;
+    right: 3.5rem;
+    width: 1rem;
+    cursor: default;
+}
+
+.primeNG-single-select {
+    position: relative;
+    display: inline-block;
+}
+
+@include dropdown-width(20rem, 'custom-width', false);
+@include dropdown-width(100%, 'full-width', false);

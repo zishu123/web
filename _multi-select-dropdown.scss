@@ -1,0 +1,323 @@
+    p-multiSelect {
+        .ui-multiselect {
+            border: $default-border;
+            background-color: $form_background;
+            padding: 0;
+            .ui-multiselect-label {
+                text-align: left;
+                white-space: nowrap;
+                vertical-align: middle;
+                cursor: default;
+                background: $form_background;
+                border-radius: $default-border-radius;
+                font-family: $text-semi-font;
+                font-size: $dropdown-font-size;
+                line-height: $dropdown-font-size;
+                color: $default-text;
+                outline: none;
+                height: $dropdown-height;
+                padding: $dropdown-padding;
+                text-overflow: ellipsis;
+                margin: 0;
+            }
+            .ui-multiselect-trigger {
+                background: $form_background;
+                padding: 0;
+                right: $dropdown-icon-right;
+                width: $dropdown-icon-width;
+                .fa {
+                    color: $default-alt-text;
+                    width: $dropdown-icon-width;
+                    font-size: $dropdown-font-size;
+                    padding-top: $dropdown-icon-top;
+                    margin: 0;
+                }
+            }
+            &:not(.ui-state-disabled) {
+                &:hover {
+                    background-color: $default-ctrl-hover-color;
+                    border: 0.1rem solid $default-border;
+                    &.ui-state-focus {
+                        border: 0.1rem solid $form_borderSelected;
+                    }
+                    .ui-multiselect-label {
+                        background-color: $default-ctrl-hover-color;
+                    }
+                    .ui-multiselect-trigger {
+                        background-color: $default-ctrl-hover-color;
+                    }
+                }
+            }
+            &.ui-state-focus {
+                background: $default-ctrl-Pressed-color;
+                border: 0.1rem solid $form_borderSelected;
+                &:hover {
+                    background: $default-ctrl-Pressed-color;
+                    border: 0.1rem solid $form_borderSelected;
+                    .ui-multiselect-label {
+                        background: $default-ctrl-Pressed-color;
+                        color: $default-alt-text;
+                    }
+                    .ui-multiselect-trigger {
+                        background: $default-ctrl-Pressed-color;
+                        fa {
+                            color: $default-alt-text;
+                        }
+                    }
+                }
+                .ui-multiselect-label {
+                    background: $default-ctrl-Pressed-color;
+                    color: $default-alt-text;
+                }
+                .ui-multiselect-trigger {
+                    background: $default-ctrl-Pressed-color;
+                    .fa {
+                        color: $default-alt-text;
+                    }
+                }
+            }
+            &.ui-state-disabled {
+                opacity: 1;
+                .ui-multiselect-label {
+                    color: $default-disable-text-color;
+                }
+                .ui-multiselect-trigger {
+                    .fa {
+                        color: $default-disable-text-color;
+                    }
+                }
+            }
+            .ui-multiselect-panel {
+                &.ui-widget {
+                    &.ui-widget-content {
+                        &.static-width-style,
+                        &.default-width-style {
+                            background: $default-ctrl-Pressed-color;
+                            margin: 0;
+                        }
+                        &.static-width-style {
+                            width: 40rem;
+                            .ui-multiselect-items {
+                                li {
+                                    &.ui-multiselect-item {
+                                        .dropdown-item {
+                                            >div {
+                                                display: block;
+                                                overflow: hidden;
+                                                text-overflow: ellipsis;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        padding: 0;
+                        background: $default-ctrl-Pressed-color;
+                        border: 0.1rem solid $default-border;
+                        .ui-multiselect-items {
+                            background-color: $default-ctrl-Pressed-color;
+                            font-family: $text-semi-font;
+                            font-size: $dropdown-font-size;
+                            color: $form_text;
+                            li {
+                                &.ui-multiselect-item {
+                                    height: $dropdown-item-height;
+                                    line-height: $dropdown-item-height;
+                                    padding: $dropdown-item-padding;
+                                    position: relative;
+                                    white-space: nowrap;
+                                    border-radius: 0;
+                                    // .ui-chkbox {
+                                    //     display: none;
+                                    // }
+                                    .ui-chkbox {
+                                        margin-right: 0.5em;
+                                        float: none;
+                                        vertical-align: middle;
+                                        .ui-chkbox-box {
+                                            width: 20px;
+                                            height: 20px;
+                                            &.ui-state-active {
+                                                border: 1px solid var(--changebackgroundcolor);
+                                                background-color: var(--changebackgroundcolor);
+                                                color: $default-alt-text;
+                                                font-family: $font-awesome;
+                                            }
+                                        }
+                                    }
+                                    div {
+                                        font-family: $text-semi-font;
+                                        color: $form_text;
+                                        cursor: pointer;
+                                    }
+                                    &:hover {
+                                        &:not(.ui-state-highlight) {
+                                            background-color: $form_backgroundSelected;
+                                            div {
+                                                color: $default-alt-text;
+                                                span {
+                                                    color: $default-alt-text;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    &.ui-state-highlight {
+                                        background-color: $Selected-theme-color;
+                                        color: $form_text;
+                                        border: 1px solid var(--changebackgroundcolor);
+                                        padding: $dropdown-highlight-item-padding;
+                                        .ui-chkbox {
+                                            border: 1px solid var(--changebackgroundcolor);
+                                        }
+                                        // &:after {
+                                        //     content: "\F00C";
+                                        //     position: absolute;
+                                        //     right: 1.5rem;
+                                        //     top: 0;
+                                        //     font-family: $font-awesome;
+                                        //     color: $default-alt-text;
+                                        // }
+                                        &:hover {
+                                            background-color: $form_backgroundSelected;
+                                            div {
+                                                color: $default-alt-text;
+                                                span {
+                                                    color: $default-alt-text;
+                                                }
+                                            }
+                                            &:after {
+                                                color: $default-alt-text;
+                                            }
+                                        }
+                                    }
+                                    &:first-child {
+                                        .add-new-multiselect {
+                                            color: $default-alt-text;
+                                            display: block;
+                                            margin: 0 -1.5rem;
+                                            .add-new-item {
+                                                padding: $dropdown-item-padding;
+                                                display: block;
+                                                color: $default-alt-text;
+                                            }
+                                            &:not(.ui-state-highlight) {
+                                                &:hover {
+                                                    background-color: $default-ctrl-Pressed-color;
+                                                    color: $default-alt-text;
+                                                }
+                                            }
+                                            &.ui-state-highlight {
+                                                color: $default-alt-text;
+                                                &:after {
+                                                    content: none;
+                                                }
+                                                &:hover {
+                                                    background-color: $default-ctrl-Pressed-color;
+                                                    color: $default-alt-text;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .ui-multiselect-header {
+                            background-color: $default-ctrl-Pressed-color;
+                            color: $form_text;
+                            padding: 0 3rem 0 1.5rem;
+                            border: 0;
+                            margin-bottom: 0;
+                            .ui-multiselect-close {
+                                color: #848484;
+                                top: 50%;
+                                margin-top: -.5em;
+                            }
+                            // .ui-chkbox {
+                            //     margin-right: 0.5em;
+                            //     float: none;
+                            //     vertical-align: middle;
+                            //     .ui-chkbox-box {
+                            //         width: 20px;
+                            //         height: 20px;
+                            //     }
+                            // }
+                            .ui-chkbox {
+                                margin-right: 0.5em;
+                                float: none;
+                                vertical-align: middle;
+                                .ui-chkbox-box {
+                                    width: 20px;
+                                    height: 20px;
+                                    &.ui-state-active {
+                                        border: 1px solid var(--changebackgroundcolor);
+                                        background-color: var(--changebackgroundcolor);
+                                        color: $default-alt-text;
+                                        font-family: $font-awesome;
+                                    }
+                                }
+                            }
+                            .ui-multiselect-filter-container {
+                                width: 90%;
+                                padding: 0.8rem 1.5rem;
+                                .ui-inputtext {
+                                    font-family: $text-semi-font;
+                                    font-weight: normal;
+                                    font-size: $text-size-small;
+                                    color: $form_text;
+                                    height: $input-height;
+                                    background: $form_background;
+                                    border: 0.1rem solid $form_border;
+                                    padding: 0 3rem 0 1.5rem;
+                                    border-radius: 4px;
+                                }
+                                .fa {
+                                    left: inherit;
+                                    right: 3rem;
+                                    top: 1.5rem;
+                                }
+                                .ui-multiselect-filter-icon {
+                                    // position: absolute;
+                                    // line-height: 2rem;
+                                    // right: 2rem;
+                                    color: var(--changebackgroundcolor);
+                                    top: 50%;
+                                    margin-top: -.5em;
+                                    right: 2rem;
+                                    left: auto;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    p-multiSelect+.dropdown-clearicon {
+        color: $default-alt-text;
+        position: absolute;
+        top: 0.8rem;
+        right: 4rem;
+        width: 1rem;
+    }
+    
+    .primeNG-multi-select {
+        position: relative;
+        .multi-select-items {
+            ul {
+                padding-left: 0.5rem;
+                font-family: $text-light-font;
+                font-size: $text-size-xxsmall;
+                color: $default-text;
+                list-style-position: inside;
+                li {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+    }
+    
+    // @include multiselect-item-display(2, 20rem);
+    // @include multiselect-dropdown-width(20rem,'multiselect-width',false);
