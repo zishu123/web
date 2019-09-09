@@ -58,3 +58,1473 @@ p-listbox {
         }
     }
 }
+
+
+
+<!-- Wrapper -->
+<div class="wrapper">
+    <!-- Header -->
+    <app-header></app-header>
+    <!-- End header -->
+
+    <!-- Navigation -->
+    <app-sidemenu></app-sidemenu>
+    <!-- End navigation -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid dashboard-panels">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title" *ngIf="form_step == 1">I . BASIC DETAILS (Mandatory) </div>
+                            <div class="card-title" *ngIf="form_step == 2">II . IMMEDIATE ACTION TAKEN </div>
+                            <div class="card-title" *ngIf="form_step == 3">III . ESSENTIAL DETAILS – PEOPLE </div>
+                            <div class="card-title" *ngIf="form_step == 4">IV . ADDITIONAL DETAILS – T & E </div>
+                            <div class="card-title" *ngIf="form_step == 5">V . ADDITIONAL DETAILS – PWP </div>
+                            <div class="card-title" *ngIf="form_step == 6">VI . ADDITIONAL DETAILS – C&S </div>
+                            <div class="card-title" *ngIf="form_step == 7">VII . SUPPORTING EVIDENCES </div>
+                            <div class="card-title" *ngIf="form_step == 8">VIII . FINAL PREVIEW </div>
+                            <div class="card-options">
+                                <div class="min-width-700">
+                                    <ul class="form-steps-status">
+                                        <li *ngFor="let item of formSteps; let i=index"
+                                            [ngClass]="{'active': form_step == (i + 1), 'completed': form_step > (i + 1)}">
+                                            <a class="tool-tip cursor" (click)="stepgo((i+1))">
+                                                <span class="counter">{{i+1}}</span>
+                                                <span class="tooltip-inner-text">{{item.itemName}}</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-one" *ngIf="form_step == 1">
+                            <div class="card-body step-body-set">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="field-required" for="title">Type of AE</label>
+                                                <select class="form-control" name="priority">
+                                                    <option selected disabled value="">Select</option>
+                                                    <option value="near miss">Near miss</option>
+                                                    <option value="unsafe act">Unsafe Act</option>
+                                                    <option value="injury">Injury</option>
+                                                    <option value="fatality">Fatality</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="field-required" for="serve">How serve it is?</label>
+                                                <select class="form-control" name="priority">
+                                                    <option selected disabled value="">Select</option>
+                                                    <option value="first aid ">First Aid Case</option>
+                                                    <option value="minor injury">Minor Injury</option>
+                                                    <option value="serious injury">Serious Injury</option>
+                                                    <option value="major injury">Major Injury</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="field-required" for="assign">Assign a title</label>
+                                                <input type="text" class="form-control" name="title"
+                                                    placeholder="Enter title" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="field-required" for="assign">Date When did it
+                                                    occur</label>
+                                                <p-calendar class="prime-icon-cal" dateFormat="dd-mm-yy"
+                                                    [showIcon]="true" name="incident_date" [maxDate]="dateTime"
+                                                    [showTime]="false">
+                                                </p-calendar>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="field-required" for="assign">Time When did it
+                                                    occur</label>
+                                                <p-calendar class="prime-icon-cal" [showIcon]="true"
+                                                    name="incident_time" [timeOnly]="true">
+                                                </p-calendar>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 d-flex">
+                                            <div class="form-group ">
+                                                <label class="field-required" for="high">Where did it occur</label>
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle btn-lg btn-outline-dark"
+                                                        type="button" id="dropdownMenu1" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                        Select Unit
+                                                    </button>
+                                                    <ul class="dropdown-menu multi-level" role="menu"
+                                                        aria-labelledby="dropdownMenu">
+                                                        <li class="dropdown-item"><a
+                                                                style="color:black;text-decoration:none;">Production</a>
+                                                        </li>
+                                                        <li class="dropdown-divider"></li>
+                                                        <li class="dropdown-item"><a
+                                                                style="color:black;text-decoration:none;">Engineering</a>
+                                                        </li>
+                                                        <li class="dropdown-divider"></li>
+                                                        <li class="dropdown-submenu">
+                                                            <a class="dropdown-item" tabindex="-1"
+                                                                style="color:black;text-decoration:none;">Stores</a>
+                                                            <ul class="dropdown-menu">
+                                                                <li class="dropdown-item"><a tabindex="-1"
+                                                                        style="color:black;text-decoration:none;">Warehouse</a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li class="dropdown-submenu">
+                                                                    <a class="dropdown-item"
+                                                                        style="color:black;text-decoration:none;">Stocks</a>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li class="dropdown-item"><a
+                                                                                style="color:black;text-decoration:none;">Cement
+                                                                                Loading</a></li>
+                                                                        <li class="dropdown-divider"></li>
+                                                                        <li class="dropdown-item"><a
+                                                                                style="color:black;text-decoration:none;">Chemical
+                                                                                Store</a></li>
+                                                                        <li class="dropdown-divider"></li>
+                                                                        <li class="dropdown-item"><a
+                                                                                style="color:black;text-decoration:none;">Lifting
+                                                                                tools</a></li>
+                                                                    </ul>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li class="dropdown-item"><a
+                                                                        style="color:black;text-decoration:none;">Oil
+                                                                        Store</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li class="dropdown-divider"></li>
+                                                        <li class="dropdown-item"><a
+                                                                style="color:black;text-decoration:none;">Purchase</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="form-group d-flex flex-row margin-top-25 w-75 ml-4">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="field-required" for="assign">Brief Description of the
+                                                    Adverse Event</label>
+                                                <textarea type="text" class="form-control" rows="2" name="title"
+                                                    placeholder="Enter title"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-12 text-right">
+                                        <button type="submit"
+                                            class="btn btn-info btn-outline btn-rounded margin-right-5">
+                                            <i class="fas fa-save"></i> Save
+                                        </button>
+                                        <button type="button" (click)="stepgo(2);"
+                                            class="btn btn-info btn-rounded margin-right-5">
+                                            Next <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-one" *ngIf="form_step == 2">
+                            <div class="card-body step-body-set">
+                                <form>
+                                    <div class="row mt-4">
+                                        <div class="col-md-4">
+                                            <div class="separate-form-group">
+                                                <div class="separate-form-group-title">
+                                                    <i class="fas fa-user-check"></i> List of Members
+                                                </div>
+                                                <div class="roster-widget-set">
+                                                    <div class="roster-widget justify-content-between align-items-center"
+                                                        (click)="addemptolist(item,i)"
+                                                        *ngFor="let item of LeadMembers; ">
+
+                                                        <div class="roster-set">
+                                                            <div class="roster-shift">
+                                                                {{item.name}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 angle-right">
+                                            <i class="fas fa-angle-double-right"></i>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="separate-form-group">
+                                                <div class="separate-form-group-title">
+                                                    <i class="fas fa-user-check"></i> Selected List
+                                                </div>
+                                                <div class="roster-item-set">
+                                                    <ul>
+                                                        <li class="roster-item-select"
+                                                            *ngFor="let item of employessAdded;">
+                                                            <div>
+                                                                {{item.memberName}}
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row margin-top-50">
+                                        <div class="col-md-3">
+                                            <label>Summoned External Emergency Help</label>
+                                        </div>
+                                        <div class="col-md-3 btn-group" role="group" aria-label="Basic example">
+                                            <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                                                data-target="#addpopUp">Yes</button>
+                                            <button type="button" class="btn btn-outline-primary">No</button>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group" *ngIf="inputData">
+                                                <input type="text" value="{{sample_variable }}" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row margin-top-50">
+                                        <div class="col-md-3">
+                                            <label>Local authorities notified</label>
+                                        </div>
+                                        <div class="col-md-3 btn-group" role="group" aria-label="Basic example">
+                                            <button type="button" class="btn btn-outline-primary">Yes</button>
+                                            <button type="button" class="btn btn-outline-primary">No</button>
+                                        </div>
+                                    </div>
+                                    <div class="row margin-top-50">
+                                        <div class="col-md-3">
+                                            <label>Information sent to Any other</label>
+                                        </div>
+                                        <div class="col-md-3 btn-group" role="group" aria-label="Basic example">
+                                            <button type="button" class="btn btn-outline-primary">Yes</button>
+                                            <button type="button" class="btn btn-outline-primary">No</button>
+                                        </div>
+                                    </div>
+                                    <div class="row margin-top-50">
+                                        <div class="col-md-3">
+                                            <label>Specify any other action taken</label>
+                                        </div>
+                                        <div class="col-md-3 btn-group" role="group" aria-label="Basic example">
+                                            <button type="button" class="btn btn-outline-primary">Yes</button>
+                                            <button type="button" class="btn btn-outline-primary">No</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-12 text-right">
+                                        <button type="submit"
+                                            class="btn btn-info btn-outline btn-rounded margin-right-5">
+                                            <i class="fas fa-save"></i> Save
+                                        </button>
+                                        <button type="button" (click)="stepgo(3);"
+                                            class="btn btn-info btn-rounded margin-right-5">
+                                            Next <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-one" *ngIf="form_step == 3">
+                            <div class="card-body step-body-set">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Do you have the details of personnel
+                                                <b>injured/affected/</b>witnessed or otherwise involved
+                                                with the Adverse event?</label>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-md-4">
+                                            <label>(keep abreast their Names & Emp. IDs)</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2 btn-group btnPosition" role="group"
+                                            aria-label="Basic example">
+                                            <button type="button" class="btn btn-outline-primary px-4"
+                                                (click)="showInjuredData()">Yes</button>
+                                            <button type="button" class="btn btn-outline-primary px-4"
+                                                (click)="stepgo(4);">No</button>
+                                        </div>
+                                    </div>
+                                    <div class="row margin-top-60" *ngIf="isHidden1">
+                                        <div class="col-md-5">
+                                            <div class="form-title">
+                                                <span class="title-icon"></span>Add details of Injured/Affected
+                                                personnel</div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2" *ngIf="isHidden1">
+                                        <div class="col-md-12">
+                                            <ul class="persons-tabs">
+                                                <li class="add-person">
+                                                    <a data-toggle="modal" data-target="#addInjured">
+                                                        <i class="fas fa-plus"></i> Add</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" *ngIf="isHidden1">
+                                        <div class="row">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID.No.</th>
+                                                        <th>Name</th>
+                                                        <th>Occupation</th>
+                                                        <th>Type of Injury</th>
+                                                        <th>Bodypa.</th>
+                                                        <th>Treatm.</th>
+                                                        <th>Remarks</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr option *ngFor="let item of form2Equipments">
+                                                        <td> </td>
+                                                        <td> </td>
+                                                        <td></td>
+                                                        <td> </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row margin-top-90" *ngIf="isHidden1">
+                                        <div class="col-md-4">
+                                            <div class="form-title">
+                                                <span class="title-icon"></span>Add details of Involved personnel</div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2" *ngIf="isHidden1">
+                                        <div class="col-md-12">
+                                            <ul class="persons-tabs">
+                                                <li class="add-person">
+                                                    <a data-toggle="modal" data-target="#addInvolved">
+                                                        <i class="fas fa-plus"></i> Add</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" *ngIf="isHidden1">
+                                        <div class="row">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S.No.</th>
+                                                        <th>Ref. No.</th>
+                                                        <th>Date &time</th>
+                                                        <th>Title of AER</th>
+                                                        <th>Type</th>
+                                                        <th>Pot.Sev.</th>
+                                                        <th>Status</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr option *ngFor="let item of form2Equipments">
+                                                        <td> </td>
+                                                        <td> </td>
+                                                        <td> </td>
+                                                        <td> </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="row" *ngIf="'click' == 'Add'">
+                                        <app-injured-personnel></app-injured-personnel>
+                                    </div> -->
+                                </form>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-12 text-right">
+                                        <button type="submit"
+                                            class="btn btn-info btn-outline btn-rounded margin-right-5">
+                                            <i class="fas fa-save"></i> Save
+                                        </button>
+                                        <button type="button" (click)="stepgo(4);"
+                                            class="btn btn-info btn-rounded margin-right-5">
+                                            Next <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-one" *ngIf="form_step == 4">
+                            <div class="card-body step-body-set">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Do you have the details of <b> Tools /equipment </b>that might have
+                                                contributed directly or otherwise indirectly to the
+                                                adverse event?</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button type="button" class="btn btn-warning float-right py-3"
+                                                (click)="stepgo(7);"> Skip to upload evidences </button>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-md-4 margin-left-55">
+                                            <img src="../../../assets/images/tools.JPG" alt="jpg" width="150"
+                                                height="150">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2 btn-group btnPosition" role="group"
+                                            aria-label="Basic example">
+                                            <button type="button" class="btn btn-outline-primary px-4"
+                                                (click)="showEquipmentData()"> Yes </button>
+                                            <button type="button" class="btn btn-outline-primary px-4"
+                                                (click)="stepgo(5);">No</button>
+                                        </div>
+                                    </div>
+                                    <div class="row margin-top-60" *ngIf="isHidden2">
+                                        <div class="col-md-5">
+                                            <div class="form-title">
+                                                <span class="title-icon"></span>Add details of Tools/Equipment </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2" *ngIf="isHidden2">
+                                        <div class="col-md-12">
+                                            <ul class="persons-tabs">
+                                                <li class="add-person">
+                                                    <a data-toggle="modal" data-target="#addTools">
+                                                        <i class="fas fa-plus"></i> Add</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" *ngIf="isHidden2">
+                                        <div class="row">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Eqpt. No.</th>
+                                                        <th>Eqpt. Name</th>
+                                                        <th>Specs/details</th>
+                                                        <th>Condition</th>
+                                                        <th>Activity</th>
+                                                        <th>Contribu.</th>
+                                                        <th>Scal of D</th>
+                                                        <th>Action</th>
+                                                        <th>Cost</th>
+                                                        <th>Doc</th>
+                                                        <th>Remar</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr option *ngFor="let item of form2Equipments">
+                                                        <td> </td>
+                                                        <td> </td>
+                                                        <td></td>
+                                                        <td> </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-12 text-right">
+                                        <button type="submit"
+                                            class="btn btn-info btn-outline btn-rounded margin-right-5">
+                                            <i class="fas fa-save"></i> Save
+                                        </button>
+                                        <button type="button" (click)="stepgo(5);"
+                                            class="btn btn-info btn-rounded margin-right-5">
+                                            Next <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-one" *ngIf="form_step == 5">
+                            <div class="card-body step-body-set">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Do you think any of the <b> Work premises / environmental/physical
+                                                </b>
+                                                Conditions that might have contributed directly or otherwise indirectly
+                                                to the adverse event?</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button type="button" class="btn btn-warning float-right py-3"
+                                                (click)="stepgo(7);"> Skip to upload evidences </button>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-md-2 margin-left-55">
+                                            <img src="../../../assets/images/premises1.JPG" alt="jpg" width="150"
+                                                height="150">
+                                        </div>
+                                        <div class="col-md-2 margin-left-55">
+                                            <img src="../../../assets/images/premises2.JPG" alt="jpg" width="150"
+                                                height="150">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2 btn-group btnPosition1" role="group"
+                                            aria-label="Basic example">
+                                            <button type="button" class="btn btn-outline-primary px-4"
+                                                (click)="showPremisesData()">Yes</button>
+                                            <button type="button" class="btn btn-outline-primary px-4"
+                                                (click)="stepgo(6);">No</button>
+                                        </div>
+                                    </div>
+                                    <div class="row margin-top-60" *ngIf="isHidden3">
+                                        <div class="col-md-7">
+                                            <div class="form-title">
+                                                <span class="title-icon"></span>Add details of Work premises /
+                                                environmental/physical Conditions </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2" *ngIf="isHidden3">
+                                        <div class="col-md-12">
+                                            <ul class="persons-tabs">
+                                                <li class="add-person">
+                                                    <a data-toggle="modal" data-target="#addPremises">
+                                                        <i class="fas fa-plus"></i> Add</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" *ngIf="isHidden3">
+                                        <div class="row">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID. No.</th>
+                                                        <th>Descr/Name</th>
+                                                        <th>Type</th>
+                                                        <th>Contributing factor</th>
+                                                        <th>Action</th>
+                                                        <th>Doc.</th>
+                                                        <th>Remarks</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr option *ngFor="let item of form2Equipments">
+                                                        <td> </td>
+                                                        <td> </td>
+                                                        <td></td>
+                                                        <td> </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-12 text-right">
+                                        <button type="submit"
+                                            class="btn btn-info btn-outline btn-rounded margin-right-5">
+                                            <i class="fas fa-save"></i> Save
+                                        </button>
+                                        <button type="button" (click)="stepgo(6);"
+                                            class="btn btn-info btn-rounded margin-right-5">
+                                            Next <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-one" *ngIf="form_step == 6">
+                            <div class="card-body step-body-set">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Do you think that any possible presence of <b>chemicals /
+                                                    Substances </b>might have contributed directly or otherwise
+                                                indirectly
+                                                to the adverse event?</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button type="button" class="btn btn-warning float-right py-3"
+                                                (click)="stepgo(7);"> Skip to upload evidences </button>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-md-2 margin-left-55">
+                                            <img src="../../../assets/images/chemical1.JPG" alt="jpg" width="150"
+                                                height="150">
+                                        </div>
+                                        <div class="col-md-2 margin-left-55">
+                                            <img src="../../../assets/images/chemical2.JPG" alt="jpg" width="150"
+                                                height="150">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2 btn-group btnPosition1" role="group"
+                                            aria-label="Basic example">
+                                            <button type="button" class="btn btn-outline-primary px-4"
+                                                (click)="showChemicalsData()"> Yes</button>
+                                            <button type="button" class="btn btn-outline-primary px-4"
+                                                (click)="stepgo(7);">No</button>
+                                        </div>
+                                    </div>
+                                    <div class="row margin-top-60" *ngIf="isHidden4">
+                                        <div class="col-md-6">
+                                            <div class="form-title">
+                                                <span class="title-icon"></span>Add details of Chemicals/Substances
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2" *ngIf="isHidden4">
+                                        <div class="col-md-12">
+                                            <ul class="persons-tabs">
+                                                <li class="add-person">
+                                                    <a data-toggle="modal" data-target="#addChemicals">
+                                                        <i class="fas fa-plus"></i> Add</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" *ngIf="isHidden4">
+                                        <div class="row">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Subs ID.</th>
+                                                        <th>Name</th>
+                                                        <th>Hazard</th>
+                                                        <th>Status</th>
+                                                        <th>Ph/form </th>
+                                                        <th>Qty -Pre</th>
+                                                        <th>Qty -rele</th>
+                                                        <th>Imm. Act </th>
+                                                        <th>Cost</th>
+                                                        <th>Doc</th>
+                                                        <th>Remar</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr option *ngFor="let item of form2Equipments">
+                                                        <td> </td>
+                                                        <td> </td>
+                                                        <td></td>
+                                                        <td> </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-12 text-right">
+                                        <button type="submit"
+                                            class="btn btn-info btn-outline btn-rounded margin-right-5">
+                                            <i class="fas fa-save"></i> Save
+                                        </button>
+                                        <button type="button" (click)="stepgo(7);"
+                                            class="btn btn-info btn-rounded margin-right-5">
+                                            Next <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-one" *ngIf="form_step == 7">
+                            <div class="card-body step-body-set">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <label>Do you have any picture or video/audio recording of the
+                                                scene?</label>
+                                        </div>
+                                        <div class="col-md-2 btn-group" role="group" aria-label="Basic example">
+                                            <button type="button" class="btn btn-outline-primary"
+                                                (click)="uploadData()">Yes</button>
+                                            <button type="button" class="btn btn-outline-primary"
+                                                (click)="stepgo(8);">No</button>
+                                        </div>
+                                    </div>
+                                    <div class="row margin-top-60" *ngIf="isHidden5">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="Personid">Upload here </label>
+                                                <input type="file" id="RelevantimgInp"
+                                                    class="file-input-custom form-control" placeholder="Upload file"
+                                                    name="intermediateInputFile" accept=".jpg,.png,.pdf,.mp4,.MP4"
+                                                    #intermediateInput />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-12 text-right">
+                                        <button type="submit"
+                                            class="btn btn-info btn-outline btn-rounded margin-right-5">
+                                            <i class="fas fa-save"></i> Save
+                                        </button>
+                                        <button type="button" (click)="stepgo(8);"
+                                            class="btn btn-success btn-rounded margin-right-5">
+                                            Preview & Submit <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-one" *ngIf="form_step == 8">
+                            <div class="card-body step-body-set">
+                                <form>
+
+                                </form>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="button" (click)="stepgo(7)"
+                                            class="btn btn-info btn-rounded margin-right-5">
+                                            <i class="fas fa-chevron-left"></i> Previous
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <button type="submit"
+                                            class="btn btn-info btn-outline btn-rounded margin-right-5">
+                                            <i class="fas fa-save"></i> Save
+                                        </button>
+                                        <button type="button" (click)="stepgo(8);"
+                                            class="btn btn-danger btn-rounded margin-right-5">
+                                            Submit <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Popup Data -->
+        <div id="addpopUp" class="modal fade" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-md">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Summoned External Emergency Help</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body margin-left-85">
+                        <!-- <div class="form-group">
+                            <div class="row" style="margin-left: 30%">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="defaultInline1">
+                                    <label class="custom-control-label" for="defaultInline1">&nbsp;&nbsp;&nbsp;Selected
+                                        All</label>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-left: 30%">
+                                <div class="custom-control custom-checkbox mt-3">
+                                    <input type="checkbox" class="custom-control-input" id="defaultInline2">
+                                    <label class="custom-control-label"
+                                        for="defaultInline2">&nbsp;&nbsp;&nbsp;Fire</label>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-left: 30%">
+                                <div class="custom-control custom-checkbox mt-3">
+                                    <input type="checkbox" class="custom-control-input" id="defaultInline3">
+                                    <label class="custom-control-label"
+                                        for="defaultInline3">&nbsp;&nbsp;&nbsp;Ambulance</label>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-left: 30%">
+                                <div class="custom-control custom-checkbox mt-3">
+                                    <input type="checkbox" class="custom-control-input" id="defaultInline4">
+                                    <label class="custom-control-label"
+                                        for="defaultInline4">&nbsp;&nbsp;&nbsp;Police</label>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-left: 30%">
+                                <div class="custom-control custom-checkbox mt-3">
+                                    <input type="checkbox" class="custom-control-input" id="defaultInline5">
+                                    <label class="custom-control-label"
+                                        for="defaultInline5">&nbsp;&nbsp;&nbsp;AnyOther</label>
+                                </div>
+                                <div class="col-md-4 mt-3">
+                                    <input type="text" class="form-control" name="" />
+                                </div>
+                            </div>
+                        </div> -->
+                        <ul style="list-style-type: none">
+                            <li>
+                                <input type="checkbox" class="checkbox mt-2" [(ngModel)]="selectedAll"
+                                    (change)="selectAll();" />
+                                &nbsp;&nbsp;&nbsp;Select All
+                            </li>
+                            <li *ngFor="let n of names">
+                                <input type="checkbox" class="checkbox mt-2" [(ngModel)]="n.selected"
+                                    (change)="checkIfAllSelected();">
+                                &nbsp;&nbsp;&nbsp;{{n.name}}
+                            </li>
+                            <li>
+                                <input type="checkbox" class="checkbox mt-2" [(ngModel)]="anyOther" (change)="selectAny();"/>
+                                &nbsp;&nbsp;&nbsp;Any Other
+                            </li>
+                            <div class="row" *ngIf="isData">
+                                <input type="text" [(ngModel)]="comment" class="form-control w-50 mt-2">
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="modal-footer" *ngIf="comment">
+                        <button type="button" class="btn btn-info float-right" data-dismiss="modal"
+                            (click)="reflectData()">
+                            Done
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  Add details of Injured/Affected personnel  Popup -->
+        <div id="addInjured" class="modal fade" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add details of Injured/Affected personnel</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <div class="col-md-5">
+                            <h6 class="text-muted">
+                                Personal Details-Injured personnel</h6>
+                        </div> -->
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Select ID</label>
+                                            <select class="form-control" name="selectID">
+                                                <option selected disabled value="">Select</option>
+                                                <option value="near miss">110255</option>
+                                                <option value="unsafe act">212545</option>
+                                                <option value="injury">212455</option>
+                                                <option value="fatality">121545</option>
+                                                <option value="fatality">102122</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Name</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Occupation</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Type of Injury</label>
+                                            <select class="form-control" name="injury">
+                                                <option selected disabled value="">Select</option>
+                                                <option value="near miss">Cut</option>
+                                                <option value="unsafe act">Bruise</option>
+                                                <option value="injury">Fracture</option>
+                                                <option value="fatality">Burn</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Part of the body affected</label>
+                                            <input type="text" class="form-control" value="{{partOfBody}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">First-aid administered</label>
+                                            <select class="form-control" name="administered">
+                                                <option selected disabled value="">Select</option>
+                                                <option value="near miss">At site</option>
+                                                <option value="unsafe act">Not administered</option>
+                                                <option value="injury">At OHC</option>
+                                                <option value="fatality">Not needed</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label for="Personid">Remarks</label>
+                                            <textarea type="text" class="form-control" rows="2"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-right margin-top-40">
+                                <img src="../../../assets/images/body.JPG" alt="jpg" width="150" height="150"
+                                    (click)="showData()" style="cursor: pointer">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" (click)="saveemp()" class="btn btn-success" data-dismiss="modal"
+                            data-toggle="modal" data-target="#initiateInsurance">
+                            <i class="fas fa-check-circle"></i> Add
+                        </button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">
+                            <i class="fas fa-times-circle"></i> Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Initiate Insurance -->
+        <div id="initiateInsurance" class="modal fade" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-md margin-top-100">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!-- <h4 class="modal-title">Add details of Injured/Affected personnel</h4> -->
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="h6 text-muted">
+                                Initiate Insurance /liability claim application process?
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer float-right">
+                        <button type="submit" class="btn btn-success" data-dismiss="modal">
+                            <i class="fas fa-check-circle"></i> Yes
+                        </button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal" (click)="stepgo(3)">
+                            <i class="fas fa-times-circle"></i> No
+                        </button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal" (click)="stepgo(3)">
+                            Later
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  Add details of Injured/Affected personnel  Popup -->
+        <div id="addInvolved" class="modal fade" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add details of Involved personnel</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <div class="col-md-5">
+                                <h6 class="text-muted">
+                                    Personal Details-Injured personnel</h6>
+                            </div> -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Select ID</label>
+                                            <select class="form-control" name="selectID">
+                                                <option selected disabled value="">Select</option>
+                                                <option value="near miss">110255</option>
+                                                <option value="unsafe act">212545</option>
+                                                <option value="injury">212455</option>
+                                                <option value="fatality">121545</option>
+                                                <option value="fatality">102122</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Name</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Occupation</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Type of Involvement</label>
+                                            <select class="form-control" name="injury">
+                                                <option selected disabled value="">Select</option>
+                                                <option value="near miss">Witness</option>
+                                                <option value="unsafe act">Violator</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Involvement</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Statement recorded</label>
+                                            <input type="file" id="RelevantimgInp"
+                                                class="file-input-custom form-control" placeholder="Upload file"
+                                                name="intermediateInputFile" accept=".jpg,.png,.pdf,.mp4,.MP4"
+                                                #intermediateInput />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label for="Personid">Remarks</label>
+                                            <textarea type="text" class="form-control" rows="2"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" (click)="saveemp()" class="btn btn-success" data-dismiss="modal"
+                            data-toggle="modal" data-target="#initiateInsurance">
+                            <i class="fas fa-check-circle"></i> Add
+                        </button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">
+                            <i class="fas fa-times-circle"></i> Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  Tools & Equipment Details Popup -->
+        <div id="addTools" class="modal fade" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add details of Tools/Equipment</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <div class="col-md-5">
+                                    <h6 class="text-muted">
+                                        Personal Details-Injured personnel</h6>
+                                </div> -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Eqpt. ID</label>
+                                            <select class="form-control" name="selectID">
+                                                <option selected disabled value="">Select</option>
+                                                <option value="near miss">1000</option>
+                                                <option value="unsafe act">10002</option>
+                                                <option value="injury">100850</option>
+                                                <option value="fatality">1020</option>
+                                                <option value="fatality">1001</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Eqpt. Name</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Specs/details</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Condition</label>
+                                            <select class="form-control" name="injury">
+                                                <option selected disabled value="">Select</option>
+                                                <option value="near miss">Operational</option>
+                                                <option value="unsafe act">Non operational</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Activity at the time of AE</label>
+                                            <select class="form-control" name="injury">
+                                                <option selected disabled value="">Select</option>
+                                                <option value="near miss">In-Use</option>
+                                                <option value="unsafe act">Not In-Use</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Type of Contribution</label>
+                                            <select class="form-control" name="injury">
+                                                <option selected disabled value="">Select</option>
+                                                <option value="near miss">Direct cause of damage</option>
+                                                <option value="unsafe act">Indirect cause of damage</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Scale of Damage</label>
+                                            <select class="form-control" name="injury">
+                                                <option selected disabled value="">Select</option>
+                                                <option value="near miss">No Damage</option>
+                                                <option value="unsafe act">Minor</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Action taken</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">App. Estimated damage cost</label>
+                                            <select class="form-control" name="injury">
+                                                <option selected disabled value="">Select</option>
+                                                <option value="near miss">0$-100$</option>
+                                                <option value="unsafe act">100$-300S</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label for="Personid">Remarks</label>
+                                            <textarea type="text" class="form-control" rows="2"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Upload relevant documents</label>
+                                            <input type="file" id="RelevantimgInp"
+                                                class="file-input-custom form-control" placeholder="Upload file"
+                                                name="intermediateInputFile" accept=".jpg,.png,.pdf,.mp4,.MP4"
+                                                #intermediateInput />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" (click)="saveemp()" class="btn btn-success" data-dismiss="modal">
+                            <i class="fas fa-check-circle"></i> Add
+                        </button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">
+                            <i class="fas fa-times-circle"></i> Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workplace environment & Physical conditions Details -->
+        <div id="addPremises" class="modal fade" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Workplace environment & Physical conditions Details</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <div class="col-md-5">
+                                    <h6 class="text-muted">
+                                        Personal Details-Injured personnel</h6>
+                                </div> -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Area. ID</label>
+                                            <select class="form-control" name="selectID">
+                                                <option selected disabled value="">Select</option>
+                                                <option value="near miss">T-101</option>
+                                                <option value="unsafe act">AB-402</option>
+                                                <option value="injury">RG-1022</option>
+                                                <option value="fatality">SAP-100</option>
+                                                <option value="fatality">VAC-333</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Descr/Name</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Type/cat</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Hazard/ Contributing factors</label>
+                                            <select class="form-control" name="injury">
+                                                <option selected disabled value="">Select</option>
+                                                <option value="near miss">Slippery floor</option>
+                                                <option value="unsafe act">High noise</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Action taken</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Remarks</label>
+                                            <textarea type="text" class="form-control" rows="2"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Upload relevant documents</label>
+                                            <input type="file" id="RelevantimgInp"
+                                                class="file-input-custom form-control" placeholder="Upload file"
+                                                name="intermediateInputFile" accept=".jpg,.png,.pdf,.mp4,.MP4"
+                                                #intermediateInput />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" (click)="saveemp()" class="btn btn-success" data-dismiss="modal">
+                            <i class="fas fa-check-circle"></i> Add
+                        </button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">
+                            <i class="fas fa-times-circle"></i> Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Chemicals & Substances Details -->
+        <div id="addChemicals" class="modal fade" role="dialog" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Chemicals & Substances Details</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <div class="col-md-5">
+                                        <h6 class="text-muted">
+                                            Personal Details-Injured personnel</h6>
+                                    </div> -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Ch/S. ID</label>
+                                            <select class="form-control" name="selectID">
+                                                <option selected disabled value="">Select</option>
+                                                <option value="near miss">CH4</option>
+                                                <option value="unsafe act">C2H504</option>
+                                                <option value="injury">NH3</option>
+                                                <option value="fatality">CL2</option>
+                                                <option value="fatality">CCl4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Name</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Hazard</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Status</label>
+                                            <select class="form-control" name="injury">
+                                                <option selected disabled value="">Select</option>
+                                                <option value="near miss">Raw material</option>
+                                                <option value="unsafe act">Finished product</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Phase/Form</label>
+                                            <select class="form-control" name="injury">
+                                                <option selected disabled value="">Select</option>
+                                                <option value="near miss">Gas</option>
+                                                <option value="unsafe act">Vapor</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Quantity Present</label>
+                                            <select class="form-control" name="injury">
+                                                <option selected disabled value="">Select</option>
+                                                <option value="near miss">Unknown</option>
+                                                <option value="unsafe act">100 litres</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Quantity Released</label>
+                                            <select class="form-control" name="injury">
+                                                <option selected disabled value="">Select</option>
+                                                <option value="near miss">Unknown</option>
+                                                <option value="unsafe act">100 litres</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Action taken</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">App. Estimated damage cost</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label for="Personid">Remarks</label>
+                                            <textarea type="text" class="form-control" rows="2"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="Personid">Upload relevant documents</label>
+                                            <input type="file" id="RelevantimgInp"
+                                                class="file-input-custom form-control" placeholder="Upload file"
+                                                name="intermediateInputFile" accept=".jpg,.png,.pdf,.mp4,.MP4"
+                                                #intermediateInput />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" (click)="saveemp()" class="btn btn-success" data-dismiss="modal">
+                            <i class="fas fa-check-circle"></i> Add
+                        </button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">
+                            <i class="fas fa-times-circle"></i> Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
