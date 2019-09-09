@@ -1528,3 +1528,194 @@ p-listbox {
         </div>
     </section>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+import { Component, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
+
+@Component({
+  selector: 'app-aer-report',
+  templateUrl: './aer-report.component.html',
+  styleUrls: ['./aer-report.component.styl']
+})
+export class AerReportComponent implements OnInit {
+  public form_step = 1;
+  employessAdded: any = [];
+  mainLocations: any = [];
+  sub_locations: any = [];
+  isHidden: boolean = false;
+  anyOther: boolean = false;
+  formSteps: any = "";
+  isHidden1: boolean = false;
+  isHidden2: boolean = false;
+  isHidden3: boolean = false;
+  isHidden4: boolean = false;
+  isHidden5: boolean = false;
+  partOfBody: string;
+  comment: string;
+  sample_variable: any = '';
+  names: any = [];
+  data: any;
+  name: 'Select All';
+  selectedAll: any;
+  isData: boolean = false;
+  inputData: boolean = false;
+  constructor(private router: Router) {
+    this.mainLocations = [
+      { id: 1, location_name: 'Hyderabad' },
+      { id: 2, location_name: 'Delhi' },
+      { id: 3, location_name: 'Punjab' },
+      { id: 4, location_name: 'Vizag' }
+    ]
+    this.sub_locations = [
+      { id: 1, location_name: 'Mau' },
+      { id: 2, location_name: 'Azamgarh' },
+      { id: 3, location_name: 'Chandigarh' },
+      { id: 4, location_name: 'Mumbai' }
+    ]
+    this.names = [
+      { name: 'Fire', selected: false },
+      { name: 'Ambulance', selected: false },
+      { name: 'Police', selected: false },
+    ]
+  }
+
+  ngOnInit() {
+    this.formSteps = [
+      { itemName: " Basic Details" },
+      { itemName: "Immediate Action Taken" },
+      { itemName: "Essential Details" },
+      { itemName: "Additional Details T & E" },
+      { itemName: "Additional Details PWP" },
+      { itemName: "Additional Details C & S" },
+      { itemName: "Supporting Evidence" },
+      { itemName: "Final Preview" },
+    ];
+  }
+  public LeadMembers = [
+    {
+      name: "First-aid provided"
+    },
+    {
+      name: "Affected personnel evacuated to hospital",
+    },
+    {
+      name: "Area cordoned-off",
+    },
+    {
+      name: "Area evacuated",
+    },
+    {
+      name: "Immediate supervisor/Manager informed"
+    },
+    {
+      name: "HSE personnel were informed",
+    },
+    {
+      name: "Equipment secured",
+    },
+    {
+      name: "Emergency  plan Activated",
+    },
+    {
+      name: "Information sent to relatives",
+    },
+    {
+      name: "Counseled the affected personnel ",
+    },
+    {
+      name: "Information sent to employee relatives",
+    },
+    {
+      name: "Insurance agency notified",
+    }
+
+  ]
+
+  selectAll() {
+    for (var i = 0; i < this.names.length; i++) {
+      this.names[i].selected = this.selectedAll;
+    }
+  }
+  checkIfAllSelected() {
+    this.selectedAll = this.names.every(function (item: any) {
+      return item.selected == true;
+    })
+  }
+
+  selectAny() {
+    if (this.anyOther == true) {
+      this.isData = true;
+    } else if (this.anyOther == false) {
+      this.isData = false;
+    }
+  }
+
+  reflectData() {
+    for (var i = 0; i < this.names.length; i++) {
+      if (this.names[i].selected === true) {
+        this.sample_variable = this.sample_variable + " , " + this.names[i].name;
+      }
+    }
+    this.sample_variable = this.sample_variable + " , " + this.comment;
+    this.sample_variable = this.sample_variable.slice(2);
+    this.inputData = true;
+  }
+
+  stepgo(step: any) {
+    if (step == 1) {
+      this.form_step = step;
+    } else if (step == 2) {
+      this.form_step = step;
+    } else if (step == 3) {
+      this.form_step = step;
+    } else if (step == 4) {
+      this.form_step = step;
+    } else if (step == 5) {
+      this.form_step = step;
+    } else if (step == 6) {
+      this.form_step = step;
+    } else if (step == 7) {
+      this.form_step = step;
+    } else if (step == 8) {
+      this.form_step = step;
+    }
+  }
+  addemptolist(item: any, index: any) {
+    this.employessAdded.push({
+      memberName: item.name
+    });
+    this.LeadMembers.splice(index, 1);
+    // console.log(index);
+  }
+  finalPreview() {
+    this.router.navigate(['/AER/AER_Final'])
+  }
+  showInjuredData() {
+    this.isHidden1 = true;
+  }
+  showEquipmentData() {
+    this.isHidden2 = true;
+  }
+  showPremisesData() {
+    this.isHidden3 = true;
+  }
+  showChemicalsData() {
+    this.isHidden4 = true;
+  }
+  uploadData() {
+    this.isHidden5 = true;
+  }
+  showData() {
+    this.partOfBody = 'Head';
+  }
+}
