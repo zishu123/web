@@ -1719,3 +1719,225 @@ export class AerReportComponent implements OnInit {
     this.partOfBody = 'Head';
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// add and update the data
+sensors = [];
+showSensors(senLocation) {
+console.log(this.senLocation);
+
+    if (senLocation > 0 ) {
+      this.sensors = [];
+      for (let i = 0; i< senLocation; i++) {
+        this.sensors[i] = '';
+      }
+    }
+}
+    <div class="col-md-8">
+      <h4 class="side-title">Sensors</h4>
+        <div class="row" *ngIf="senLocation">
+          <div class="col-md-6" *ngFor="let sensor of sensors; let i = index">
+             <div class="form-group">
+              <label for="sensor1">Sensor {{i + 1}} on</label>
+                 <select name="" id="sensor1" [(ngModel)]="sensor" class="form-control">
+                      <option value="">Select the required</option>
+                      <option value="b1">B1</option>
+                      <option value="b2">B2</option>
+                      <option value="b3">B3</option>
+                      <option value="b4">B4</option>
+                  </select>
+           </div>
+        </div>
+      </div>
+   </div>
+  
+  
+  // update data
+	baring_data: any = [];
+   updateBaring(baring_count) {
+    if (baring_count > 1 && baring_count < 11) {
+      this.baring_data = [];
+      for (let i = 0; i < baring_count; i++) {
+        let data = {
+          manufacturer: '',
+          baring_id_no: '',
+          baring_type: ''
+        }
+        this.baring_data.push(data);
+      }
+    }
+    else{
+
+    }
+  }
+  
+  <div class="col-md-3">
+     <div class="form-group">
+        <label for="noofbelts">No. of Bearing Locations </label>
+          <input type="number" class="form-control" (keyup)="updateBaring(no_of_barings)"
+           [(ngModel)]="no_of_barings" name="no_of_barings" id="noofbelts" min="2" max="8"
+            placeholder="Enter numbers from 2 to 8">
+     </div>
+ </div>
+					  
+					  
+					  
+					  
+					  
+					  
+					  
+					  
+					  
+					  
+					  
+					  
+					  
+					  
+					  
+					  
+  
+  // list item data
+  addedToList: any = [];
+  activities: any = [];
+  addemptolist(item: any, index: any) {
+    if (item.role) {
+      this.addedToList.push({
+        selectedRole: item.role,
+        selectedRoleId: item.rid,
+      });
+      this.roles.splice(index, 1);
+      let addRoles = '';
+      for (let i = 0; i < this.addedToList.length; i++) {
+        addRoles = addRoles + ', ' + this.addedToList[i].selectedRole;
+      }
+      this.addedRoles = addRoles.slice(1);
+    }
+    if (item.activityName) {
+      this.addedToList.push({
+        selectedActivity: item.activityName,
+        selectedActivityId: item.activityId
+      });
+      this.activities.splice(index, 1);
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  // time and date
+  // only date
+    <div class="col-md-3">
+       <div>
+         <label class="field-required">Date of occurrence</label>
+          <p-calendar class="prime-icon-cal" [(ngModel)]="incident_date" dateFormat="dd-mm-yy"
+            [showIcon]="true" name="incident_date" [maxDate]="dateTime" [showTime]="false">
+          </p-calendar>
+       <p *ngIf="incident_date_status" style="color: red">Date of occurrence required</p>
+        </div>
+    </div>
+	
+	
+ // only time
+   <div class="col-md-3">
+      <label class="field-required">Time of occurrence </label>
+       <p-calendar class="prime-icon-cal"  [(ngModel)]="incident_time"
+         [showIcon]="true" name="incident_time" [timeOnly]="true">
+       </p-calendar>
+      <p *ngIf="incident_time_status" style="color: red">Time of occurrence required</p>
+   </div>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   // multiple dropdown
+    <div class="row margin-bottom-10">
+                                        <div class="col-md-2 margin-top-10">
+                                            <label class="field-required" for="high">Where did it occur</label>
+                                        </div>
+                                        <div class="col-md-3 margin-top-15">
+                                            <div class="dropdown">
+                                                    <button class="btn dropdown-toggle btn-lg" type="button" id="dropdownMenu1"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Select Unit
+                                                    </button>
+                                                    <ul class="dropdown-menu multi-level" role="menu"
+                                                        aria-labelledby="dropdownMenu">
+                                                        <li class="dropdown-item"><a
+                                                                style="color:black;text-decoration:none;">Production</a></li>
+                                                        <li class="dropdown-divider"></li>
+                                                        <li class="dropdown-item"><a
+                                                                style="color:black;text-decoration:none;">Engineering</a></li>
+                                                        <li class="dropdown-divider"></li>
+                                                        <li class="dropdown-submenu">
+                                                            <a class="dropdown-item" tabindex="-1"
+                                                                style="color:black;text-decoration:none;">Stores</a>
+                                                            <ul class="dropdown-menu">
+                                                                <li class="dropdown-item"><a tabindex="-1"
+                                                                        style="color:black;text-decoration:none;">Warehouse</a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li class="dropdown-submenu">
+                                                                    <a class="dropdown-item"
+                                                                        style="color:black;text-decoration:none;">Stocks</a>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li class="dropdown-item"><a
+                                                                                style="color:black;text-decoration:none;">Cement
+                                                                                Loading</a></li>
+                                                                        <li class="dropdown-divider"></li>
+                                                                        <li class="dropdown-item"><a
+                                                                                style="color:black;text-decoration:none;">Chemical
+                                                                                Store</a></li>
+                                                                        <li class="dropdown-divider"></li>
+                                                                        <li class="dropdown-item"><a
+                                                                                style="color:black;text-decoration:none;">Lifting
+                                                                                tools</a></li>
+                                                                    </ul>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li class="dropdown-item"><a
+                                                                        style="color:black;text-decoration:none;">Oil Store</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li class="dropdown-divider"></li>
+                                                        <li class="dropdown-item"><a
+                                                                style="color:black;text-decoration:none;">Purchase</a></li>
+                                                    </ul>
+                                                </div>
+                                        </div>
+                                        
+                                        <div class="col-md-3 margin-top-15">
+                                            <input type="text" class="form-control" name="" />
+                                        </div>
+                                    </div>
