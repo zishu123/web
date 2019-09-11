@@ -1,0 +1,90 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<link rel="stylesheet" href="https://canvasjs.com/demo/dashboards/assets/bootstrap/bootstrap4-alpha3.min.css">
+<style>
+	body {
+		background-color: #fafafa;
+		font-size: 16px;
+		line-height: 1.5;
+	}
+	
+	h1,h2,h3,h4,h5,h6 {
+		font-weight: 400;	
+	}
+	
+	#header {
+		border-bottom: 5px solid #37474F;
+		color: #37474F;
+		margin-bottom: 1.5rem;
+		padding: 1rem 0;
+	}
+	
+	#revenue-tag {
+		font-weight: inherit !important;
+		border-radius: 0px !important;
+	}
+	
+	.card {
+		border: 0rem;
+		border-radius: 0rem;
+	}
+	
+	.card-header {
+		background-color: #37474F;
+		border-radius: 0 !important;
+		color:	white;
+		margin-bottom: 0;
+		padding:	1rem;
+	}
+	
+	.card-block {
+		border: 1px solid #cccccc;	
+	}
+	
+	.shadow {
+		box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+								0 1px 18px 0 rgba(0, 0, 0, 0.12),
+								0 3px 5px -1px rgba(0, 0, 0, 0.2);
+	}
+	
+	#revenue-column-chart, #products-revenue-pie-chart, #orders-spline-chart {
+		height: 300px;
+		width: 100%;
+	}			
+</style>
+<div class="container">
+	<h2 id="header">
+		<strong>Annual Sales</strong>
+		<small class="text-muted">Jan 2015 &#8211; Dec 2015</small>
+	</h2>
+	
+	<div class="row m-b-1">
+		<div class="col-xs-12">
+			<div class="card shadow">
+				<h4 class="card-header">Revenue <span class="tag tag-success" id="revenue-tag">$15,341,110</span></h4>
+				<div class="card-block">
+					<div id="revenue-column-chart"></div>
+				</div>
+			</div>
+		</div>
+	</div> <!-- row -->
+
+	<div class="row m-b-1">
+		<div class="col-lg-6">
+			<div class="card shadow">
+				<h4 class="card-header">Product Wise Revenue</h4>
+				<div class="card-block">
+					<div id="products-revenue-pie-chart"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-6">
+			<div class="card shadow">
+				<h4 class="card-header">Orders</h4>
+				<div class="card-block">
+					<div id="orders-spline-chart"></div>
+				</div>
+			</div>
+		</div>
+	</div> <!-- row -->
+</div> <!-- container -->
