@@ -1,0 +1,88 @@
+lineData = [
+    {x: 10, y: 10, info: ''},
+    {x: 80, y: 40, info: ''},
+    {x: 30, y: 30, info: ''},
+    {x: 40, y: 20, info: ''},
+    {x: 40, y: 30, info: ''},
+    {x: 40, y: 40, info: ''},
+    {x: 50, y: 20, info: ''},
+    {x: 90, y: 20, info: ''},
+    {x: 41, y: 45, info: ''},
+    {x: 51, y: 22, info: ''},
+    {x: 92, y: 10, info: ''}
+  ];
+  
+  
+  
+  <ngx-line-graph
+[width]="800" [height]="400"
+[minX]="0" [maxX]="100" 
+[minY]="0" [maxY]="50" 
+[gridPrecisionX]="10" 
+[gridPrecisionY]="10"
+xAxisTitle="Time"
+yAxisTitle="Distance"
+[data]="lineData"
+color="#ff4444"></ngx-line-graph>
+
+
+
+
+barChartData = [
+    {
+      name: 'Calcutta',
+      value: 1
+    },
+    {
+      name: 'Madras',
+      value: 3
+    },
+    {
+      name: 'Bombay',
+      value: 9
+    },
+    {
+      name: 'Delhi',
+      value: 8
+    }
+  ];
+  
+  
+  <ngx-bar-chart [width]="1100" [height]="400"
+xAxisTitle="City"
+yAxisTitle="Value"
+[data]="barChartData"
+[showGridLines]="false"
+color="#1166ee"></ngx-bar-chart>
+
+
+
+
+donutChartData = [
+    {
+      name: 'Calcutta',
+      value: 20
+    },
+    {
+      name: 'Madras',
+      value: 50
+    },
+    {
+      name: 'Bombay',
+      value: 50
+    },
+    {
+      name: 'Delhi',
+      value: 10
+    },
+    {
+      name: 'Bangalore',
+      value: 50
+    }
+  ];
+  
+  
+  
+  
+  <ngx-donut-chart [width]="800"
+[data]="donutChartData" colorScheme="colorful"></ngx-donut-chart>
