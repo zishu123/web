@@ -63,3 +63,94 @@ export class AppComponent {
         (eventResize)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)"></ng-fullcalendar>
 </div>
 </div>
+
+
+
+
+
+<!-- Modal Popup -->
+
+
+import { Component } from '@angular/core';
+import { CalendarComponent } from 'ng-fullcalendar';
+import { Options } from 'fullcalendar';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  showModal: boolean;
+  title = 'ngularfullcalendarbootstrap';
+  name:string;
+  date:string;
+  calendarOptions: Options;
+  ngOnInit() {
+  this.calendarOptions = {
+        editable: true,
+        eventLimit: false,
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay,listMonth'
+        },
+        events: [{
+        title: 'Sales Meeting',
+        date: '2018-11-21'
+      }],
+        
+      };
+  }
+  eventClick(model: any) {
+    this.name = model.event.title;
+    this.date = model.event.date;
+    this.showModal = true;
+  }
+  hide()
+{
+  this.showModal = false;
+}
+}
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
+<style type="text/css">
+  .modal{background: rgba(0,0,0, .5);
+}
+</style>
+<div style="text-align:center">
+ <h1>
+    Welcome to {{ title }}!
+ </h1>
+  <div *ngIf="calendarOptions">
+     <ng-fullcalendar #ucCalendar [options]="calendarOptions" (eventClick)="eventClick($event.detail)" (eventDrop)="updateEvent($event.detail)"
+          (eventResize)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)"></ng-fullcalendar>
+  </div>
+</div>
+ <!-- The Modal -->
+  <div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">{{ name }}</h4>
+          <button type="button" class="close" data-dismiss="modal" (click) = "hide()">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Event Start From : {{ date }}
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide()">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
