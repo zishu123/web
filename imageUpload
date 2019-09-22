@@ -1,0 +1,30 @@
+<h3>Angular7 Image Preview before Upload:</h3><br/><br/>
+<img [src]="url" height="200" *ngIf="url"> <br/><br/>
+<input type='file' (change)="onSelectFile($event)">
+
+
+
+
+
+
+import {Component} from '@angular/core';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  public imagePath;
+  url: string;
+  onSelectFile(event) { // called each time file input changes
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      this.imagePath = event.target.files;
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = reader.result; //add source to image
+        
+      }
+    }
+     }
+}
