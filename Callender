@@ -1,0 +1,65 @@
+npm install ng-fullcalendar --save
+npm update @types/jquery
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
+import { FullCalendarModule } from 'ng-fullcalendar';
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+  FullCalendarModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { } 
+
+
+
+
+import { Component } from '@angular/core';
+import { CalendarComponent } from 'ng-fullcalendar';
+import { Options } from 'fullcalendar';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'my-angular-app';
+  calendarOptions: Options;
+  ngOnInit() {
+  this.calendarOptions = {
+        editable: true,
+        eventLimit: false,
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay,listMonth'
+        }
+        
+      };
+  }
+}
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <div *ngIf="calendarOptions">
+    <ng-fullcalendar #ucCalendar [options]="calendarOptions" (eventClick)="eventClick($event.detail)" (eventDrop)="updateEvent($event.detail)"
+        (eventResize)="updateEvent($event.detail)" (clickButton)="clickButton($event.detail)"></ng-fullcalendar>
+</div>
+</div>
