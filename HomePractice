@@ -1,0 +1,2646 @@
+				Introduction to Angular
+			----------------------------------------------
+			- Angular is a platform by using angular we can develop a modern single page application.
+			- Angular application is based on TypeScript.
+			- Angular is a javascript framework (front end framework) to create web application.
+			- Developed by Google , it is complete re-write of Angular JS.
+			
+				Single Page Application
+			-------------------------------------------
+			- Loading one template to another template without refreshing the whole web page called as SPA.
+			
+					Angular JS	(2010)								Angular (2016)
+				---------------------------------------------------------------------------------
+				- Based on JS										- Based on TS.
+				- It is MVC based							- It is component based.
+				- slow 													- 5 times faster than AngularJS.
+				- Easy to setup									- Not easy to setup
+				- create web application					- create both web and mobile application.
+				
+				 what is TypeScript
+				---------------------------------
+				- TS is a free open source programming language developed by Microsoft.
+				- superset of JS called as TS.
+				- TypeScript is a typed , superset of JS that compiles to plain JS.
+				- Angular application is based on TypeScript.
+				- Transpilation complies the TS code to  plain JS.
+				- The process of converting TS code to JS called as Transpilation.
+				
+				  Type Annotation
+			---------------------------------------
+			- 	Any : Any type is a superset of all types
+				- var x : any;
+				- var y : any
+				
+			Primitive : 
+				- Number
+					- Does not have seprate integer and float / double type.
+					- var num:number = 20;
+					- var num1:number = 20.14;
+					
+				- String
+					- Both single and double quotes can be used.
+						var str:string = 'Hello';
+						var name:string = "john";
+						
+				- Boolean
+					- var isOpen:boolean = true;
+					
+				- Void 
+					- Used as the return type of functions that don't return any value
+					
+				- Object Types
+					- class , interface , module
+					
+				- Array 
+					- Array types can be written in :
+						var list:number[] = [1,2,3];
+						var list: Array<number> = [10 , 20 , 30];
+						var list : any [] = [1 , true , 'A'];
+						
+				- Enum
+					- enum Color {Red , Green , Blue};
+					- var color = Color.Blue;
+				
+				
+																		TypeScript vs JavaScript
+															-------------------------------------------------------------
+				- If there is a type mismatch, TypeScript shows a warning for data type but javascript can't
+															
+							TypeScript																			JavaScript / Jquery
+			------------------------------------------------------------------------------------------------------------------------------------------------
+					var age:number = 30																	var age = 30;
+					var name:string = 'TypeScript'													var name = 'TypeScript'
+					var isActive:Boolean = false														var isActive = false
+				
+																	Functions
+															-------------------------------
+										TS																												Jquery					
+							items.forEach((x)=> {																					items.forEach(function(x){
+								console.log(x);																								console.log(x);
+								incrementedItems.push(x + 1);																	incrementedItems.push(x + 1);															
+							});																												})
+							
+							incrementedItems = items.map((x) => x + 1);											incrementedItems = items.map(function(x){
+																																						return x + 1;
+																																				})
+							
+							
+																		Class 
+																-------------------------
+																
+										TS																																JS
+							-----------------------																										--------------------------
+						class Employee {																									var Employee = ( function(){
+								private name:string;																						function Employee(name , basic , allowance)
+								private basic:number;																					{																		
+								private allowance:number;																					this.name = name;
+						}																																		this.basic = basic;
+						constructor(name:string,basic:number,allowance:number){									this.allowance = allowance;
+								this.name = name;																						}
+								this.basic = basic;																							Employee.prototype.getSalary = function(){
+								this.allowance = allowance;																					return this.basic + this.allowance;
+						}																																};
+						public getSalary():number {																					return Employee;
+								return this.basic + this.allowance;																})();
+						}																																var emp = new Employee('Tom',500,50);
+						var emp = new Employee('Tom', 500 , 50);														var salary = emp.getSalary();
+						var salary = emp.getSalary();
+						
+						
+						
+				Software required for Angular application
+			-----------------------------------------------------------------------
+			- download and install NodeJS
+			- install TypeScript
+			- install visula studio code
+			- install angular cli by using following command
+					> npm install -g @angular/cli 
+					
+					
+				Key component of Angular application
+			----------------------------------------------------------------
+			Component : component is the main building block  of angular application. Every thing in angular is a component.
+								   Angular application is based on component.
+								   AppComponent is the root component of angular application.
+								   
+								   
+			Module : An angular module is nothing but set of angular basic building block like component , service , directives , pipes etc.
+							An application is divided into logic pieces and each piece of code called as module which perform single task.
+							NgModule is the default or root module of angular application.
+							
+			Services : services are used to share the common business logic to multiple components.
+							By using services we can overcome data redundancy.
+							
+			Template : template is nothing but HTML . Template defines the user interface like HTML , directives etc.
+								This represent the view of angular application.
+								
+			Metadata : Decorator adds meta to the class which making it an angular component.
+								Decorator represent by '@' symbol.
+								
+								
+								
+																				Modules
+																[ Collection of components ]
+																
+																						Data Binding
+																[Communication b/w component and template]
+																
+														Components												Templates
+											[App Data  + Event Handlers]							[ Design Logic]
+											
+																			Dependency Injection
+																[The communication b/w component and service]
+																[Load service objects into component]
+																
+														Services 																	Directives
+										[Business Logic + Rest API calls]									[Direct DOM manipulation]
+										
+										
+							configuration file  (app.module.ts)
+					--------------------------------------------------------------
+				- after creating the application we need to register the application, we shoul register the application in this file.
+				- this file contains 4 arrays :
+					
+					declarations [] : this array is used to register the component , directives , etc.
+					imports [] : this array is used to register the modules.
+					providers[] : this array is used to register the services
+					bootstrap [] : this array is used to register or launches the application.In this array we register the component.At a time we can use
+					                       only one component.
+				
+				
+				
+						What is Component
+				--------------------------------------------
+				- component is the main building block of angular application.
+				- A component in angular is a class with a template and decorator.
+				- component class contains "programming logic" of the application.
+				- component class contains "application data " + "Event Handlers"
+				- component class is responsible to supply data to the template.
+				- component is the predefined class available in '@angular/core package'
+				- we must use predefined class by uisng decorator (@)
+				
+				import { Component } from '@angular/core';
+				@Component({
+					selector : 'app-root',
+					templateUrl : './app.component.html',
+					styleUrls : ['./app.component.scss']
+				})
+				export class AppComponent {
+					properties ;
+					Methods ;
+				}
+				
+				selector : selector is nothing but it is a user defined or custom html tag which should be unique among multiple components.
+				template : it contains inline html
+				templateUrl : it contains extenal template or extenal html to the component.
+				
+					Nested Component
+				------------------------------------------
+				- Define component inside another component called as nested component.
+				
+				Ex: we have two component :  
+							app.component.ts
+							child.component.ts
+							
+				app.component.ts																											app.component.html
+			-----------------------------------																								--------------------------------------
+			
+			import { Component } from '@angular/core'																<div>
+			@Component({																														<h1>Parent Component - Root Component</h1>
+				selector : 'app-root',																											<app-child></app-child>
+				templateUrl : './app.component.html',																	</div>
+				styles : [`
+					div{
+						background : gray;
+						padding :  20px;
+					}
+				`]
+			})
+			export class AppComponent{
+				
+			}
+			
+			generate child component : ng g c child --spec=false -it -is  
+				--spec = false : i don't want testing file
+				-it : inline template
+				-is : inline style
+			
+			child.component.ts																											child.component.html
+			-----------------------------------																								--------------------------------------
+			
+			import { Component } from '@angular/core'																<div>
+			@Component({																														<h1>Child Component - Child Component</h1>
+				selector : 'app-child',																									</div>	
+				templateUrl : './child.component.html',																	
+				styles : [`
+					div{
+						background : gray;
+						padding :  20px;
+					}
+				`]
+			})
+			export class ChildComponent{
+				
+			}
+
+			
+						Data Binding
+				--------------------------------------
+				- Data binding is a mechanism of reading the data from the component and display in the same in the template.
+				- The communication b/w component and template called as data binding.
+				- How angular identifies which html elements is associated with which property of the component , it is based on data binding.
+				
+					There are 4 ways to communicate the data from view to component
+				-------------------------------------------------------------------------------------------------------
+				- interpolation {{}}
+				- property  binding []
+				- event binding ()
+				- two way data binding [()]
+				
+				interpolation {{}}
+			------------------------------------
+			- this is simple way of binding in which data flows in one direction from component to view.
+			- interpolation are simply used to display the result.
+			- interpolation denoted by {{}}
+			
+			- It is a one-way data binding technique;
+			- it is {{ }} used to display dynamic data.
+			
+			Ex :   
+			-			ts :   var firstName = 'John Thomas';                        html  :  {{firstName}}
+			
+			-			we can also perform calculation {{10 + 20 + 30}}
+			
+			- 			ts : pageHeader = 'Data Process'            					html  : {{pageHeader ? pageHeader  : 'No Data'}}
+			
+			- 			ts : imagePath = 'http.flower.jpg';         					html :  <img src='{{imagePath}}'>
+			
+			-			fName = 'Tom';																	
+						lName = 'Jerry';															html :  {{getFullName()}}
+						getFullName(){
+							return 	this.fName + '  ' + this.lName;
+						}
+						
+			- 			<p> Total Marks : {{ Subject1 + Subject2 }} </p>		export class AppComponent{
+																														Subject1:number = 60;
+																														Subject2:number = 40 ;
+																												}
+																											
+			
+			
+				Property Binding []
+			---------------------------------------
+			- In this binding also data flows in one direction from component to view.
+			- In propert binding we bind the property with html attribute like [disabled]='isDisabled'
+			- property binding denoted by []
+			
+			- It is also a one way data binding technique.
+			- we can set html proerty dynamically.
+			
+			Ex :  ts : isDisabled : boolean = true;								html :  <button [disabled]='isDisabled' > Click </button>
+			
+					ts : imagePath = 'http:flower.jpg';							html  : <img [src]='imagePath'>
+					
+					
+						interpolation {{}}   vs     property binding[]
+					-------------------------------------------------------------------
+				- if u want to concatanate a string then must use interpolation.
+				  <img src='http:flower/{{imagePath}}'>
+				  
+				 - to set an element property to a non string data value u must use property binding.
+				 <button [disabled]='isDisabled'>Click </button>
+				 
+				- if we talk about interpolation , it requires expression to return a string and if u want to set element property to a non string data
+				  value then use data binding rather than interpolation.
+				  
+				  
+						HTML Attribute vs DOM propertiesies
+					-----------------------------------------------------------
+				- attribute defines by HTML where as properies defines by DOM.
+				- Attribute initialize the DOM properies , once intization complete, the attribute job is done.
+				- dom properties can change where as the attribute can't change.
+				
+				
+					DOM (Document Object Model)
+				------------------------------------------------------------
+				- DOM stands for Document Object Model
+				- When a browser loads a web page , the browser creates a DOM of that page.
+				- DOM contains the HTML elements as objects, their properties , methods and events and  it is a standard for accessing , modifying
+				  adding or deleting HTML elements.
+				
+				
+				**** Imp : so remember this , angular binding works with event , dom properties not attribute.
+				
+				Event Binding()
+			-----------------------------------
+			- In event binding , data flows in opposite direction means from view to component.
+			- In event binding , user trigger an event in the template like click , keyup , change etc... that change the component.
+			
+			Ex:
+			
+					pageTitle = ''Data Binding in Angular'';
+					changeTitle(){																				<button (click)='changeTitle()'>Click</button>
+						this.pageTitle = 'Data Binding';
+					}
+					
+					
+				  Two way Data Binding
+				---------------------------------------
+				- Relationship b/w "Template's HTML Element" and "Component's Property".
+				- The communication b/w  view to component and from component to view called as two way data binding.
+				- the combination of property and event binding called as two way data binding. [()]
+				- we can achieve two way data binding by using 'ngModel' directive.
+				- we use 'FormsModule' to achieve two way data binding.
+				- "It is a continuos synchronization of data from view to component and from component to view".
+				
+				Ex:               serverName : "Test Server";											<label>Server Name </label>
+																															<input type="text" name="serverName" [(ngModel)]="serverName">
+																															 <p> {{serverName}} </p>
+																															 
+																															 
+					
+******************************************************************************************************************************
+				Directives in Angular
+			-------------------------------------------
+			- In Angular , directives are used to enhance the view capabilities.
+			- with the help of directive , we can easily manipulate our DOM layout.
+			
+								Types of Directives
+					----------------------------------------------
+					- Components :  @Component
+					- Attributes Directive : this directive used to change the appearance or behavior of DOM.
+							- ngStyle
+							- ngClass
+							
+					- Structural Directives : this directive used the change the DOM layout by adding or removing DOM elements.
+							- 	*ngIf
+							-	*ngFor
+							-	[ngSwitch] , *ngSwitchCase , *ngSwitchDefault
+					
+					
+					
+					Structural Directive
+				----------------------------------------
+				- This directive used to change the layout of DOM by adding or removing the DOM elements.
+				- Types :  *ngIf , *ngFor ,  [ngSwitch]
+																*ngSwitchCase
+																*ngSwitchDefault
+				
+					*ngIf
+			-----------------------
+			   - this is a structural directive used to write the if else condition.
+			   
+					ts																																		html
+			-----------------																												--------------------------------
+				isUserLoggedIn : boolean = true																				<div *ngIf="isUserLoggedIn"> Hello </div>
+				
+				else block
+			--------------------------
+				<ng-template> : in this directive we write the else condition , this condition used a local refrence variable which can be used by '#' 
+				
+				<div *ngIf="isUserLoggedIn ; else logout">
+					Hello
+				</div>
+				
+				<ng-template #logout>
+					User not logged in
+				</ng-template>
+				
+					then block
+				---------------------
+				displayName : boolean = true
+				
+				<div *ngIf="displayName ; then thenBlock ; else elseBlock"></div>
+				
+				<ng-template #thenBlock>
+					Hello Welcome to Then block
+				</ng-template>
+				
+				<ng-template #elseBlock>
+					Hello Welcome to else block
+				</ng-template>
+				
+						Difference b/w *ngIf and [hidden]
+				---------------------------------------------------------------
+				- *ngIf : *ngIf will add or remove element from DOM based on condition.
+				- [hidden] : it is similar to 'display : none' in css , it will only show or hide that element from DOM	if condition is satisfied.
+				
+				Example 
+		----------------------------------
+				<div>
+					<input type="text"  name="photoPath" [(ngModel)]="photoPath" id="photoPath">
+				</div>
+		
+				<div>
+					<button type="button" (click)="togglePreview()"> {{ previewPhoto ? "Hide " : "Show " }} Preview </button>
+				</div>
+				
+				<div>
+					<img [src]="photoPath" height="50" *ngIf="previewPhoto">
+				</div>
+				
+						ts
+			--------------------------
+					previewPhoto : boolean = false;
+					
+					togglePreview(){
+						this.previewPhoto = !this.previewPhoto;
+					}
+					
+					
+					*ngFor
+			--------------------------
+			- if u want to iterate the element from an array then use *ngFor.
+			- this directive used to read the element from the array.
+			- it is also a structural directive used to write the for loop.
+			
+			Example :
+							users : any[] = [
+								{id : 101 , name : 'John' , city : 'Delhi'},
+								{id : 102 , name : 'Peter' , city : 'Pune'},
+								{id : 103 , name : 'Omed' , city : 'Delhi'},
+							]
+							
+							html
+				--------------------------
+					<table>
+						<tr>
+							<th>Index</th>
+							<th>ID</th>
+							<th>Name</th>
+							<th>City</th>
+						</tr>
+						<tr *ngFor="let x of users ; let i = index">
+							<td>{{i+1}}</td>
+							<td>{{x.id}}</td>
+							<td>{{x.name}}</td>
+							<td>{{x.city}}</td>
+						</tr>
+					</table>
+				
+				
+					ngSwitch
+			------------------------------
+				- it is also a one of type structural directive used to write the switch case.
+				
+				Ex :         <div [ngSwitch]="property">
+										<p *ngSwitchCase="'value1'">Content Here</p>
+										<p *ngSwitchCase="'value2'">Content Here</p>
+										<p *ngSwitchCase="'value3'">Content Here</p>
+										<p *ngSwitchDefault>Content Here</p>
+								</div>
+								
+					<span  [ngSwitch]="year">
+						<span *ngSwitchCase="'2019'" style="color : green">{{year}}</span>
+						<span *ngSwitchCase="'2018'" style="color : blue">{{year}}</span>
+						<span *ngSwitchCase="'2017'" style="color : red">{{year}}</span>
+						<span *ngSwitchDefault style="color : black">{{year}}</span>
+					</span>
+					
+					***************************************************************************************************************
+							Attribute Directive
+						-------------------------------------
+						- This directive used to change the appearance or behavior of the DOM.
+						- Types :   ngStyle  , ngClass 
+						
+							ngStyle
+					-------------------------
+						- it is a predefined attribute directive used to apply the css style to the DOM.
+						
+						Example :
+						
+								html																							
+							---------------																						
+							<h2 [style.color]="'orange'">Hello </h2>																									
+							
+					style with condition
+			----------------------------------------------
+				public hasError : false;
+				
+				<h2  [style.color]=" hasError ? 'red' : 'green' ">Hello</h2>
+				
+				***   public highlightcolor = 'orange';
+				
+						<h2 [style.color]="highlightcolor"> Hello </h2>
+						
+					[ngStyle]
+			-------------------------
+				- by using this we can apply multiple styles.
+				
+				ex:  
+						public titilesStyles = {
+							color : 'blue',
+							fontStyle : 'italic'
+						}
+						
+				<h2 [ngStyle]="titilesStyles"> Hello </h2>
+				
+			Ex:  
+			
+					isBold : boolean = true;
+					fontSize : number = 30;
+					isItalic : boolean = true;
+					
+					addStyles(){
+						let styles  = {
+							'font-size.px' : this.fontSize,
+							'font-style' :  this.isItalic ? 'italic' : 'normal',
+							'font-weight' : this.isBold ? 'bold' : 'normal'
+						}
+						return styles;
+					}
+					
+					<button [ngStyle]="addStyles()">My Button </button>
+					
+					
+						[ngClass]
+		------------------------------------------
+			- it is also a predefined attribute directive used to apply the css or bootstrap classes .
+			
+			Ex :
+			
+				css
+			--------------
+				.text-success {
+					color : green;
+				}
+				.text-danger{
+					color : red;
+				}
+				.text-special {
+					font-style : italic;
+				}
+				
+				html
+		-------------------------
+		<h2 class="text-success">  Hello </h2>
+		
+		ex :
+				public successClass ="text-success";
+				
+				<h2 [class]="successClass">Hello</h2>
+				
+		ex :
+		
+				hasError : boolean = true;
+				
+				<h2 [class.text-danger]="hasError"> Hello </h2>
+				
+				
+		ex:  
+				hasError : false;
+				isSpecial : true;
+				
+				multipleClass = {
+					"text-success" : !this.hasError,
+					"text-danger" : this.hasError;
+					"text-special" : this.isSpecial
+				}
+				
+				<h2 [ngClass]="multipleClass"> Hello </h2>
+				
+				
+		ex:   
+				applyBoldClass : boolean = true;
+				applyItalicClass : boolean = true;
+				
+				addClasses(){
+					let classes = {
+						boldClass : this.applyBoldClass,
+						italicClass : this.applyItalicClass
+					}
+					return classes;
+				}
+				
+				<button [ngClass]="addClasses()">My Button </button>
+				
+	***************************************************************************************************************************
+	
+					Custom Directive
+		-----------------------------------------------
+			- The directive created by user based on requirement called as custom directive.
+			
+					Attribute Type custom directive  - it is denoted by []
+			--------------------------------------------------------------------------------------
+			-  'Directive' is the predefined class used to create the custom directive.
+			-  'ElementRef' is the predefined class used to manipulate the DOM elements.
+			-  'HostListener' is the predefined class used to apply the mouse events.
+			-  'Input' is the predefined class used to pass the dynamic data to custom directive.
+			
+					
+					html
+			--------------------------------------
+			-	<h1 myDir>  Hello </h1>   :  simple 
+			
+			-  <h1   [var_one]=" 'red' "  [var_two]=" 'white' " myDir>  Hello </h1> : use through dynamic
+			
+			-  <h1   [var_one]=color_one  [var_two]=color_two  myDir>  Hello </h1>
+				<input type="color" name="color_one" [(ngModel)]="color_one"><br><br>
+ 				<input type="color" name="color_two" [(ngModel)]="color_two"><br><br>
+			
+						my.directive.ts
+				----------------------------------------
+				import { Directive , ElementRef , HostListener , Input } from '@angular/core';
+				@Directive({
+					selector : "[myDir]"
+				})
+				export class MyDirective{
+					
+					@Input()  var_one;
+					@Input()  var_two;
+					
+					
+					constructor( _el : ElementRef ) {}
+					
+					// to overcome data redundancy then we use the function
+					public highLightColor(color){
+						this._el.nativeElement.style.backgroundColor = color;
+					}
+					
+					@HostListener('mouseenter') onmouseenter(){
+						this._el.nativeElement.style.backgroundColor ="red";  // here data is hard coded means static
+						this._el.nativeElement.style.backgroundColor =this.var_one;  // dynamic
+						this.highLightColor(this.var_one);
+					}
+					@HostListener('mouseleave') onmouseleave(){
+						this._el.nativeElement.style.backgroundColor = "white"; // here data is hard coded means static
+						this._el.nativeElement.style.backgroundColor = this.var_two; // dynamic
+						this.highLightColor(this.var_two);
+					}
+				}
+				
+				
+		Example : attribute type custom directive
+	------------------------------------------------------------------------
+	
+		<div appHighlight>
+			<h3>Welcome</h3>
+		</div>
+		
+					ts
+		----------------------------
+		import { Directive , ElementRef  , HostListener } from '@angular/core';
+		@Directive({
+			selector : "[appHighlight]"
+		})
+		export class HighlightDirective{
+			constructor(private  _el : ElementRef){}
+			
+			private highLightColor( bgColor : string , txtColor : string ){
+				this._el.nativeElement.style.backgroundColor = bgColor;
+				this._el.nativeElement.style.color = txtColor;
+			}
+			
+			@HostListener('mouseenter') onmouseenter(){
+				this.highLightColor('yellow' , 'red');
+			}
+
+			@HostListener('mouseleave') onmouseleave(){
+				this.highLightColor(null , null);
+			}
+		}
+		
+		********************************************************************************************************************
+		
+				structural type custom directive  - it is denoted by *
+	-------------------------------------------------------------------------------------
+		- this directive used to manipulate the DOM by adding or removing the DOM elements.
+		- 	'TemplateRef' is the predefined class used to manipulate the templates.
+		-  'ViewContainerRef' is the predefined class used to manipulate the DOM.
+			(why ViewContainerRef : the element to add the memory or to remove the memory )
+		
+		-  In structural directive we recive the dynamic data or we create the function by using 'set' keyword.
+		
+				html
+		------------------------
+		
+		<h1  *hello=true>  Hello Welcome </h1>  // it shows into the browser (means add to memory)
+		<h1  *hello=false>  Hello Welcome </h1>  // it not show into the browser (means remove from memory)
+		
+		
+				structural.directive.ts
+	---------------------------------------------------
+			import { Directive ,  TemplateRef , Input , ViewContainerRef } from '@angular/core';
+			@Directive({
+				selector : '[hello]'
+			})
+			export class StructuralDirective {
+				
+				constructor(  private _templateRef : TemplateRef<any> , private  _ viewcontainerRef : ViewContainerRef ){}
+				
+				@Input() set hello( isHidden : boolean ){
+					// if true , add the TemplateRef to memory by using ViewContainerRef
+					if( isHidden ){
+						 this._viewcontainerRef.createEmbeddedView(this._templateRef);
+					}
+					// if false , remove the TemplateRef from memory by using ViewContainerRef
+					else {
+						this._viewcontainerRef.clear();
+					}
+				}	
+				
+			}
+			
+			
+	**************************************************************************************************************************
+	
+							Services in Angular
+				--------------------------------------------------
+				-  In Angular , services are used used to write the business logic.
+				-  services are used to share the common business logic to multiple components.
+				-  In angular , by using service we can overcome data redundancy.
+				-  There are  2 types of services :
+							:  Predefined service :  Http ,  HttpClient
+							:  Custom service
+							
+					Predefined service :  Http and HttpClient
+			--------------------------------------------------------------------------
+				- Both Http and HttpClient are the predefined services used to make the REST API call.
+				
+				- Http is the predefined service available in Angular 2 , where as HttpClient is the predefined service which is available in Angular 4.
+				- Http class available in 'HttpModule' and where as HttpClient class available in 'HttpClientModule'.
+				- 'Http' and 'HttpModule'  present in '@angular/http' package where as 'HttpClient' and 'HttpClientModule'  available in 
+					'@angular/common/http' package.
+					
+				- In Http both Positive and Error response of 'Response' type.
+				- Response is the predefined class available in Angular 2.
+				- Response present in '@angular/http' package.
+				- In HttpClient we used a predefined class 'HttpErrorResponse' , which is used to categorize the error.
+					
+							Http																							HttpClient
+				-----------------------------------------------------------------------------------------------------------------------------------
+				- available in Angular 2																	- available in Angular 4
+				- used to make the Rest API call													- it is also used to make the Rest API call
+				- Internally depending on 'rxjs' package										- won't depends on 'rxjs' package.
+				- no specific class to categorize the error									- 'HttpErrorResponse' used to categorize the error.
+				
+				map()  , catch() and throw() function
+			--------------------------------------------------------------
+				- map()  : it is a predefined function used to catch the positive response given by server.
+				- catch() : it is a predefined function used to catch the error response given by server.
+				- throw() : it is a predefined function used to throw the error to the caller.
+				
+				- all  functions available in 'rxjs/Observable' package.
+				- throw() function available in Observable class.
+				- Observable class available in 'rxjs/Observable' package.
+				
+					Observable
+			-----------------------------------
+				- the response we get from an http call is nothing but an observable.
+				- Observable is nothing but , 'A sequence of items that arrive asynchronously over time'
+				
+					How to create service
+			--------------------------------------------------
+				- 'Injectable' is the predefined class available in '@angular/core' package.
+				- Injectable class used to create the services.
+				
+				Example:
+		--------------------------------
+				user.service.ts
+			------------------------------
+			import {  Injectable } from '@angular/core';
+
+			@Injectable()
+			export class UserService{
+				constructor(){}
+				
+				getAllUsers(){
+					return [
+						{id : 101 , name : 'john' , city : 'Delhi' , salary : 2000},
+						{id : 102 , name : 'john' , city : 'Delhi' , salary : 2000},
+						{id : 103 , name : 'john' , city : 'Delhi' , salary : 2000},
+						{id : 104 , name : 'john' , city : 'Delhi' , salary : 2000},
+					]
+				}
+			}
+			
+				app.component.ts
+		-----------------------------------------
+			import { Component } from '@angular/core';
+			import { UserService } from './user.service';
+			@Component({
+				selector : 'app-root',
+				templateUrl : './app.component.html'
+			})
+			export class AppComponent{
+				users : any[];
+				constructor(private userser:UserService){}
+				
+				ngOnInit(){
+					this.users = this.userser.getAllUsers();
+				}
+			}
+			
+				app.component.html
+		---------------------------------------------
+			<table>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>City</th>
+					<th>Salary</th>
+				</tr>
+				<tr *ngFor="let x of users">
+					<td>{{x.id}}</td>
+					<td>{{x.name}}</td>
+					<td>{{x.city}}</td>
+					<td>{{x.salary}}</td>
+			</table>
+			
+			
+			subscribe()
+		------------------------------
+		- subscribe function is a predefined function used to catch the response , which is coming from server.
+		- Internally component class depending on subscribe() function to catch the Rest Data coming from service.
+		
+				Example : Data coming from Rest API
+		----------------------------------------------------------------------
+					user.serice.ts
+			---------------------------------
+			import { Injectable } from '@angular/core';
+			import { HttpClient } from '@angular/common/http';
+			@Injectable()
+			export class UserService{
+				constructor(private http:HttpClient){}
+				getAllUsers(){
+					return this.http.get('https://jsonplaceholder.typicode.com/users');
+				}
+			}
+			
+					app.component.ts
+			-----------------------------------------
+			import { Component } from '@angular/core';
+			import { UserService } from './user.service';
+			@Component({
+				selector : 'app-root',
+				templateUrl : './app.component.html'
+			})
+			export class AppComponent{
+					users : any[];
+					constructor(private userser : UserService){}
+					
+					ngOnInit(){
+						this.userser.getAllUsers().subscribe(data => {
+							this.users = data;
+						})
+					}
+			}
+			
+					app.component.html
+			--------------------------------------------
+			<table>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>City</th>
+					<th>Salary</th>
+				</tr>
+				<tr *ngFor="let x of users">
+					<td>{{x.id}}</td>
+					<td>{{x.name}}</td>
+					<td>{{x.city}}</td>
+					<td>{{x.salary}}</td>
+			</table>
+			
+			
+			Example  : Rest API call with Error Handling
+	-----------------------------------------------------------------------
+			import { Injectable } from '@angular/core';
+			import { HttpClient } from '@angular/common/http';
+			import  { Observable } from 'rxjs/Observable';
+			import 'rxjs/add/operator/catch';
+			import 'rxjs/add/observable/throw';
+			
+			@Injectable()
+			export class UserService{
+				constructor(private http:HttpClient){}
+				getAllUsers(){
+					return this.http.get('https://jsonplaceholder.typicode.com/users').
+					catch((error)=>{
+						return Observable.throw(error);
+					})
+				}
+			}
+			
+			
+						app.component.ts
+			-----------------------------------------
+			import { Component } from '@angular/core';
+			import { UserService } from './user.service';
+			@Component({
+				selector : 'app-root',
+				templateUrl : './app.component.html'
+			})
+			export class AppComponent{
+					users : any[];
+					errorMsg : string;
+					
+					constructor(private userser : UserService){}
+					
+					ngOnInit(){
+						this.userser.getAllUsers().subscribe(data => {
+							this.users = data;
+						} ,(err)=>{
+							this.errorMsg = 'Some internal issues while making API call..';
+						})
+					}
+			}
+			
+			
+						app.component.html
+			--------------------------------------------
+			<div *ngIf="users.length > 0 ; else nousers">
+						<table>
+							<tr>
+								<th>ID</th>
+								<th>Name</th>
+								<th>City</th>
+								<th>Salary</th>
+							</tr>
+							<tr *ngFor="let x of users">
+								<td>{{x.id}}</td>
+								<td>{{x.name}}</td>
+								<td>{{x.city}}</td>
+								<td>{{x.salary}}</td>
+						</table>
+			</div>
+			
+			<ng-template #nousers>
+				<p class="alert alert-danger text-center">{{ errorMsg }}</p>
+			</ng-template>
+			
+				
+			Observable and Observer
+		----------------------------------------------
+		- 'Observable and Observer' is a pattern of 'message passing' from 'publisher' to  'subscriber'.
+		
+			Flow of functionality
+		----------------------------------------
+		- Observable is created
+		- Observer subscribe to the Observable
+		- Observable can pass message (notifications) to the Observer
+		- Each time , when the Observable passes a notifications, it is recieved by Observer.
+		
+		
+		Example :		HTTP , Observable and RxJS
+		--------------------------------------------------
+			RxJS : Reactive Extension of JavaScript, it is a third party package.
+		
+			- Http GET request from EmpService
+			- Recieve the observable and cast it into an employee array.
+			- subscribe to the observable from EmpList and EmpDetail
+			- Assign the employee array to a local variable.
+			
+			employee.service.ts																						assets/data / employees.json
+	----------------------------------------------																--------------------------------------------------------------
+		import {Injectable} from '@angular/core';											[
+		import{HttpClient} from '@angular/common/http';								{ 'id' : 1 , 'name' : 'John' , 'age' : 30 },
+		import {IEmployee}	from './employee'													{ 'id' : 2 , 'name' : 'Tony' , 'age' : 32 },
+		import {Observable} from 'rxjs/Observable';											{ 'id' : 3 , 'name' : 'Mike' , 'age' : 35 }
+		@Injectable()																							]
+		export class EmployeeService{																
+			
+			private _url :string = '/assets/data/employees.json';									employee.ts
+																															-------------------------------------
+			constructor(private http : HttpClient){}													export interface IEmployee {
+			getEmployee():Observable<IEmployee[]>{														id : number,
+				return this.http.get<IEmployee[]>(this._url);												name : string,
+			}																															age : number
+		}																														}
+		
+		
+			employee-list.component.ts
+	---------------------------------------------------	
+			import { Component } from '@angular/core';
+			import { EmployeeService } from './employee-list.service';
+			@Component({
+				selector : 'app-employee-list',
+				templateUrl : './employee-list.component.html'
+			})
+			export class EmployeeComponent{
+				public employees =[];
+				constructor(private empSer : EmployeeService){}
+				
+				ngOnInit(){
+					this.empSer.getEmployee().subscribe(data =>{
+						this.employees = data;
+					})
+				}
+				
+			}
+			
+			Angular Promises and Observable  : Observable vs Promises
+	-------------------------------------------------------------------------------------------------------
+	
+						Promise																		Observable
+			------------------------------------------------------------------------------------------------------------
+			- emits a single value												- emits multiple values over a period of time
+			- not lazy																- lazy , An observable is not called until we subscribe the observable	
+			- can not be cancelled											- can be cancelled by using unsubscribe() method
+			
+			Promises :  Promises work with asynchronous operations and they either return us a single value(i.e the promise resolves) or an error	
+							    message (i.e the promise rejects)
+							- Another imp thing to remember regarding promises is that a request initiated from a promise is not cancellable. 
+							- we can call the promise request or used the promises by using then() method or we can subscribe the promise by using
+							  then() method.
+							- toPromise() method converts the observable to Promise object.
+							
+			Example :
+		-------------------------
+			import {Http, Headers} from '@angular/http';
+			import {Injectable} from '@angular/core';
+			import {Rx} from './rx';
+			@Injectable()
+			export class RxService {
+					private rxUrl = 'http://localhost:8080/rx';
+					constructor(private http: Http) {}
+					getRx(): Promise<Rx[]> {
+							return this.http.get(this.rxUrl)
+							.toPromise()
+							.then(res => res.json())
+							.catch(err => {
+								return Promise.reject(err.json().error  || 'Server error');
+							});
+					}
+			}
+			
+************************************************************************************************************************
+
+					Routing In Angular
+	-------------------------------------------------
+		SPA : Loading one template to another template without refreshing the whole web page called as SPA.
+		Routing : Routing is nothing but navigating from one component to another component.
+		
+		How to create Routing
+	--------------------------------------------
+	- 'Routes' is the predefined array , used to implement the Routing.
+	- 'RouterModule' is the predefined module used to load the Routing into memory.
+	- 'forRoot()' is the predefined function used to load the routing.
+	
+	- 'Router' is the predefined class used to navigate from one template to another template.
+	- by uisng Router we can create the routing dynamically by uisng navigate([]) function.
+	
+	- Routes , Router , RouterModule available in '@angular/router' package.
+	
+	- [routerLink] is the predefined directive used to load the page without refresh.
+	- <router-outlet> is the predefined directive behaves like magnet that hold the target pages.
+	
+			app-routing.module.ts
+	----------------------------------------------
+	
+		import {NgModule} from '@angular/core';
+		import {Routes , RouterModule} from '@angular/router';
+		import {  DashboardComponent } from './dashboard.component';
+		import {  AboutComponent } from './about.component';
+		import { PageNotFoundComponent } from './page-not-found.component';
+		
+		const routes : Routes = [
+			{path : '' , reditectTo : 'dashboard' , pathMatch : 'full'}, -- >   Redirect Route
+			{path : 'dashboard' , component : DashboardComponent},
+			{path : 'about' , component :  AboutComponent},
+			{path : '**'  , component : PageNotFoundComponent} -- >  Wildcard Route
+		]
+		
+		@NgModule({
+			imports : [RouterModule.forRoot(routes)],
+			exports : [RouterModule]
+		})
+		
+		export class AppRouting {}
+		
+				app.component.html
+	---------------------------------------------------
+		<ul>
+			<li>
+				<a class="nav-link"  routerLink = 'dashboard'>Dashboard</a>
+			</li>
+			<li>
+				<a class="nav-link"  routerLink = 'about'>About</a>
+			</li>
+		</ul>
+		
+		************************************************************
+		Example 2 :
+		
+				app.component.html
+	-------------------------------------------------------
+		
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+				<a class="navbar-brand" href="#">User Management</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-targe="#navbarNav"></button>
+				<span class="navbar-toggler-icon"></span>
+		</nav>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item active">
+					<a class="nav-link" routerLink="/users">Users</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" routerLink="/about">About</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" routerLink="/contact">Contact</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	
+	<router-outlet></router-outlet>
+	
+	
+				app.module.ts
+		-----------------------------------------
+		
+		import {BrowserModule} from '@angular/browser';
+		import { AppComponent } from './app.component'
+		import { UserComponent } form './user.component';
+		import { AboutComponent } form './about.component';
+		import { ContactComponent } form './contact.component';
+		import { Routes , RouterModule } form '@angular/router';
+		
+		const routes : Routes = [
+			{path : '' , reditectTo : 'user' , pathMatch : 'full'}, --> Redirect Route
+			{path : 'user' , component : UserComponent},
+			{path : 'about' , component : AboutComponent},
+			{path : 'contact' , component : ContactComponent},
+			{path : '**' , reditectTo : 'user'} -->  Wildcard Route
+		]
+		
+		@NgModule({
+			declarations : [AboutComponent, ContactComponent , UserComponent],
+			imports : [BrowserModule , RouterModule.forRoot(routes)],
+			providers : [],
+			bootstrap : [AppComponent]
+		})
+		
+		export class AppModule{}
+		
+		
+		Route Parameter  :  Passing "Route" Parameter in SPA
+	---------------------------------------------------------------------------------------
+	- 'ActivatedRoute' is the predefined class used to read the Route Parameter in SPA. 
+	
+				app.module.ts
+		-----------------------------------------
+		
+		import {BrowserModule} from '@angular/browser';
+		import { AppComponent } from './app.component'
+		import { UsersComponent } form './users.component';
+		import { UserComponent } form './user.component';
+		import { AboutComponent } form './about.component';
+		import { ContactComponent } form './contact.component';
+		import { Routes , RouterModule } form '@angular/router';
+		
+		const routes : Routes = [
+			{path : '' , reditectTo : 'user' , pathMatch : 'full'}, --> Redirect Route
+			{path : 'users' , component : UsersComponent},
+			{path : 'user/:id' , component : UserComponent},
+			{path : 'about' , component : AboutComponent},
+			{path : 'contact' , component : ContactComponent},
+			{path : '**' , reditectTo : 'user'} -->  Wildcard Route
+		]
+		
+		@NgModule({
+			declarations : [AboutComponent, ContactComponent , UsersComponent , UserComponent],
+			imports : [BrowserModule , RouterModule.forRoot(routes)],
+			providers : [],
+			bootstrap : [AppComponent]
+		})
+		
+		export class AppModule{}
+		
+		
+		
+			users.component.html
+	----------------------------------------------------
+		<table>
+			<tr>
+				<th>Id</id>
+				<th>Name</th>
+				<th>City</th>
+				<th>Email</th>
+			</tr>
+			<tr *ngFor="let x of users">
+				<td>  <a [routerLink]="['/user', x.id]"> {{x.id}} </a> </td>
+				<td>{{x.name}}</td>
+				<td>{{x.city}}</td>
+				<td>{{x.email}}</td>
+			</tr>
+		</table>
+		
+		
+			users.service.ts
+	------------------------------------------
+		import {Injectable} from '@angular/core';
+		import {HttpClient} form '@angular/common/http';
+		@Injectable()
+		export  class UsersService {
+			constructor(private http : HttpClient){}
+			getUser(id : number){
+				return this.http.get('https://jsonplaceholder.typicode.com/users/' + id);
+			}
+		}
+		
+		
+		
+			user.component.ts
+		----------------------------------------
+		import {Component} from '@angular/core';
+		import {ActivatedRoute} from '@angular/router';
+		import {UsersService} from './users.service';
+		@Component({
+			selector : 'app-user',
+			templateUrl : './user.component.html'
+		})
+		export class UserComponent {
+			user :any;
+			constructor(private route : ActivatedRoute , private userservice : UsersService){}
+		
+			ngOnInit(){
+				console.log(this.route.snapshot.params['id']);
+				var id = this.route.snapshot.params['id'];
+				this.userservice.getUser(id).subscribe(data => {
+					this.user = data;
+					console.log(data);
+				})
+			}
+		}
+		
+			user.component.html
+	-------------------------------------------------
+		<table>
+			<tr>
+				<th>	User Name </th>
+				<td> {{user.username}}</td>
+			</tr>
+			<tr>
+				<th>Name</th>
+				<td>{{user.name}}</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>{{user.email}}</td>
+			</tr>
+		</table>
+		
+	***********************************************************************************************************************
+	
+				communication between Component
+		--------------------------------------------------------------------
+			- As a angular developer we can communicate b/w component to component.
+			- we can provide the communication b/w component by 4 ways :
+				 - @Input() decorator
+			     - @Output() decorator
+				 - @ViewChild() decorator
+				 - @ViewChildren() decorator
+				 
+			@Input() decorator
+		----------------------------------------
+		- @Input() is the predefined decorator , used to pass the data from Parent component to child component.
+		
+			app.component.ts																			app.component.html
+		---------------------------------------													--------------------------------------------------------
+		import { Component } from '@angular/core';					<div>
+		@Component({																				<h1> Parent Component - Root Component</h1>
+			selector : 'app-root',																	<app-child  [uname]="username"> </app-child>
+			templateUrl : './app.component.html'							</div>
+		})
+		export class AppComponent{
+		
+			username : string = 'John Smith';
+			constructor(){}
+			
+		}
+		
+		child.component.ts																			child.component.html
+	-------------------------------------------													----------------------------------------------------
+	import { Component  , Input } from '@angular/core';							<div>
+	@Component({																									<h3>This is child component - {{uname}} </h3>
+		selector  : 'app-child',																			</div>
+		templateUrl : './child.component.html'
+	})
+	export class ChildComponent {
+		@Input()
+		uname : string;
+		constructor(){}
+	}
+	
+			pass the data from child component to parent component
+		-------------------------------------------------------------------------------------------
+		- @Output() is the predefined decorator used to pass the data from child component to parent component.
+		- This type of communication is a event communication.
+		
+		- EventEmitter : It is a predefined class used to pass the data from child to parent component.
+		- emit() : it is a predefined function used to fire the event.
+		
+			child.component.ts																												child.component.html
+	---------------------------------------------																			----------------------------------------------------------------
+		import { Component , EventEmitter , Output } from '@angular/core';				<div>
+		@Component({																													<h3>This is a child component</h3>
+			selector : 'app-child',																										<button (click)="passData()" >Send Data </button>
+			templateUrl : './child.component.html'																</div>
+		})
+		export class ChildComponent{
+			@Output()
+			notify : EventEmitter<string> = new EventEmitter<string>;
+			
+			passData(){
+				this.notify.emit("This message is coming from child component");			
+				}
+		}
+		
+			app.component.html
+	----------------------------------------------
+		<div>
+			<h1>This is Parent Component - Root Component</h1>
+			<p>{{childData}}</p>
+			<app-child  (notify)="parentMethod($event)"></app-child>
+		</div>
+		
+			app.component.ts
+		----------------------------------
+		import {Component} from '@angular/core';
+		@Component({
+			selector : 'app-root',
+			templateUrl : './app.component.html'
+		})
+		export class AppComponent{
+			childData : string;
+			
+			parentMethod(data){
+				this.childData = data;
+			}
+		}
+		
+		*************************************************************************************
+													@ViewChild()
+											----------------------------------------
+		- @ViewChild() : it is a predefined decorator , used to get the reference of one component to another component.
+		- @ViewChild() decorator also used to manipulate the DOM elements. 
+		
+			child.component.ts
+		---------------------------------------------
+		import { ChildComponent } from '@angular/core';
+		@Component({
+			selector : 'app-child',
+			templateUrl : './child.component.html'
+		})
+		export class ChildComponent{
+			public msg1 : string;
+			public msg2 : string;
+			
+			constructor(){
+				this.msg1 = 'Default Message ..!!';
+				this.msg2 = 'Marquee Text from child component';
+			}
+		}
+		
+			child.component.html
+		----------------------------------------------
+			<h1>{{msg1}}</h1>
+			<h1>  <marquee> {{msg2}}  </marquee> </h1>
+			
+			parent.component.ts
+		---------------------------------------------
+		import{Component , ViewChild , ElementRef} from '@angular/core';
+		import{ChildComponent} from './child.component';
+		@Component({
+			selector : 'app-parent',
+			templateUrl : './parent.component.html'
+		})
+		export class ParentComponent{
+			
+			@ViewChild(ChildComponent)
+			private _child : ChildComponent
+			
+			@ViewChild('fname')
+			private fname:ElementRef;
+			
+			@ViewChild('lname')
+			private lname:ElementRef;
+			
+			public clickMe(){
+				this._child.msg1 = "Parent Message..!!";
+				this._child.msg2 = "Marquee text from Parent Component";
+				
+				this.fname.nativeElement.style.backgroundColor = 'green';
+				this.fname.nativeElement.style.color = 'red';
+				
+				this.lname.nativeElement.style.backgroundColor = 'red';
+				this.lname.nativeElement.style.color = 'green';
+			}
+			
+			
+					parent.component.html
+	---------------------------------------------------
+		<app-child></app-child>
+		<button (click)="clickMe()" >Click Me</button>
+		
+		<br><br>
+		<input type="text" #fname><br><br>
+		<input type="text" #lname>
+		
+		
+		********************************************************************************************************
+		
+								@ViewChildren()
+							------------------------------------
+			- @ViewChildren() is the predefined decorator used to get the reference of one component to another component.
+			
+				child.component.ts
+			--------------------------------------
+		import { ChildComponent } from '@angular/core';
+		@Component({
+			selector : 'app-child',
+			templateUrl : './child.component.html'
+		})
+		export class ChildComponent{
+			public var_one : string;
+			public var_two : string;
+			
+			constructor(){
+				this.var_one = 'Message from child component';
+				this.var_two = 'Marquee text from child component';
+			}
+		}
+		
+			child.component.html
+		---------------------------------------------
+		<h1>{{var_one}}</h1>
+		<h2><marquee>{{var_two}}</marquee></h2>
+		
+			parent.component.ts
+		------------------------------------------
+		import{Component , ViewChildren , QueryList} from '@angular/core';
+		import{ChildComponent} from './child.component';
+		@Component({
+			selector : 'app-parent',
+			templateUrl : './parent.component.html'
+		})
+		export class ParentComponent{
+		
+			@ViewChildren(ChildComponent)
+			private _child:QueryList<ChildComponent> = new QueryList();
+			private my_array :Array<any> ;	
+			
+			clickMe(){
+				for(var i:number = 0; i < this.my_array.length ; i++){
+					this.my_array[i].var_one = "Hello";
+					this.my_array[i].var_two= "Hi..!!";
+				}
+			}
+		
+			// convert the QueryList into Array
+			ngAfterViewInit(){
+				this.my_array = this._child.toArray();
+			}
+		}
+
+
+			QueryList : QueryList is bydefault list type so we need to convert it into array by using toArray() method.
+		
+		
+		
+		parent.component.html
+	---------------------------------------------
+		<app-child></app-child>
+		<app-child></app-child>
+		<app-child></app-child>
+		<app-child></app-child>
+		<button (click)="clickMe()" > Click Me</button>
+		
+		
+		****************************************************************************************************************
+				Forms in Angular
+			---------------------------------------
+			- TDF
+			- MDF
+			
+				TDF
+			---------------------
+			- 'ngForm' is the predefined directive used to assign the logical name to form.
+			- (ngSubmit) is the predefined directive used to submit the form
+			- ngModel is the predefined directive to define the input element.
+			- ngModelGroup is the predefined directive used to create the subgroup of the form.
+			
+					Validation
+			-------------------------------
+																if true								if false
+			control has been visited  :  		touched						un-touched
+			control value has changed : 	dirty								pristine
+			control value is valid			:       valid								invalid
+			
+				<div class="form-group" [class.has-error]=""> 
+				
+					<span class="help-block" *ngIf="">
+					<span>
+				
+				</div>
+				
+			<input type="text" name="name" [(ngModel)]="name" #userName="ngModel" required minlength="4">
+			
+			<div *ngIf="userName.errors &&(userName.dirty || userName.touched)" class="alert alert-danger">
+					<div [hidden]="!userName.errors.required">
+						Name is required
+					</div>
+					<div [hidden]="!userName.errors.minlength">
+						Please enter 4 characters
+					</div>
+			</div>
+				
+				
+				MDF
+		----------------------------
+		- In MDF we  use a module ReactiveFormsModule which is present in '@angular/forms'.
+		
+		- In Component class we use 2 class which is FormGroup and FormControl
+		- FormGroup : it is defined in [formGroup]
+		- FormControl : it is defined all the input control field
+		
+		-  in template we can define the input field by using 'formControlName'
+		- formGroupName it is define the subgroup of form
+		
+			for Validation
+		------------------------------
+		- we use a Validator class in component
+		
+		<form [formGroup]="userform">
+		<input type="text"  formControlName="name">
+		
+		<div *ngIf="userform.controls['name'].hasError('required')" class="alert alert-danger">
+			Name is required
+		</div>
+		
+		
+		postalcode : Validators.pattern('^[1-9][0-9]{4}$')
+		
+		<input type="text"  formControlName="postalcode>
+		
+			<div *ngIf="userform.controls['address'].controls['postalcode'].hasError('pattern')" class="alert alert-danger">
+				Invalid
+		</div>
+		
+		
+		Kudvankat style
+	------------------------------------
+		<form [formGroup]="empForm">
+		
+		<div class="form-group" [ngClass]="{'has-error' : empForm.get('fullName').errors && (empForm.get('fullName').touched ||
+		empForm.get('fullName').dirty) }">
+		
+		<input type="text"  formControlName="fullName>
+		
+		<span class="help-block" *ngIf="empForm.get('fullName').errors && (empForm.get('fullName').touched ||
+		empForm.get('fullName').dirty)">
+			
+			<span *ngIf="empForm.get('fullName').errors.required">
+				Name is required
+			</span>
+		</span>
+		
+		</div>
+		
+		
+		
+*****************************************************************************************************************
+				Pipes in Angular
+			---------------------------------
+		- Pipes are used to 'format the data' or 'transform the data' according to application requirement.
+		- We will apply the pipes by using pi symbol '|'
+		- There are 2 types of pipes in angular:
+				- Built in pipes
+				- Custom pipes
+				
+			Built-in / predefined pipes
+		------------------------------------------------
+			titlecase : this pipe used to make the first letter as Capital letter of each word.
+			
+			currency : this pipe used to apply the currencies symbol to numerical values.
+							
+				Ex :   data : number = 100;
+				
+						{{ data | currency }}   -->  $100
+						{{	data | currency : 'INR' }}  --> ₹100
+						---- like currency : 'GBP'  (Pound)
+						---- like currency : 'EUR'  (Euro)
+						
+			number  : this pipe used to manipulate the numbers
+			
+				Ex :  data : number = 100.12345;
+				
+						{{ data | number : '3.1-2' }}  -->  100.12   (1-2 : 1 means minimum one after the decimal point and 2 means maximum two after 
+																									decimal point )
+																									
+						{{  data | number : '4.2-4' }}   --> 0100.1234
+						
+			
+			percent : this pipe used to convert the fraction to equivalent percentage.
+			
+				Ex :  data : number = 0.9;
+				
+						{{ data	| percent }}   -->  90%
+						
+						
+			json : this pipe used to convert the json object to json string.
+			
+			
+			uppercase : this pipe used to convert the lowercase characters into uppercase characters
+			
+			lowercase : this pipe used to convert the uppercase characters into lowercase characters.
+			
+			date : this pipe used to manipulate the date  according to requirement.
+			
+				Ex :    var_data : Date = new Date();
+				
+							{{ var_data | date : 'dd-MM-YY' }}
+							{{ var_data | date : 'dd-MMM-YYYY'}}
+							{{ var_data | date : 'shortDate'}}
+							{{ var_data | date : 'mediumDate'}}
+							{{ var_data | date : 'fullDate'}}
+							---------------
+							---------------
+							
+			slice : this pipe used to manipulate the numerical arrays.
+			
+				Ex :   data : Array<number> = [10 , 20 , 30 , 40 , 50];
+				
+				{{ data	| slice : 1 : 3 }}  --->  [ 20 , 30]   (1 : 3 -  1 means it start from that index and 3 means goes to that index but this index was not
+																							printing )
+																							
+				{{  data | slice : 1 }}  -->  [20 , 30 , 40 , 50]
+				
+				{{  data 	| slice : 1 : -1 }}   --->  [20 , 30 , 40 ]
+				
+				
+				
+				Custom Pipe
+		------------------------------------
+			- 'Pipe' is the predefined class used to assign the logical name to the custom pipe.
+			- 'PipeTransform' is the predefined interface in angular.
+			- 'PipeTransform' interface used to implement the custom pipe.
+			- transform() is the unimplemented method in PipeTransform interface.
+			
+			  reverse.pipe.ts
+		---------------------------------
+			import { Pipe , PipeTransform } from '@angular/core';
+			@Pipe({
+				name : 'reverse'
+			})
+			export class reversePipe implements PipeTransform{
+				transform(arg1){
+					var data : string = '';
+					for(var i:number = 0; i < arg1.length ; i++){
+						data = arg1[i] + data;
+					}
+					return data;
+				}
+			}
+			
+				app.component.html
+			---------------------------------------
+			<h1> {{  "Hello" | reverse }} </h1>
+			
+				app.module.ts
+		-------------------------------------
+			import { reversePipe } from './reverse.pipe';
+			declarations : [AppComponent , reversePipe]
+			
+			
+		Example 2 :
+	----------------------------
+			import { Pipe, PipeTransform } from '@angular/core';
+			@Pipe({name: 'customFileSizePipe'})
+			
+			export class FileSizePipe implements PipeTransform {
+			transform(size: number, extension: string = 'MB'): string {
+				return (size / (1024 * 1024)).toFixed(2) + extension;
+				}
+			}
+			
+			
+			
+			html
+		-----------------------
+		<h2>Find the size of a file</h2>
+		<p>Size: {{288966 | customFileSizePipe: 'GB'}}</p>
+	
+			
+	***********************************************************************************************************************
+			Interceptors in Angular
+		--------------------------------------------
+		- Interceptor are used to 'validate the request' before hitting the server.
+						or
+		- Interceptor are used to filter the Http request before hitting the server.
+		
+		How to implement Interceptor in Angular
+	----------------------------------------------------------------------
+	- 'HttpInterceptor' is the predefined interface, used to implement the interceptor.
+	- 'intercept()' is the unimplemented method in HttpInterceptor interface.
+	- 'intercept()' method used to validate the request's.
+	
+	- 'HttpRequest' is the predefined class, used to recieve or take the requests from client or services.
+	- 'HttpHandler' is the predefined class , used to bypass the request to server.
+	- 'HttpEvent' is the predefined class used to handle the events raised by interceptors.
+	- we will use Observable also to handle the events smoothly.
+	
+	- All the interceptors are custom services.
+	
+	
+		interceptor.component.ts
+	------------------------------------------------
+	import {Component} form '@angular/core';
+	import {HttpClient} from '@angular/common/http';
+	import{HttpErrorResponse} from '@angular/common/http';
+	@Component({
+		selector : 'interceptor',
+		templateUrl : './interceptor.component.html'
+	})
+	export class InterceptorComponent{
+		
+		private result : any;
+		constructor(private http:HttpClient){}
+		ngOnInit(){
+			this.http.get('https://restcountries.eu/rest/v2/all').subscribe(res => {
+				this.result = res;
+			} , (err:HttpErrorResponse) => {
+				if(err.error instanceof Error){
+					console.log('Client Side error.!!');
+				}else{
+					console.log('Server Side error.!!');
+				}
+			})
+			
+		}
+	}
+	
+		interceptor.component.html
+	-----------------------------------------------------
+	<h1> {{ result | json }} </h1>
+	
+		my.interceptor.ts
+	------------------------------------
+	import { Injectable } from '@angular/core';
+	import {HttpInterceptor , HttpRequest , HttpHandler , HttpEvent} from '@angular/common/http';
+	import {Observable} from rxjs/Observable';
+	@Injectable()
+	
+	export class MyInterceptor implements HttpInterceptor{
+			
+			intercept(req:HttpRequest<any>,handler:HttpHandler):Observable<HttpEvent<any>>{
+				console.log('****************In Interceptor *****************');
+				var req1 = req.clone({
+					setHeaders : {
+						'authorization' : 'hjfhasfjhfjh'
+					}
+				})	
+				return handler.handle(req1);
+			}
+			
+	}
+	
+		How to register the Interceptor
+	--------------------------------------------------------
+	- we also know that all the interceptors are custom services, so we register the interceptor in providers[] in app.module.ts
+	
+		app.module.ts
+	------------------------------
+	import {MyInterceptor} from './my.interceptor';
+	@NgModule({
+	
+		providers : [{
+			provide : HTTP_INTERCEPTORS,
+			useClass : MyInterceptor,
+			multi : true
+		}]
+	
+	})
+	
+	HTTP_INTERCEPTORS : This is the constant in Angular, used to register the interceptor.
+	useClass : useClass as JSON key used to register the interceptor by class name (here the name of interceptor is 'MyInterceptor')
+	multi : multi as JSON key used to enable the multiple interceptors in application
+	
+	
+	
+************************************************************************************************************************
+
+		Series of server calls
+	------------------------------------------
+	- series call
+	- parallel call
+	
+	series call : If we make the server calls with dependencies b/w them called as series call
+	parallel call : if we make the server calls without dependencies b/w them called as parallel call.
+	
+	
+	url : 	https://www.w3schools.com/angular/customers.php
+				https://restcountries.eu/rest/v2/all
+				
+			app
+				services
+					customers.service.ts
+					countries.service.ts
+				component
+					series.component.ts
+					
+					
+			customers.service.ts
+		-------------------------------------------
+		import { Injectable } from '@angular/core';
+		import { HttpClient } from '@angular/common/http';
+		@Injectable();
+		export class CustomerService{
+		
+			constructor(private http:HttpClient){}
+			getCustomers(){
+				return this.http.get('https://www.w3schools.com/angular/customers.php');
+			}
+		}
+		
+		
+			countries.service.ts
+		-------------------------------------------
+		import { Injectable } from '@angular/core';
+		import { HttpClient } from '@angular/common/http';
+		@Injectable();
+		export class CountriesService{
+		
+			constructor(private http:HttpClient){}
+			getCountries(){
+				return this.http.get('https://restcountries.eu/rest/v2/all');
+			}
+		}
+		
+		
+			series.component.ts
+		----------------------------------------
+		import { Component } from '@angular/core';
+		import { HttpErrorResponse } from '@angular/common/http';
+		import { CustomerService } from './customers.service.ts';
+		import { CountriesService } from './countries.service.ts';
+		@Component({
+			selector : 'series',
+			templateUrl : './series.component.html'
+		})
+		export class SeriesComponent{
+				private data_1 : any;
+				private data_2 :any;
+				constructor(private customerSer : CustomerService , private countriesSer : CountriesService){}
+		
+				ngOnInit(){
+					this.customerSer.getCustomers().subscribe( res = >{
+						this.data_1 = res;
+						
+						// if first server call will success then we call another server call
+						// if call one success then go for second call
+						this.countriesSer.getCountries().subscribe(res1 => {
+							this.data_2 = res;
+						} , (err:HttpErrorResponse) => {
+							if(err.error  instanceof Error){
+								console.log('Client Side Error.!!!');
+							}else{
+								console.log('Server Side Error.!!!');
+							}
+						})
+						
+					} , (err : HttpErrorResponse) => {
+						if(err.error  instanceof Error){
+							console.log('Client Side Error.!!!');
+						}else{
+							console.log('Server Side Error.!!!');
+						}
+					})
+				}
+		}
+		
+		
+			series.component.html
+	----------------------------------------------------
+	<h1 style="color : red"> {{ data_1 | json }} </h1>
+	<br><br>
+	<h1 style="color : green"> {{ data_2 | json }}  </h1>
+	
+	
+	****************************************************************************************************************
+	
+		How to implement Parallel call
+	-----------------------------------------------------
+	- If we make the server call without dependencies b/w them called as parallel call.
+	- forkJoin() is the predefined function used to make the parallel call.
+	- forkJoin() function available in 'rxjs/Observable' package.
+	
+	Url  :   http://test-routes.herokuapp.com/test/hello
+	
+	
+			hello.service.ts
+		-------------------------------
+		import { Injectable } from '@angular/core';
+		import { HttpClient } from '@angular/common/http';
+		@Injectable();
+		export class HelloService{
+		
+			constructor( private http:HttpClient ){}
+			getHello(){
+				return this.http.get('http://test-routes.herokuapp.com/test/hello');
+			}
+		}
+		
+			customers.service.ts
+		----------------------------------------
+		import { Injectable } from '@angular/core';
+		import { HttpClient } from '@angular/common/http';
+		@Injectable();
+		export class CustomerService{
+		
+			constructor(private http:HttpClient){}
+			getCustomers(){
+				return this.http.get('https://www.w3schools.com/angular/customers.php');
+			}
+		}
+		
+		
+			parallel.component.ts
+		-----------------------------------------
+		import { Component } from '@angular/core';
+		import { HttpErrorResponse } from '@angular/common/http';
+		import { CustomerService } from './customers.service.ts';
+		import { HelloService } from './hello.service.ts';
+		import {  }
+		@Component({
+			selector : 'parallel',
+			templateUrl : './parallel.component.html'
+		})
+		export class ParallelComponent{
+		
+			private result_one : any;
+			private result_two : any;
+			constructor(private helloSer:HelloService , private customerSer : CustomerService){}
+			
+			ngOnInit(){
+				Observable.forkJoin([this.helloSer.getHello() , this.customerSer.getCustomers()]).subscribe(res => {
+					this.result_one = res[0];
+					this.result_two = res[1];
+				}, (err:HttpErrorResponse) => {
+					if(err.error instanceof Error){
+						console.log('Client Side Error..!!!');
+					}else{
+						console.log('Server Side Error..!!!');
+					}
+				})
+			}
+			
+		}
+		
+			parallel.component.html
+		-----------------------------------------------
+		<h1  style="color : red"> {{ result_one | json }} </h1>
+		<br><br>
+		<h1  style="color : green"> {{ result_two | json }} </h1>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    			- first example 'taskApp'
+			- ng new taskApp
+			 - install bootstrap  ->   npm install bootstrap
+			 - install jquery -> npm install jquery
+			 
+			 - generate component  -> ng g c task (task is a component name)
+					->  task.component.ts
+					-> task.component.html
+					
+					app-routing.module.ts
+				-------------------------------------------
+				import { NgModule } from '@angular/core';
+				import { Routes , RouterModule } from '@angular/router';
+				import {  TaskComponent } from './task/task.component';
+				
+				const routes : Routes = {
+					{ path : ' ' , component : TaskComponent }
+				}
+				
+				@NgModule({
+					imports : [RouterModule.forRoot(routes)],
+					exports : [RouterModule]
+				})
+				
+				export class AppRoutingModule {}
+				
+				
+					task.component.html
+			----------------------------------------------------
+				<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-md-10">
+								<div class="card">
+									<div class="card-header"></div>
+									<div class="card-body">
+										<div class="col">
+											<input type="text" placeholder="Name" [(ngModel)]="Name">
+										</div>
+										<div class="col">
+											<input type="date" placeholder="StartDate" [(ngModel)]="Start">
+										</div>
+										<div class="col">
+											<input type="date" placeholder="EndDate" [(ngModel)]="End">
+										</div>
+										<div class="col" *ngIf="editIndexSelected = -1">
+											<input type="button" class="btn btn-success" (click)="SaveData()">Save
+										</div>
+										<div class="col" *ngIf="editIndexSelected != -1">
+											<input type="button" class="btn btn-success" (click)="Update()">Update
+										</div>
+									</div>
+								</div>
+								
+								<div class="card">
+									<div class="card-body">
+										<table class="table table-bordered">
+											<tr>
+												<th>Name</th>
+												<th>Start</th>
+												<th>End</th>
+												<th>Edit</th>
+												<th>Delete</th>
+											</tr>
+											<tr *ngFor="let x of Data;let i = index">
+												<td>{{x.Name}}</td>
+												<td>{{x.Start}}</td>
+												<td>{{x.End}}</td>
+												<td><i class="fa fa-edit" (click)="Edit(i)"></i></td>
+												<td><i class="fa fa-trash" (click)="Delete(i)"></i></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+				</div>
+				
+				
+				
+						task.component.ts
+				-------------------------------------------------
+				
+				import { Component } from '@angular/core';
+				
+				@Component({
+					selector : 'app-task',
+					templateUrl : './task.component.html'
+				})
+				
+				export class TaskComponent {
+					Name : string;
+					Start : string;
+					End : string;
+					Data: any = [];
+					editIndexSelected : number = -1;
+					
+					
+					SaveData(){
+						this.Data.push({Name : this.Name , Start : this.Start , End : this.EndDate});
+					}
+					
+					Edit(index : number){
+						this.editIndexSelected = index;
+						var editRecord = this.Data[index];
+						this.Name = editRecord.Name;
+						this.Start = editRecord.Start;
+						this.End = editRecord.End;
+					}
+					
+					Update(){
+						this.Data[this.editIndexSelected] = {Name : this.Name , Start : this.Start , End : this.EndDate};
+						this.editIndexSelected = -1;
+					}
+					
+					Delete(index : number){
+						this.Data.splice(index , 1);
+					}
+				}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        			MySQL CRUD Operations 
+		------------------------------------------------
+		Node JS
+	-------------------------
+	- Node is the server side scripting language.
+	- Node used to develop the Http and tcp servers.	
+	- Node application is based on JS.
+	- Node supports the modules
+		
+		- Download the following modules
+			- express 
+			- mysql
+			- body-parser
+			- cors
+			
+			- express : express is the third party module , express module used to develop the Rest API.
+			- mysql : mysql is the third party module , used to interact with mysql database.
+			- body-parser : it is also a third party module , used to read the Post parameters.
+			- cors : cors is the third party module , used to enable the ports communication.
+			
+		- we can download above module by using 'yarn'
+		- yarn is the node package manager used to download the third party module
+			
+			>  yarn add express mysql cors body-parser --save
+			
+			Design the database
+		---------------------------------------
+		Default password is 'root'
+		
+		show the database
+	----------------------------------------
+	- show databases;
+			- it will show available databases.
+		
+		create the schema : 
+	----------------------------------------
+	- create schema angular5;
+			- automatically angular5 schema will be created.
+			
+		switch to schema
+	------------------------------------
+	- use angular5;
+			- automatically we can switch to angular5.
+			
+		create the table
+	---------------------------------
+	- create table products(p_id integer , p_name varchar(20) , p_cost integer);
+	
+		insert the data
+	------------------------------
+	- insert into products values(111 , 'p_one' , 10000);
+	
+		fetch the data
+	--------------------------------
+	- select * from products;
+	
+	********************************************************************************
+				host  : localhost
+				user : root
+				password : root
+				database	: angular5
+				table : products
+				
+	*******************************************************************************
+	
+		Develop the Rest API by using Node JS
+	----------------------------------------------------------------------
+		MySQLCRUD ->  project Name
+				server	
+						insert	
+							insert.js
+						update
+							update.js
+						fetch	
+							fetch.js
+						delete
+							delete.js
+						config
+							db_properties.js
+							db_connection.js
+					serve.js
+					
+		***********************************************************************************
+		config	
+			db_properties.js
+		------------------------------------
+			module.exports = {
+				host : 'localhost',
+				user : 'root',
+				password : 'root',
+				database : 'angular5'
+			}
+			
+		config
+			db_connection.js
+		----------------------------------------
+			var mysql = require('mysql');
+			var db_prop = require('./db_properties');
+			module.exports = {
+					'getConnection' : function(){                  
+							return mysql.createConnection({                 or   -> return mysql.createConnection(db_prop);
+								host : db_prop.host,
+								user : db_prop.user,
+								password : db_prop.password,
+								database : db_prop.database
+							})
+					}
+			}
+			
+	**************************************************************************************************
+	Routing
+--------------------------------
+	- In express js we can create the modules.
+	- creating the modules in express js called as routing.
+	- by using modules we can reuse the application logic.
+	**************************************************************************************************
+	
+	fetch
+		fetch.js
+	----------------------------
+		var express = require('express');
+		var conn = require('../config/db_connection');
+		var connection = conn.getConnection();
+		connection.connect();
+		var router = express.Router();
+		// create the Rest API
+		router.get('/' , (req,res)=>{
+			// write the fetch query to the table by using query() function
+			connection.query('select * from products' , (err , recordsArray , field)=>{
+				if(err){
+					res.send('Error.......!!');
+				}else{
+					res.send(recordsArray);
+				}
+			})
+		})
+		// exports the module
+		module.exports = router;
+	
+	
+	
+	**************************************************************************************************
+	insert
+		insert.js
+	--------------------------
+		var express = require('express');
+		var conn = require('../config/db_connection');
+		var connection = conn.getConnection();
+		connection.connect();
+		// create the router instance(object)
+		// router instance used to create the modules
+		var router = express.Router();
+		router.post('/' , function(req,res)=>{
+			// read p_id , p_name , p_cost coming from client
+			// 'body' is the predefined key used to read the post parameter
+			var p_id = req.body.p_id;
+			var p_name = req.body.p_name;
+			var p_cost = req.body.p_cost;
+			
+			// insert query
+			connection.query("insert into products values(" + p_id + " , ' " + p_name + " ' , " + p_cost + ")" , (err , result)=>{
+				if(err){
+					res.send({'insert' : 'fail'});
+				}else{
+					res.send({'insert' : 'success'});
+				}
+			});
+		})
+		module.exports = router;
+***************************************************************************************************************************
+
+	update
+		update.js
+	-----------------------------
+		var express = require('express');
+		var conn = require('../config/db_connection');
+		var connection = conn.getConnection();
+		connection.connect();
+		var router = express.Router();
+		// create the Rest API
+		router.post('/' , (req,res)=>{
+			// read the p_id , p_name  and p_cost
+			var p_id = req.body.p_id;
+			var p_name = req.body.p_name;
+			var p_cost = req.body.p_cost;
+			
+			// update query
+			connection.query("update products set p_name = ' " + p_name + " ' , p_cost = "+ p_cost+" where p_id = " + p_id , (err , result) =>{
+				if(err){
+					res.send({'update' : 'fail'});
+				}else{
+					res.send({'update' : 'success'});
+				}
+			})
+		})
+		module.exports = router;
+		
+***************************************************************************************************************************
+
+	delete
+		delete.js
+	--------------------------
+		var express = require('express');
+		var conn = require('../config/db_connection');
+		var connection = conn.getConnection();
+		connection.connect();
+		var router = express.Router();
+		// create the Rest API
+		router.post('/' , (req,res)=>{
+			// read the p_id
+			var  p_id = req.body.p_id;
+			
+			// delete query
+			connection.query("delete from products where p_id = " + p_id , (err,result)=>{
+				if(err){
+					res.send({'delete' : 'fail'});
+				}else{
+					res.send({'delete' : 'success'});
+				}
+			})
+		})
+		module.exports = router;
+		
+	*************************************************************************************************************
+	server
+		server.js
+	------------------------
+	var express = require('express');
+	var bodyparser = require('body-parser');
+	var cors = require('cors');
+	
+	//create the Rest object
+	var app = express();
+	
+	// set the JSON as MIME type
+	app.use(bodyparser.json());
+	
+	//take the permission to read post parameter
+	app.use(bodyparser.urlencoded({extended : false}));
+	
+	// import the module and use it fetch , insert , update , detele
+	var fetch = require('./fetch/fetch');
+	app.use('/fetch' , fetch);
+	
+	var insert = require('./insert/insert');
+	app.use('/insert' , insert);
+	
+	var update = require('./update/update');
+	app.use('/update' , update);
+	
+	var remove = require('./delete/delete');
+	app.use('/delete' , remove);
+	
+	// assign the port number
+	app.listen(8080);
+	console.log('server listening the port number 8080');
+	
+	**********************************************************************************************
+	Now check the following API in Postman
+-----------------------------------------------------------------------
+
+		http://localhost:8080/fetch
+		http://localhost:8080/insert
+		http://localhost:8080/update
+		http://localhost:8080/delete
+		
+	**********************************************************************************************************************
+	Now use this api in Angular
+----------------------------------------------------------
+
+		crud.service.ts
+	---------------------------------
+	
+	import {Injectable} from '@angular/core';
+	import {HttpClient} from '@angular/common/http';
+	@Injectable();
+	export class CrudService {
+		
+		constructor( private http:HttpClient ){}
+		
+		fetchData(){
+			return this.http.get('http://localhost:8080/fetch');
+		}
+		
+		insertData(obj : any){
+			return this.http.post('http://localhost:8080/insert' , obj);
+		}
+		
+		updateData(obj :any){
+			return this.http.post('http://localhost:8080/update' , obj);
+		}
+	
+		deleteData(obj : any){
+			return this.http.post('http://localhost:8080/delete' , obj);
+		}
+	}
+	
+		crud.component.ts
+	-----------------------------------------
+	import { Component } from '@angular/core';
+	import { CrudService } from './service/crud.service';
+	import { HttpErrorResponse } from '@angular/common/http';
+	@Component({
+		selector : 'app-crud',
+		templateUrl : './crud.component.html'
+	})
+	export class CrudComponent {
+		private records : any;
+		
+		private insertStatus : any;
+		private updateStatus :any;
+		private deleteStatus : any;
+		
+		private fetchSubscribe : any;
+		private insertSubscribe : any;
+		private updateSubscribe : any;
+		private deleteSubscribe : any; 
+		
+		constructor(private crudSer : CrudService){}
+		
+		ngOnInit(){
+			this.fetchSubscribe =  this.crudSer.fetchData().subscribe( this.fetchCallBack , this.errorCallBack);
+		}
+		
+		***************************** fetch the data ************************
+		public fetchCallBack = (res : any) => {
+			this.records = res;
+		}
+		public errorCallBack = (err : HttpErrorResponse):any =>{
+			if(err.error instanceof ErrorEvent){
+				console.log('Client Side Error...');
+			}else{
+				console.log('Server Side Error');
+			}
+		}
+		
+		
+		********************** insert data *********************************
+		public record : any;
+		public insert(obj) : any{
+			this.insertSubscribe = this.crudSer.insertData(obj).subscribe(this.insertCallBack , this.errorCallBack);
+			this.record = obj;
+		}
+		public insertCallBack = (res : any)=>{
+			if(res.insert == 'success'){
+				this.records.push(this.record);
+			}
+			this.insertStatus = res;
+		}
+		
+		************************** update data *************************************
+		public update(obj):any {
+			this.updateSubscribe = this.crudSer.updateData(obj).subscribe(this.updateCallBack , this.errorCallBack);
+			this.record = obj;
+		}
+		public updateCallBack = (res:any)=>{
+			if(res.update == 'success'){
+				for( var i:number = 0; i < this.records.length ; i++ ){
+					if(this.records[i].p_id == this.record.p_id){
+						this.records[i].p_name = this.record.p_name;
+						this.records[i].p_cost = this.record.p_cost;
+					}
+				}
+			}
+			this.updateStatus = res;
+		}
+		
+		******************************* delete data ***********************************
+		public index : any;
+		public remove(obj):any{
+			this.deleteSubscribe = this.crudSer.deleteData(obj).subscribe(this.deleteCallBack , this.errorCallBack);
+			this.record = obj;
+		}
+		public deleteCallBack = (res :any)=> {
+			if(res.delete == 'success'){
+				for( var i:number = 0 ; i< this.records.length ; i++ ){
+					if(this.records[i].p_id == this.record.p_id){
+						this.index = this.records.indexOf(this.records[i]);
+						this.records.splice(this.index , 1);
+					}
+				}
+			}
+			this.deleteStatus = res;
+		}
+			
+		ngOnDestroy(){
+			this.fetchSubScribe.unsubscribe();
+			this.insertSubScribe.unsubscribe();
+			this.updateSubScribe.unsubscribe();
+			this.deleteSubScribe.unsubscribe();
+		}
+	}
+	
+	**************************************************************************************************************
+				crud.component.html
+		-------------------------------------------------
+<div class="container"><br><br>
+
+    <table class="table table-bordered">
+        <thead class="bg-primary">
+            <tr>
+                <th>P_ID</th>
+                <th>P_Name</th>
+                <th>P_Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let x of records">
+                <td>{{x.p_id}}</td>
+                <td>{{x.p_name}}</td>
+                <td>{{x.p_cost}}</td>
+            </tr>
+        </tbody>
+    </table>
+	
+	<br><br>
+    <hr style="height:2px;background-color:gray">
+    <br><br>
+	
+	******************************* Insert Operations *******************************************
+	<h3> Insert Operations </h3>
+	<div class="jumbotron">
+		<div class="form-group">
+			<label>P_ID</label>
+			<input type="text" name="pid" [(ngModel)]="insert_pid" class="form-control">
+		</div>
+		<div class="form-group">
+			<label>P_Name</label>
+			<input type="text" name="pname" [(ngModel)]="insert_pname" class="form-control">
+		</div>
+		<div class="form-group">
+			<label>P_Cost</label>
+			<input type="text" name="pcost" [(ngModel)]="insert_pcost" class="form-control">
+		</div>
+		
+		<div class="form-group">
+			<button  (click)="insert({'p_id' : insert_pid , 'p_name' : insert_pname , 'p_cost' : insert_pcost})"  >Add Data</button>
+		</div>
+	
+		<h3>  {{  insertStatus | json }} </h3>
+		
+	</div>
+	
+	************************************ Update Operations  ***************************************************
+	 <hr style="height:2px;background-color:gray">
+    <br><br>
+	
+	<h3>Update Operations </h3>
+	<div class="jumbotron">
+		<div class="form-group">
+			<label>P_ID</label>
+			<input type="text" name="pid" [(ngModel)]="update_pid" class="form-control">
+		</div>
+		<div class="form-group">
+			<label>P_ID</label>
+			<input type="text" name="pname" [(ngModel)]="update_pname" class="form-control">
+		</div>
+		<div class="form-group">
+			<label>P_ID</label>
+			<input type="text" name="pcost" [(ngModel)]="update_pcost" class="form-control">
+		</div>
+		
+		<div class="form-group">
+			<button  (click)="update({ 'p_id' : update_pid , 'p_name' : update_pname , 'p_cost' : update_pcost })" >Update Data </button>
+		</div>
+		
+		<h3> {{ updateStatus | json }} </h3>
+		
+	</div>
+	
+	
+	*************************************** Delete Operations ********************************************
+	<hr style="height:2px;background-color:gray">
+    <br><br>
+
+    <h3 class="bg-primary text-center" style="padding:5px">Delete Operation</h3>
+    <div class="jumbotron">
+        <div class="form-group">
+            <label>P_Id</label>
+            <input type="number" class="form-control" name="pid" [(ngModel)]="delete_pid">
+        </div>
+        <div class="form-group" align="center">
+            <button (click)="remove({'p_id':delete_pid})" class="btn btn-primary">Delete Data</button>
+        </div>
+        <h3 class="text-danger">{{deleteStatus | json}}</h3>
+    </div>
+	
+</div>
