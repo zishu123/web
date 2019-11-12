@@ -1,0 +1,73 @@
+<img src="../../assets/images/image.jpg" alt="" style="position: fixed;">
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <!-- <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" /> -->
+      <!-- <h1>Sign Up </h1> -->
+      <h1 class="h3 bg-info p-3 text-white">Sign Up</h1>
+    </div>
+
+    <!-- Login Form -->
+    <form>
+
+      <div class="form-group">
+          <input type="text" class="fadeIn second" name="first_name" [(ngModel)]="first_name" placeholder="First Name">
+      </div>
+      <div class="form-group">
+          <input type="text" class="fadeIn second" name="last_name" [(ngModel)]="last_name" placeholder="Last Name">
+      </div>
+      <div class="form-group">
+          <input type="text" class="fadeIn second" name="email" [(ngModel)]="email" placeholder="Email">
+      </div>
+      <div class="form-group">
+          <input type="password" class="fadeIn second" name="password" [(ngModel)]="password" placeholder="Password">
+      </div>
+
+
+
+      <!-- <div class="form-group">
+        <input type="text" id="login" class="fadeIn second" name="email" [(ngModel)]="email" placeholder="Email"
+        #userEmail="ngModel" required><br>
+        <span *ngIf="userEmail?.errors && (userEmail.dirty || userEmail.touched)" class="text-danger">
+          <span *ngIf="userEmail?.errors.required">Email is required</span>
+        </span>
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="password"
+          [(ngModel)]="password" #userPassword="ngModel" required><br>
+          <span *ngIf="userPassword?.errors && (userPassword.dirty || userPassword.touched)" class="text-danger">
+            <span *ngIf="userPassword?.errors.required">Password is required</span>
+          </span>
+      </div>
+      <div class="form-group">
+        <input type="password" id="confrm_password" class="fadeIn third" name="confrm_password" placeholder="confirm password"
+          [(ngModel)]="confrm_password" #confirmPassword="ngModel" required><br>
+          <span *ngIf="confirmPassword?.errors && (confirmPassword.dirty || confirmPassword.touched)" class="text-danger">
+            <span *ngIf="confirmPassword?.errors.required">Confrm Password is required</span>
+          </span>
+      </div>
+      <div class="form-group">
+        <input type="number" id="password" class="fadeIn third" name="mobileno" placeholder="mobile"
+          [(ngModel)]="mobileno" #mobileNumber="ngModel" required><br>
+          <span *ngIf="mobileNumber?.errors && (mobileNumber.dirty || mobileNumber.touched)" class="text-danger">
+            <span *ngIf="mobileNumber?.errors.required">Mobile No is required</span>
+          </span>
+      </div> -->
+      <div class="form-group">
+        <input type="submit"  class="fadeIn fourth" value="Sign Up" (click)="signUp()">
+      </div>
+    </form>
+
+    <!-- Remind Passowrd -->
+    <!-- <div id="formFooter">
+
+      <a class="underlineHover" [routerLink]="['/login']" routerLinkActive="active">Back
+      </a>
+
+    </div> -->
+
+  </div>
+</div>
